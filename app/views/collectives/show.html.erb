@@ -1,10 +1,29 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @collective %>
-
-<div>
-  <%= link_to "Edit this collective", edit_collective_path(@collective) %> |
-  <%= link_to "Back to collectives", collectives_path %>
-
-  <%= button_to "Destroy this collective", @collective, method: :delete %>
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+  <h1><%= @collective.name %></h1>
+  <!-- MEMBER LIST -->
+  <h2>Members</h2>
+  <ul>
+    <% @collective.members.each do |member| %>
+      <li><%= member.name %></li>
+    <% end %>
+  </ul>
+  <!-- GENRE LIST -->
+  <h2>Genres</h2>
+  <ul>
+    <% @collective.genres.each do |genre| %>
+      <li><%= genre.name %></li>
+    <% end %>
+  </ul>
+  <!-- EVENTS -->
+  <h2>Next Events</h2>
+  <p>TO BE DONE...</p>
+  <hr>
+  <% if current_user == @collective.owner %>
+    <div>
+      <%= link_to "Edit this collective", edit_collective_path(@collective) %> |
+      <%= link_to "Back to collectives", collectives_path %>
+      <%= button_to "Destroy this collective", @collective, method: :delete %>
+    </div>
+  <% end %>
 </div>

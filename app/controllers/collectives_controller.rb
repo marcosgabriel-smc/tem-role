@@ -1,5 +1,6 @@
 class CollectivesController < ApplicationController
-  before_action :set_collective, only: %i[ show edit update destroy ]
+  before_action :set_collective, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   # GET /collectives or /collectives.json
   def index
@@ -58,13 +59,14 @@ class CollectivesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_collective
-      @collective = Collective.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def collective_params
-      params.fetch(:collective, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_collective
+    @collective = Collective.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def collective_params
+    params.fetch(:collective, {})
+  end
 end
