@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>New collective</h1>
+  <h1 class="text-capitalize">novo coletivo</h1>
   <%= simple_form_for @collective do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
@@ -8,6 +8,6 @@
   <% end %>
   <hr>
   <div>
-    <%= link_to "Back to collectives", collectives_path %>
+    <%= link_to "Back to collectives", collectives_path, class: "text-muted"%>
   </div>
 </div>
