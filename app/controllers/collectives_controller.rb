@@ -1,5 +1,6 @@
 class CollectivesController < ApplicationController
   before_action :set_collective, only: %i[show edit update destroy]
+  before_action :authorize_user, except: %i[index]
   skip_before_action :authenticate_user!, only: %i[index show]
 
   # GET /collectives or /collectives.json
@@ -14,7 +15,6 @@ class CollectivesController < ApplicationController
   # GET /collectives/new
   def new
     @collective = Collective.new
-    authorize @collective
   end
 
   # GET /collectives/1/edit
@@ -23,14 +23,12 @@ class CollectivesController < ApplicationController
 
   # POST /collectives or /collectives.json
   def create
-    authorize Collective
     @collective = Collective.new(collective_params)
-
     @collective.owner = current_user
-    Membership.create(collective: @collective, user: @collective.owner)
 
     respond_to do |format|
       if @collective.save
+        Membership.create(collective: @collective, user: @collective.owner)
         format.html { redirect_to collective_url(@collective), notice: "Collective was successfully created." }
         format.json { render :show, status: :created, location: @collective }
       else
@@ -65,10 +63,14 @@ class CollectivesController < ApplicationController
 
   private
 
+  def authorize_user
+    collective = @collective || Collective
+    authorize collective
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_collective
     @collective = Collective.find(params[:id])
-    authorize @collective
   end
 
   # Only allow a list of trusted parameters through.
