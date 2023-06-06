@@ -1,7 +1,12 @@
 <div class="container">
   <p style="color: green"><%= notice %></p>
   <h1><%= @collective.name %></h1>
+  <p>
+    <%= @collective.description %>
+  </p>
   <!-- MEMBER LIST -->
+  <h2>Owner</h2>
+  <p><%= @collective.owner.name %></p>
   <h2>Members</h2>
   <ul>
     <% @collective.members.each do |member| %>
