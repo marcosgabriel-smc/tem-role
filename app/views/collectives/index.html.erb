@@ -8,5 +8,7 @@
     </div>
   </div>
   <hr>
-  <%= link_to "New collective", new_collective_path, class: "text-muted" %>
+  <% if policy(Collective).new? %>
+    <%= link_to "New collective", new_collective_path, class: "text-muted" %>
+  <% end %>
 </div>

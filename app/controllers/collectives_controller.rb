@@ -1,10 +1,11 @@
 class CollectivesController < ApplicationController
   before_action :set_collective, only: %i[show edit update destroy]
+  before_action :authorize_user, except: %i[index]
   skip_before_action :authenticate_user!, only: %i[index show]
 
   # GET /collectives or /collectives.json
   def index
-    @collectives = Collective.all
+    @collectives = policy_scope(Collective).all
   end
 
   # GET /collectives/1 or /collectives/1.json
@@ -27,6 +28,7 @@ class CollectivesController < ApplicationController
 
     respond_to do |format|
       if @collective.save
+        Membership.create(collective: @collective, user: @collective.owner)
         format.html { redirect_to collective_url(@collective), notice: "Collective was successfully created." }
         format.json { render :show, status: :created, location: @collective }
       else
@@ -60,6 +62,11 @@ class CollectivesController < ApplicationController
   end
 
   private
+
+  def authorize_user
+    collective = @collective || Collective
+    authorize collective
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_collective
