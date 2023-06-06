@@ -4,7 +4,7 @@ class CollectivesController < ApplicationController
 
   # GET /collectives or /collectives.json
   def index
-    @collectives = Collective.all
+    @collectives = policy_scope(Collective).all
   end
 
   # GET /collectives/1 or /collectives/1.json
@@ -14,6 +14,7 @@ class CollectivesController < ApplicationController
   # GET /collectives/new
   def new
     @collective = Collective.new
+    authorize @collective
   end
 
   # GET /collectives/1/edit
@@ -22,8 +23,11 @@ class CollectivesController < ApplicationController
 
   # POST /collectives or /collectives.json
   def create
+    authorize Collective
     @collective = Collective.new(collective_params)
+
     @collective.owner = current_user
+    Membership.create(collective: @collective, user: @collective.owner)
 
     respond_to do |format|
       if @collective.save
@@ -64,6 +68,7 @@ class CollectivesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_collective
     @collective = Collective.find(params[:id])
+    authorize @collective
   end
 
   # Only allow a list of trusted parameters through.
