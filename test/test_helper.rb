@@ -14,3 +14,5 @@ class ActiveSupport::TestCase
   include Warden::Test::Helpers
   Warden.test_mode!
 end
+
+Capybara.save_path = Rails.root.join("tmp/screenshots")

@@ -23,6 +23,7 @@ class CollectivesController < ApplicationController
   # POST /collectives or /collectives.json
   def create
     @collective = Collective.new(collective_params)
+    @collective.owner = current_user
 
     respond_to do |format|
       if @collective.save
@@ -67,6 +68,6 @@ class CollectivesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def collective_params
-    params.fetch(:collective, {})
+    params.require(:collective).permit(:name, :description, :city)
   end
 end

@@ -1,9 +1,13 @@
-<h1>New collective</h1>
-
-<%= render "form", collective: @collective %>
-
-<br>
-
-<div>
-  <%= link_to "Back to collectives", collectives_path %>
+<div class="container">
+  <h1>New collective</h1>
+  <%= simple_form_for @collective do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :city %>
+    <%= f.submit %>
+  <% end %>
+  <hr>
+  <div>
+    <%= link_to "Back to collectives", collectives_path %>
+  </div>
 </div>
