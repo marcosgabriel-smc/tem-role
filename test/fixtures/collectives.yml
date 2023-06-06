@@ -1,0 +1,9 @@
+lewagang:
+  name: 'lewagang'
+  description: 'mix masters pika das galaxias deluxe'
+  city: 'rio de janeiro'
+  state: 'rj'
+  owner: meleu
+  genres:
+    - dubstep
+    - trance
