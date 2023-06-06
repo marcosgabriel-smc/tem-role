@@ -20,7 +20,12 @@
 	color: white;
 }
 
-.collective_name {
-	background-color: black;
+input[type=submit] {
+	background-color: #000000;
 	color: white;
+	border: none;
+}
+
+input[type=text] {
+	background-color: rgb(247, 247, 247);
 }

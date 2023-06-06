@@ -17,18 +17,12 @@ class CollectivesController < ApplicationController
     @collective = Collective.new
   end
 
-  # GET /collectives/1/edit
-  def edit
-  end
-
   # POST /collectives or /collectives.json
   def create
     @collective = Collective.new(collective_params)
     @collective.owner = current_user
-
     respond_to do |format|
       if @collective.save
-        Membership.create(collective: @collective, user: @collective.owner)
         format.html { redirect_to collective_url(@collective), notice: "Collective was successfully created." }
         format.json { render :show, status: :created, location: @collective }
       else
@@ -36,6 +30,10 @@ class CollectivesController < ApplicationController
         format.json { render json: @collective.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /collectives/1/edit
+  def edit
   end
 
   # PATCH/PUT /collectives/1 or /collectives/1.json

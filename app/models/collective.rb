@@ -18,7 +18,8 @@ class Collective < ApplicationRecord
 
   # validations
   ##################################################
-  validates :name, :owner, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
+  validates :owner, presence: true
 
   # callbacks
   ##################################################
