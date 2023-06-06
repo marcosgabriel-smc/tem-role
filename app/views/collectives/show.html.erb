@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @collective %>
+
+<div>
+  <%= link_to "Edit this collective", edit_collective_path(@collective) %> |
+  <%= link_to "Back to collectives", collectives_path %>
+
+  <%= button_to "Destroy this collective", @collective, method: :delete %>
+</div>

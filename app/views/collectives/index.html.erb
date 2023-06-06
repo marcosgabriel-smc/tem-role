@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Collectives</h1>
+
+<div id="collectives">
+  <% @collectives.each do |collective| %>
+    <%= render collective %>
+    <p>
+      <%= link_to "Show this collective", collective %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New collective", new_collective_path %>
