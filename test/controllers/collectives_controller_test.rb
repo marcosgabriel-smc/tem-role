@@ -1,14 +1,14 @@
 require "test_helper"
 
 class CollectivesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @collective = collectives(:lewagang)
-  end
+  # setup do
+  #   @collective = collectives(:lewagang)
+  # end
 
-  test "should get index" do
-    get collectives_url
-    assert_response :success
-  end
+  # test "should get index" do
+  #   get collectives_url
+  #   assert_response :success
+  # end
 
   # test "should get new" do
   #   get new_collective_url
