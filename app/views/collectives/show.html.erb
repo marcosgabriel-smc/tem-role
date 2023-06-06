@@ -1,10 +1,15 @@
+<div class= "masthead">
+  <div class="color-overlay d-flex justify-content-center align-items-center">
+    <div class="SingleCol container text-center">
+      <h1 class="colec-title"><%= @collective.name %></h1>
+      <div>
+        <p><%= @collective.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MEMBER LIST -->
 <div class="container">
-  <p style="color: green"><%= notice %></p>
-  <h1><%= @collective.name %></h1>
-  <p>
-    <%= @collective.description %>
-  </p>
-  <!-- MEMBER LIST -->
   <h2>Owner</h2>
   <p><%= @collective.owner.name %></p>
   <h2>Members</h2>
