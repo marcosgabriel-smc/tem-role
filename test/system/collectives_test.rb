@@ -7,7 +7,7 @@ class CollectivesTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit collectives_url
-    assert_selector "h1", text: "Collectives"
+    assert_selector "h1", text: "Coletivos"
   end
 
   test "should not be able to create a collective without a name" do
