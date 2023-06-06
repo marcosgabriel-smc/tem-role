@@ -1,12 +1,16 @@
 <div class="container">
-  <p style="color: green"><%= notice %></p>
+
   <h1>Collectives</h1>
-  <div id="collectives">
-    <% @collectives.each do |collective| %>
-      <h2>
-        <%= link_to collective.name, collective %>
-      </h2>
-    <% end %>
+
+  <div class="row align-items-start">
+    <div id="collectives" class= "d-flex">
+      <% @collectives.each do |collective| %>
+        <h2 class= "col-3">
+          <%= link_to collective.name, collective %>
+        </h2>
+      <% end %>
+    </div>
   </div>
+
   <%= link_to "New collective", new_collective_path %>
 </div>
