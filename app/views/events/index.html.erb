@@ -10,7 +10,7 @@
       <% end %>
     </ul>
   </div>
-  <% if user_signed_in? %>
+  <% if policy(@events).new? %>
     <hr>
     <%= link_to "New event", new_event_path %>
   <% end %>

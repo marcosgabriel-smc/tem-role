@@ -15,7 +15,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    !user.collectives.empty?
   end
 
   def edit?
