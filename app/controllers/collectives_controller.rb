@@ -22,14 +22,11 @@ class CollectivesController < ApplicationController
     @collective = Collective.new(collective_params)
     @collective.owner = current_user
     @collective.genre_ids = params[:collective][:genre_ids]
-    respond_to do |format|
-      if @collective.save
-        format.html { redirect_to collective_url(@collective), notice: "Collective was successfully created." }
-        format.json { render :show, status: :created, location: @collective }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @collective.errors, status: :unprocessable_entity }
-      end
+
+    if @collective.save
+      redirect_to collective_url(@collective), notice: "Collective was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -39,14 +36,10 @@ class CollectivesController < ApplicationController
 
   # PATCH/PUT /collectives/1 or /collectives/1.json
   def update
-    respond_to do |format|
-      if @collective.update(collective_params)
-        format.html { redirect_to collective_url(@collective), notice: "Collective was successfully updated." }
-        format.json { render :show, status: :ok, location: @collective }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @collective.errors, status: :unprocessable_entity }
-      end
+    if @collective.update(collective_params)
+      redirect_to collective_url(@collective), notice: "Collective was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
