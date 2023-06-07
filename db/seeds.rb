@@ -40,7 +40,7 @@ Collective.create!(
   [
     {
       name: 'lewagang',
-      description: 'mix masters pika das galaxias deluxe',
+      description: 'mix masters pika das galaxias deluxe loren sajdlasjk jsdiowj lakdfka joiwej rqlk jrli lkehr  uasdh oa dowaha oiwh ethoi dlfh oie iroq niaekj nlaje eja flkdmj flj emdaç f jpaje ajkfea jaelk dgf osei jgsf kdslsj dfçg fkj ds k j',
       city: 'rio de janeiro',
       state: 'rj',
       owner: lewagang_owner
