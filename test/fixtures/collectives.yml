@@ -7,3 +7,12 @@ lewagang:
   genres:
     - dubstep
     - trance
+
+another_collective:
+  name: 'another-collective'
+  description: 'we are the other ones'
+  city: 'sao paulo'
+  state: 'sp'
+  owner: douglas
+  genres:
+    - house

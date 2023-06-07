@@ -17,7 +17,7 @@
 <div class="container">
   <h2>Owner</h2>
   <p><%= @collective.owner.name %></p>
-  <h2>Members</h2>
+  <h2>Members (<%= @collective.members.count %>)</h2>
   <ul>
     <% @collective.members.each do |member| %>
       <li><%= member.name %></li>
@@ -34,11 +34,11 @@
   <h2>Next Events</h2>
   <p>TO BE DONE...</p>
   <hr>
-  <% if current_user == @collective.owner %>
-    <div>
-      <%= link_to "Edit this collective", edit_collective_path(@collective) %> |
-      <%= link_to "Back to collectives", collectives_path %>
-      <%= button_to "Destroy this collective", @collective, method: :delete %>
-    </div>
-  <% end %>
+  <div>
+    <%= link_to "Back to collectives", collectives_path %>
+    <% if policy(@collective).edit? %>
+      | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
+    <% end %>
+    <%= button_to "Destroy this collective", @collective, method: :delete if policy(@collective).destroy? %>
+  </div>
 </div>

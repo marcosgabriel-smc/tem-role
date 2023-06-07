@@ -59,6 +59,9 @@ lewagang = Collective.first
 # MEMBERSHIP
 ######################################################################
 User.first(3).each do |user|
+  # the owner is automatically set as a member
+  next if user == lewagang.owner
+
   Membership.create!(user:, collective: lewagang)
 end
 

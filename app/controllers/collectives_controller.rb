@@ -1,10 +1,11 @@
 class CollectivesController < ApplicationController
   before_action :set_collective, only: %i[show edit update destroy]
+  before_action :authorize_user, except: %i[index]
   skip_before_action :authenticate_user!, only: %i[index show]
 
   # GET /collectives or /collectives.json
   def index
-    @collectives = Collective.all
+    @collectives = policy_scope(Collective).all
   end
 
   # GET /collectives/1 or /collectives/1.json
@@ -16,36 +17,29 @@ class CollectivesController < ApplicationController
     @collective = Collective.new
   end
 
-  # GET /collectives/1/edit
-  def edit
-  end
-
   # POST /collectives or /collectives.json
   def create
     @collective = Collective.new(collective_params)
     @collective.owner = current_user
+    @collective.genre_ids = params[:collective][:genre_ids]
 
-    respond_to do |format|
-      if @collective.save
-        format.html { redirect_to collective_url(@collective), notice: "Collective was successfully created." }
-        format.json { render :show, status: :created, location: @collective }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @collective.errors, status: :unprocessable_entity }
-      end
+    if @collective.save
+      redirect_to collective_url(@collective), notice: "Collective was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  # GET /collectives/1/edit
+  def edit
   end
 
   # PATCH/PUT /collectives/1 or /collectives/1.json
   def update
-    respond_to do |format|
-      if @collective.update(collective_params)
-        format.html { redirect_to collective_url(@collective), notice: "Collective was successfully updated." }
-        format.json { render :show, status: :ok, location: @collective }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @collective.errors, status: :unprocessable_entity }
-      end
+    if @collective.update(collective_params)
+      redirect_to collective_url(@collective), notice: "Collective was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -61,6 +55,11 @@ class CollectivesController < ApplicationController
 
   private
 
+  def authorize_user
+    collective = @collective || Collective
+    authorize collective
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_collective
     @collective = Collective.find(params[:id])
@@ -68,6 +67,6 @@ class CollectivesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def collective_params
-    params.require(:collective).permit(:name, :description, :city)
+    params.require(:collective).permit(:name, :description, :city, :genre_ids)
   end
 end

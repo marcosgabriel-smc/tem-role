@@ -35,20 +35,35 @@ class CollectivesTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
-  # test "should update Collective" do
-  #   visit collective_url(@collective)
-  #   click_on "Edit this collective", match: :first
+  test "should update a Collective" do
+    login_as users(:meleu)
 
-  #   click_on "Update Collective"
+    visit collective_url(@collective)
+    click_on "Edit this collective", match: :first
 
-  #   assert_text "Collective was successfully updated"
-  #   click_on "Back"
-  # end
+    fill_in "collective_name", with: "Dopez[Edited]"
+    fill_in "collective_description", with: "This is a dope [edited] Collective"
 
-  # test "should destroy Collective" do
-  #   visit collective_url(@collective)
-  #   click_on "Destroy this collective", match: :first
+    click_on "Update Collective"
 
-  #   assert_text "Collective was successfully destroyed"
-  # end
+    assert_text "Collective was successfully updated"
+    click_on "Back"
+  end
+
+  test "should not be able to view the edit page of another person's Collective" do
+    login_as users(:meleu)
+
+    visit edit_collective_url(collectives(:another_collective))
+
+    assert_text "You are not authorized to perform this action."
+  end
+
+  test "should destroy Collective" do
+    login_as users(:meleu)
+
+    visit collective_url(@collective)
+    click_on "Destroy this collective", match: :first
+
+    assert_text "Collective was successfully destroyed"
+  end
 end
