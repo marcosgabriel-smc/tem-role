@@ -4,7 +4,7 @@
       <div class="align-self-end">
         <h1 class="colec-title"><%= @collective.name %></h1>
       </div>
-      <p class="colectivedesc text-break text-start"><%= @collective.description %></p>
+      <p class="colectivedesc text-break text-start fw-semibold"><%= @collective.description %></p>
     </div>
     <div class= "align-self-end d-flex justify-content-evenly w-100">
       <h3>Members</h3>
@@ -31,14 +31,20 @@
     <% end %>
   </ul>
   <!-- EVENTS -->
-  <h2>Next Events</h2>
-  <ul>
-    <% @collective.events.each do |event| %>
-      <li>
-        <%= render 'events/event_card', event: %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="container">
+    <h1>Next Events</h1>
+    <ul>
+      <div class="col">
+        <h3><% @collective.events.each do |event| %></h3>
+          <div>
+            <li>
+              <%= render 'events/event_card', event: %>
+            </li>
+          </div>
+        <% end %>
+      </div>
+    </ul>
+  </div>
   <hr>
   <div>
     <%= link_to "Back to collectives", collectives_path %>
