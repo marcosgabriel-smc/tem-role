@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root "collectives#index"
 
   resources :collectives
+
+  resources :events
 end

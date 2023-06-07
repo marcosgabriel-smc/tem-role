@@ -5,7 +5,7 @@ class CollectivesController < ApplicationController
 
   # GET /collectives or /collectives.json
   def index
-    @collectives = policy_scope(Collective).all
+    @collectives = policy_scope(Collective)
   end
 
   # GET /collectives/1 or /collectives/1.json
@@ -47,10 +47,7 @@ class CollectivesController < ApplicationController
   def destroy
     @collective.destroy
 
-    respond_to do |format|
-      format.html { redirect_to collectives_url, notice: "Collective was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to collectives_url, notice: "Collective was successfully destroyed."
   end
 
   private

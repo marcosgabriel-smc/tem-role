@@ -2,10 +2,12 @@
 
 ## TODO
 
-- heroku
+- confirmation no destroy
+- adicionar genres
 - CRUD de eventos
 
 ## Duvidas
 
-- fazer lista de interesses?
-- como fazer invites? (nova tabela)
+- queremos um domain?
+- fazer lista de interesses? (resposta: membership com accepted)
+- como fazer invites para coletivos? (nova tabela)

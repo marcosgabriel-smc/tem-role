@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :collectives
   has_many :subscriptions
   has_many :memberships
+
+  validates :name, presence: true
+
+  before_validation { self.name = email.gsub(/@.*/, '') if name.nil? }
 end
