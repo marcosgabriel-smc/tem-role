@@ -61,8 +61,11 @@ class CollectivesTest < ApplicationSystemTestCase
   test "should destroy Collective" do
     login_as users(:meleu)
 
-    visit collective_url(@collective)
-    click_on "Destroy this collective", match: :first
+    visit edit_collective_url(@collective)
+
+    accept_alert do
+      click_on "Destroy this collective", match: :first
+    end
 
     assert_text "Collective was successfully destroyed"
   end
