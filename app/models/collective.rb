@@ -1,4 +1,8 @@
 class Collective < ApplicationRecord
+  ## Photos
+  has_one_attached :banner
+  has_one_attached :logo
+
   # relations
   ##################################################
   belongs_to :owner, class_name: "User", foreign_key: :owner_id

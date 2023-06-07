@@ -1,4 +1,6 @@
-<div class= "masthead justify-content-center align-items-center d-flex" style="background-image: url('https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770');">
+<div
+  class= "masthead justify-content-center align-items-center d-flex"
+  style="background-image: url('<%= cl_image_path @collective.banner.key, crop: :fill unless @collective.banner.key.nil? %>');">
   <div class="row d-flex color-overlay">
     <div class="text-center d-flex row">
       <div class="align-self-end">
