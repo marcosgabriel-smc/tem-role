@@ -4,7 +4,7 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :collective %>
+    <%= f.association :collective, collection: current_user.collectives %>
     <%= f.association :genres, collection: Genre.all, as: :check_boxes %>
     <%= f.input :city %>
   </div>
