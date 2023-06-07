@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="text-capitalize">Coletivos</h1>
+  <div class="row align-items-start">
+    <div id="collectives" class= "row justify-content-start mb-3">
+      <% @collectives.each do |collective| %>
+        <%= render "collective_card", collective: %>
+      <% end %>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <hr>
+    <%= link_to "New collective", new_collective_path, class: "text-muted" %>
+  <% end %>
+</div>

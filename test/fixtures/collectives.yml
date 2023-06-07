@@ -1,0 +1,18 @@
+lewagang:
+  name: 'lewagang'
+  description: 'mix masters pika das galaxias deluxe'
+  city: 'rio de janeiro'
+  state: 'rj'
+  owner: meleu
+  genres:
+    - dubstep
+    - trance
+
+another_collective:
+  name: 'another-collective'
+  description: 'we are the other ones'
+  city: 'sao paulo'
+  state: 'sp'
+  owner: douglas
+  genres:
+    - house

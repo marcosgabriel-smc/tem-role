@@ -1,0 +1,44 @@
+<div class= "masthead justify-content-center align-items-center d-flex" style="background-image: url('https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770');">
+  <div class="row d-flex color-overlay">
+    <div class="text-center d-flex row">
+      <div class="align-self-end">
+        <h1 class="colec-title"><%= @collective.name %></h1>
+      </div>
+      <p class="colectivedesc text-break text-start"><%= @collective.description %></p>
+    </div>
+    <div class= "align-self-end d-flex justify-content-evenly w-100">
+      <h3>Members</h3>
+      <h3>Events</h3>
+      <h3>Mix Set</h3>
+    </div>
+  </div>
+</div>
+<!-- MEMBER LIST -->
+<div class="container">
+  <h2>Owner</h2>
+  <p><%= @collective.owner.name %></p>
+  <h2>Members (<%= @collective.members.count %>)</h2>
+  <ul>
+    <% @collective.members.each do |member| %>
+      <li><%= member.name %></li>
+    <% end %>
+  </ul>
+  <!-- GENRE LIST -->
+  <h2>Genres</h2>
+  <ul>
+    <% @collective.genres.each do |genre| %>
+      <li><%= genre.name %></li>
+    <% end %>
+  </ul>
+  <!-- EVENTS -->
+  <h2>Next Events</h2>
+  <p>TO BE DONE...</p>
+  <hr>
+  <div>
+    <%= link_to "Back to collectives", collectives_path %>
+    <% if policy(@collective).edit? %>
+      | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
+    <% end %>
+    <%= button_to "Destroy this collective", @collective, method: :delete if policy(@collective).destroy? %>
+  </div>
+</div>

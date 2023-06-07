@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+# git-hook-pre-commit.sh
+########################
+#
+# This script prevents buggy code from being commited. It's supposed to work
+# as a pre-commit git-hook. This way everytime you try a commit, it runs and
+# checks if the tests are passing.
+#
+###############################################################################
+#
+# HOW TO INSTALL IT:
+####################
+# This file must be placed in '.git/hooks/pre-commit' and have the
+# eXecutable permission.
+#
+# $ cp .git-hooks-pre-commit.sh > .git/hooks/pre-commit
+# $ chmod a+x .git/hooks/pre-commit
+#
+###############################################################################
+
+#
+# fail as soon as an error occurs
+set -Eeo pipefail
+
+trapInfo() {
+	msgBannerError "Your commit failed!"
+	echo "Check the logs above 👆"
+	return 1
+}
+
+trap 'trapInfo "$BASH_SOURCE" "$FUNCNAME" "$LINENO"' ERR
+main() {
+	msgBanner "Running Unit Tests..."
+	rails test
+
+	msgBanner "Running System Tests..."
+	rails test:system
+}
+
+msgBanner() {
+	echo -en "${ansiGreen}"
+	banner "$@"
+	echo -en "${ansiNoColor}"
+}
+
+msgBannerError() {
+	echo -en "${ansiRed}"
+	banner "$@"
+	echo -en "${ansiNoColor}"
+}
+
+banner() {
+	local string="$*"
+	local length="${#string}"
+	local barLength=75 # Max Len = 75
+	local frame
+	# ANSI escape color codes
+	local ansiGreen='\e[1;32m'
+	local ansiRed='\e[1;31m'
+	local ansiNoColor='\e[0m'
+
+	[[ "$barLength" -gt "$length" ]] && barLength="$length"
+
+	# Tip of this printf below: https://stackoverflow.com/a/5349842/6354514
+	frame="$(printf '=%.0s' $(seq 1 "${barLength}"))"
+
+	echo "${frame}"
+	echo -e "${string}"
+	echo "${frame}"
+}
+
+######################################################################
+
+main "$@"

@@ -10,4 +10,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  # include Devise::Test::IntegrationHelpers
+  include Warden::Test::Helpers
+  Warden.test_mode!
 end
+
+Capybara.save_path = Rails.root.join("tmp/screenshots")

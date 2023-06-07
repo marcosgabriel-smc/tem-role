@@ -1,1 +1,11 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# TemRole
+
+## TODO
+
+- heroku
+- CRUD de eventos
+
+## Duvidas
+
+- fazer lista de interesses?
+- como fazer invites? (nova tabela)
