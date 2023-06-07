@@ -32,7 +32,13 @@
   </ul>
   <!-- EVENTS -->
   <h2>Next Events</h2>
-  <p>TO BE DONE...</p>
+  <ul>
+    <% @collective.events.each do |event| %>
+      <li>
+        <%= render 'events/event_card', event: %>
+      </li>
+    <% end %>
+  </ul>
   <hr>
   <div>
     <%= link_to "Back to collectives", collectives_path %>
