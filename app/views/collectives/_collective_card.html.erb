@@ -1,4 +1,6 @@
 <h2 class= "col-3 row justify-content-center text-center">
-  <%= image_tag "stun.png", class: "rounded-circle mb-3 avatar-large" %>
+  <% unless collective.logo.key.nil? %>
+    <%=cl_image_tag collective.logo.key, class: "rounded-circle mb-3 avatar-large"%>
+  <% end %>
   <%= link_to collective.name, collective, class: "text-muted" %>
 </h2>

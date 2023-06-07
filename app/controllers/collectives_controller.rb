@@ -64,6 +64,6 @@ class CollectivesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def collective_params
-    params.require(:collective).permit(:name, :description, :city, :genre_ids)
+    params.require(:collective).permit(:name, :description, :city, :genre_ids, :banner, :logo)
   end
 end
