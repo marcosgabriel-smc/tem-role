@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_231158) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_132602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_231158) do
     t.string "ticket_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "description"
     t.index ["collective_id"], name: "index_events_on_collective_id"
   end
 

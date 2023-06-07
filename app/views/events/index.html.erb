@@ -1,0 +1,17 @@
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+  <h1 class="text-capitalize">Eventos</h1>
+  <div id="events">
+    <ul>
+      <% @events.each do |event| %>
+        <li>
+          <%= render "event_card", event: %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <% if user_signed_in? %>
+    <hr>
+    <%= link_to "New event", new_event_path %>
+  <% end %>
+</div>

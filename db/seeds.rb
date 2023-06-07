@@ -65,6 +65,20 @@ User.first(3).each do |user|
   Membership.create!(user:, collective: lewagang)
 end
 
+# EVENTS
+######################################################################
+puts "Creating some events..."
+20.times do |i|
+  collective = (i % 3).zero? ? Collective.last : Collective.first
+  Event.create!(
+    collective:,
+    name: "Party #{i}",
+    description: "This is the version #{i} of an awesome party!",
+    start_time: DateTime.current + i,
+    end_time: DateTime.tomorrow + i
+  )
+end
+
 # GENRES
 ######################################################################
 puts 'Creating some genres...'

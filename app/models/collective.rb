@@ -14,7 +14,7 @@ class Collective < ApplicationRecord
 
   has_many :posts
 
-  has_many :events
+  has_many :events, dependent: :destroy
 
   # validations
   ##################################################

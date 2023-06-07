@@ -6,10 +6,9 @@ class UserTest < ActiveSupport::TestCase
   email = 'meleuz@temrole.org'
   minimum_user_info = { name:, password:, email: }
 
-  test "do not accept User without a name" do
-    assert_raises(ActiveRecord::NotNullViolation) do
-      User.create!(password:, email:)
-    end
+  test "creating an user without a name defaults to the email's username" do
+    user = User.create!(password:, email:)
+    assert_equal user.name, email.gsub(/@.*/, '')
   end
 
   test "create an user" do
