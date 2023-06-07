@@ -1,13 +1,15 @@
-<div class= "masthead">
-  <div class="color-overlay d-flex justify-content-center align-items-center">
-    <div class="SingleCol container text-center">
-      <h1 class="colec-title"><%= @collective.name %></h1>
-      <div>
-        <p><%= @collective.description %></p>
+<div class= "masthead justify-content-center align-items-center d-flex" style="background-image: url('https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770');">
+  <div class="row d-flex color-overlay">
+    <div class="text-center d-flex row">
+      <div class="align-self-end">
+        <h1 class="colec-title"><%= @collective.name %></h1>
       </div>
-      <div>
-        <h5>Members</h5>
-      </div>
+      <p class="colectivedesc text-break text-start"><%= @collective.description %></p>
+    </div>
+    <div class= "align-self-end d-flex justify-content-evenly w-100">
+      <h3>Members</h3>
+      <h3>Events</h3>
+      <h3>Mix Set</h3>
     </div>
   </div>
 </div>
