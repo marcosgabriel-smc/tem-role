@@ -5,6 +5,8 @@
 - confirmation no destroy
 - adicionar genres
 - CRUD de eventos
+- Definir imagens default para coletivo e eventos
+
 
 ## Duvidas
 

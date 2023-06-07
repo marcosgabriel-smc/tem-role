@@ -1,3 +1,10 @@
-<%= link_to event.name, event %>
-- <%= event.start_time %>
-- by <%= event.collective.name %>
+<div class="thumbtxt align-center">
+  <h3><%= event.collective.name %></h3>
+</div>
+<div class="thumbtxt align-center">
+  <h5><%= event.start_time %></h5>
+</div>
+<%= image_tag "event_thumb.png" %>
+<div class="eventname align-center text-uppercase">
+  <h3><%= link_to event.name, event %></h3>
+</div>
