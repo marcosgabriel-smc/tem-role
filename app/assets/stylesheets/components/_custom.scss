@@ -35,8 +35,9 @@ input[type=text] {
 .colectivedesc {
 	position: absolute;
 	bottom: 0;
+	font-size: 85%;
 	left: 89px;
-	top: 90px;
+	top: 103px;
 	width: 22rem;
 	height: 5rem;
 }
@@ -60,6 +61,7 @@ nav {
 
 ul {
 	list-style: none;
+	padding-left: 0px;
 
 }
 
@@ -68,7 +70,7 @@ nav li {
 }
 
 li img {
-	width: 26%;
+	width: 45%;
 }
 
 a {
@@ -79,6 +81,41 @@ a {
 
 a:hover {
 	color: red;
-	transition: color 0.5s ease-in-out;
+	transition: color 0.3s ease-in-out;
 	font-weight: bold;
+}
+
+.thumbtxt {
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	height: 6%;
+	padding-left: 2%;
+	width: 20%;
+}
+
+h3 {
+	margin-bottom: 0px;
+}
+
+h5 {
+	margin-bottom: 0px;
+}
+
+.eventname a {
+	color: black;
+	font-weight: bold;
+}
+
+.eventname a:hover {
+	color: red;
+	font-weight: bold;
+}
+
+h1 {
+	font-weight: bold;
+}
+
+h2 {
+	padding-bottom: 0px;
 }
