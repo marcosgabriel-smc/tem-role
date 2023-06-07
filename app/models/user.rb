@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :collectives
+  has_many :collectives, foreign_key: :owner_id, class_name: "Collective"
   has_many :subscriptions
   has_many :memberships
 

@@ -45,6 +45,5 @@
     <% if policy(@collective).edit? %>
       | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
     <% end %>
-    <%= button_to "Destroy this collective", @collective, method: :delete if policy(@collective).destroy? %>
   </div>
 </div>
