@@ -21,6 +21,7 @@ class CollectivesController < ApplicationController
   def create
     @collective = Collective.new(collective_params)
     @collective.owner = current_user
+    @collective.genre_ids = params[:collective][:genre_ids]
     respond_to do |format|
       if @collective.save
         format.html { redirect_to collective_url(@collective), notice: "Collective was successfully created." }
@@ -73,6 +74,6 @@ class CollectivesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def collective_params
-    params.require(:collective).permit(:name, :description, :city)
+    params.require(:collective).permit(:name, :description, :city, :genre_ids)
   end
 end

@@ -18,8 +18,13 @@ class Collective < ApplicationRecord
 
   # validations
   ##################################################
-  validates :name, presence: true, uniqueness: true
   validates :owner, presence: true
+  validates(
+    :name,
+    presence: true,
+    uniqueness: { case_sensitive: false },
+    length: { minimum: 3 }
+  )
 
   # callbacks
   ##################################################
