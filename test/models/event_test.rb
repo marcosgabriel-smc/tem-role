@@ -6,6 +6,7 @@ class EventTest < ActiveSupport::TestCase
     event = Event.create!(
       collective:,
       name: 'new party',
+      state: 'RJ',
       start_time: DateTime.tomorrow,
       end_time: DateTime.tomorrow + 1
     )

@@ -6,11 +6,12 @@
     <% default_end = (Time.zone.now + 8.hours).strftime('%Y-%m-%d %H:%M') %>
     <%= f.input :name %>
     <%= f.input :description %>
+    <%= f.input :state, collection: Collective::STATES %>
+    <%= f.input :city %>
     <%= f.input :start_time, html5: true, input_html: { value: default_start } %>
     <%= f.input :end_time, html5: true, input_html: { value: default_end } %>
     <%= f.association :collective, collection: current_user.collectives %>
     <%= f.association :genres, collection: Genre.all, as: :check_boxes %>
-    <%= f.input :city %>
   </div>
   <div class="form-actions">
     <%= f.button :submit %>
