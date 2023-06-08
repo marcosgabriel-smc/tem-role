@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root "collectives#index"
+  root "pages#home"
 
   resources :collectives
 

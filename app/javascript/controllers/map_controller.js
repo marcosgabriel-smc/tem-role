@@ -33,7 +33,7 @@ export default class extends Controller {
     const stateElement = event.currentTarget;
     const stateNameElement = document.getElementById('state-name');
 
-      // Reset previously selected state
+    // Reset previously selected state
     const previousStateElement = document.querySelector('.selected-state');
     if (previousStateElement) {
       previousStateElement.style.fill = ""; // Revert to original color
@@ -47,5 +47,4 @@ export default class extends Controller {
     this.instructionsTarget.remove();
     stateNameElement.innerHTML = stateElement.getAttribute("title");
   }
-
   }
