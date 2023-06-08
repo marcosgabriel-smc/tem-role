@@ -3,7 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="map"
 export default class extends Controller {
   static targets = [
-    "state"
+    "state",
+    "instructions"
   ]
   connect() {
     console.log("hello")
@@ -18,14 +19,14 @@ export default class extends Controller {
   StateEnter(event) {
     const stateElement = event.currentTarget;
     const stateNameElement = document.getElementById('state-name');
-    stateNameElement.innerHTML = stateElement.id;
+    stateNameElement.innerHTML = stateElement.getAttribute("title");
   }
 
   StateLeave(event) {
     const stateElement = event.currentTarget;
     const stateNameElement = document.getElementById('state-name');
     const previousStateElement = document.querySelector('.selected-state');
-    stateNameElement.innerHTML = previousStateElement.id; // Reset to clicked state name
+    stateNameElement.innerHTML = previousStateElement.getAttribute("title"); // Reset to clicked state name
   }
 
   StateClick(event) {
@@ -43,8 +44,8 @@ export default class extends Controller {
     stateElement.style.fill = "red";
     stateElement.classList.add('selected-state');
 
-
-    stateNameElement.innerHTML = stateElement.id;
+    this.instructionsTarget.remove();
+    stateNameElement.innerHTML = stateElement.getAttribute("title");
   }
 
   }
