@@ -6,6 +6,4 @@ Rails.application.routes.draw do
   resources :collectives
 
   resources :events
-
-  get "map", to: "pages#home"
 end
