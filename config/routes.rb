@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   resources :collectives
 
   resources :events
+
+  post '/zip_code_finder', to: 'pages#zip_code_finder', as: :find_address
+
+  get '/home', to: 'pages#home', as: :home
 end

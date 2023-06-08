@@ -1,2 +1,6 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<%= simple_form_for @address, url: { action: :zip_code_finder }, method: :post do |f| %>
+  <%= f.input :zip_code %>
+  <%= f.button :submit %>
+<% end %>
