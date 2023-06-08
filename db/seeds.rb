@@ -59,6 +59,46 @@ Collective.create!(
 lewagang = Collective.first
 uzalemaun = Collective.last
 
+collective_names = [
+  "Pulse Syndicate",
+  "Rhythm Rebellion",
+  "Techno Tribe",
+  "Beat Architects",
+  "Bass Battalion",
+  "Synthwave Society",
+  "Groove Gurus",
+  "Digital Nexus",
+  "Techno Fusion",
+  "Electric Ecstasy",
+  "Underground Utopia",
+  "Sonic Sanctuary",
+  "Circuit Cartel",
+  "Techno Titans",
+  "Future Frequency",
+  "Machine Manifesto",
+  "Synaptic Soundscape",
+  "Modular Movement",
+  "The Techno Nexus",
+  "Vaporwave City"
+]
+states = %w[RJ SP PR]
+lorem = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat earum sequi consequatur officiis inventore aut, sunt, maxime quis voluptate tempora error eaque eos nisi, voluptatem libero fugiat? Vero, quidem quia?'
+
+collective_names.each_with_index do |name, i|
+  id = i % 3
+  owner = User.find(id + 1)
+  Collective.create!(
+    {
+      name:,
+      description: lorem,
+      city: 'any city',
+      state: states[id],
+      owner:
+    }
+  )
+end
+
+puts 'Uploading images to cloudinary...'
 
 banner1 = URI.open("https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770")
 lewagang.banner.attach(io: banner1, filename: "banner.png", content_type: "image/png")
