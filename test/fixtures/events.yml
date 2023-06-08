@@ -3,6 +3,7 @@ party:
   collective: lewagang
   start_time: "2023-06-01 22:00"
   end_time: "2023-06-02 08:00"
+  state: RJ
   city: rj
 
 partyrock:
@@ -11,3 +12,4 @@ partyrock:
   start_time: "2023-06-07 22:00"
   end_time: "2023-06-08 08:00"
   city: rj
+  state: RJ

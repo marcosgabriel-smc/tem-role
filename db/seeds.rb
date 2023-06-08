@@ -44,14 +44,14 @@ Collective.create!(
       name: 'lewagang',
       description: 'mix masters pika das galaxias deluxe loren sajdlasjk jsdiowj lakdfka joiwej rqlk jrli lkehr  uasdh oa dowaha oiwh ethoi dlfh oie iroq niaekj nlaje eja flkdmj flj emdaç f jpaje ajkfea jaelk dgf osei jgsf kdslsj dfçg fkj ds k j',
       city: 'rio de janeiro',
-      state: 'rj',
+      state: 'RJ',
       owner: lewagang_owner
     },
     {
       name: 'uzalemaum',
       description: 'so tem pelasako',
       city: 'rio de janeiro',
-      state: 'rj',
+      state: 'RJ',
       owner: uzalemaum_owner
     }
   ]
@@ -81,35 +81,6 @@ collective_names = [
   "The Techno Nexus",
   "Vaporwave City"
 ]
-states = [
-  "AC",
-  "AL",
-  "AP",
-  "AM",
-  "BA",
-  "CE",
-  "DF",
-  "ES",
-  "GO",
-  "MA",
-  "MT",
-  "MS",
-  "MG",
-  "PA",
-  "PB",
-  "PR",
-  "PE",
-  "PI",
-  "RJ",
-  "RN",
-  "RS",
-  "RO",
-  "RR",
-  "SC",
-  "SP",
-  "SE",
-  "TO"
-]
 lorem = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat earum sequi consequatur officiis inventore aut, sunt, maxime quis voluptate tempora error eaque eos nisi, voluptatem libero fugiat? Vero, quidem quia?'
 
 collective_names.each do |name|
@@ -119,7 +90,7 @@ collective_names.each do |name|
       name:,
       description: lorem,
       city: 'any city',
-      state: states.sample,
+      state: Event::STATES.sample,
       owner:
     }
   )
@@ -158,7 +129,8 @@ puts "Creating some events..."
     name: "Party #{i}",
     description: "This is the version #{i} of an awesome party!",
     start_time: DateTime.current + i,
-    end_time: DateTime.tomorrow + i
+    end_time: DateTime.tomorrow + i,
+    state: Event::STATES.sample
   )
 end
 
