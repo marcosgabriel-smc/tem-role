@@ -1,0 +1,17 @@
+#map-container {
+  width: 100%;
+  height: auto;
+}
+
+// Styles for the state paths
+[data-map-target="state"] {
+  fill: #ebebeb; // Set the fill color for the states
+  stroke: #555555; // Set the stroke color for the state outlines
+  stroke-width: 1px; // Set the width of the state outlines
+}
+
+// Hover styles for the states
+[data-map-target="state"]:hover {
+  stroke: red; // Set the stroke color when hovering over a state
+  stroke-width: 3px; // Increase the width of the state outlines when hovering
+}
