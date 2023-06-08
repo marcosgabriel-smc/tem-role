@@ -3,7 +3,7 @@ require "test_helper"
 class CollectiveTest < ActiveSupport::TestCase
   test "#owner should return the User who created the collective" do
     user = users(:meleu)
-    collective = Collective.create!(owner: user, name: 'mcz')
+    collective = Collective.create!(owner: user, name: 'mcz', state: 'RJ')
     assert_equal user, collective.owner
   end
 

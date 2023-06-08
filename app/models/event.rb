@@ -9,4 +9,5 @@ class Event < ApplicationRecord
   validates :name, presence: true
   validates :start_time, comparison: { greater_than: DateTime.current }
   validates :end_time, comparison: { greater_than: :start_time }
+  validates :state, inclusion: { in: STATES }
 end

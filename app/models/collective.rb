@@ -30,6 +30,8 @@ class Collective < ApplicationRecord
     length: { minimum: 3, maximum: 25 }
   )
 
+  validates :state, inclusion: { in: STATES }
+
   # callbacks
   ##################################################
   after_create do

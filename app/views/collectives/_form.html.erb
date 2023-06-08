@@ -6,6 +6,7 @@
     <%= f.input :description %>
     <%= f.association :genres, collection: Genre.all, as: :check_boxes %>
     <%= f.input :city %>
+    <%= f.input :state, collection: Collective::STATES %>
     <%= f.input :logo, as: :file %>
     <%= f.input :banner, as: :file %>
   </div>

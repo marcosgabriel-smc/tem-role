@@ -70,7 +70,8 @@ class EventsController < ApplicationController
       :end_time,
       :collective_id,
       :genre_ids,
-      :city
+      :city,
+      :state
     )
   end
 end

@@ -28,6 +28,7 @@ class CollectivesTest < ApplicationSystemTestCase
 
     fill_in "collective_name", with: "Dopez"
     fill_in "collective_description", with: "This is a dope Collective"
+    select 'RJ', from: 'collective_state'
 
     click_on "Create Collective"
 
