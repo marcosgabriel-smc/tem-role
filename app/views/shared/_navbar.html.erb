@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-lewagon sticky-top">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "logo_white.png" %>
@@ -11,7 +11,7 @@
         <% if user_signed_in? %>
           <div class="nav-item m-2">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{current_user.name}", class: "avatar", alt: "dropdown menu" %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{current_user.name}", class: "avatar", alt: "avatar" %>
             </a>
           </div>
         <% else %>

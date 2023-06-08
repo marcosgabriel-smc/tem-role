@@ -2,7 +2,7 @@
   justify-content: space-between;
   display: flex;
   background-color: rgba($color: #000000, $alpha: 0.3);
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   color: white;
   backdrop-filter: blur(8px);
@@ -15,8 +15,4 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 146px;
-}
-
-.navbar-lewagon .navbar-brand a {
-  color: white;
 }

@@ -6,6 +6,8 @@
     <%= f.input :description %>
     <%= f.association :genres, collection: Genre.all, as: :check_boxes %>
     <%= f.input :city %>
+    <%= f.input :logo, as: :file %>
+    <%= f.input :banner, as: :file %>
   </div>
   <div class="form-actions">
     <%= f.button :submit %>

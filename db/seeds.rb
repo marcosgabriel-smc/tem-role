@@ -1,3 +1,5 @@
+require 'open-uri'
+
 CollectiveGenre.destroy_all
 Genre.destroy_all
 Collective.destroy_all
@@ -55,6 +57,21 @@ Collective.create!(
   ]
 )
 lewagang = Collective.first
+uzalemaun = Collective.last
+
+
+banner1 = URI.open("https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770")
+lewagang.banner.attach(io: banner1, filename: "banner.png", content_type: "image/png")
+logo1 = URI.open("https://i.imgur.com/LL69Go8.png")
+lewagang.logo.attach(io: logo1, filename: "logo1.png", content_type: "image/png")
+lewagang.save
+
+
+banner2 = URI.open("https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770")
+uzalemaun.banner.attach(io: banner2, filename: "banner2.png", content_type: "image/png")
+logo2 = URI.open("https://art.ngfiles.com/comments/70000/iu_70834_7446245.jpg")
+uzalemaun.logo.attach(io: logo2, filename: "logo2.png", content_type: "image/png")
+uzalemaun.save
 
 # MEMBERSHIP
 ######################################################################
