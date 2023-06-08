@@ -8,7 +8,43 @@ export default class extends Controller {
   connect() {
     console.log("hello")
     console.log(this.stateTargets)
-    // this.stateTargets.forEach((state) => state.style.fill = "red")
+    this.stateTargets.forEach((element) => {
+      element.addEventListener("mouseenter", this.StateEnter.bind(this));
+      element.addEventListener("mouseleave", this.StateLeave.bind(this));
+      element.addEventListener("click", this.StateClick.bind(this));
+    });
+  }
+
+  StateEnter(event) {
+    const stateElement = event.currentTarget;
+    const stateNameElement = document.getElementById('state-name');
+    stateNameElement.innerHTML = stateElement.id;
+  }
+
+  StateLeave(event) {
+    const stateElement = event.currentTarget;
+    const stateNameElement = document.getElementById('state-name');
+    const previousStateElement = document.querySelector('.selected-state');
+    stateNameElement.innerHTML = previousStateElement.id; // Reset to clicked state name
+  }
+
+  StateClick(event) {
+    const stateElement = event.currentTarget;
+    const stateNameElement = document.getElementById('state-name');
+
+      // Reset previously selected state
+    const previousStateElement = document.querySelector('.selected-state');
+    if (previousStateElement) {
+      previousStateElement.style.fill = ""; // Revert to original color
+      previousStateElement.classList.remove('selected-state');
+    }
+
+    // Set current state as selected
+    stateElement.style.fill = "red";
+    stateElement.classList.add('selected-state');
+
+
+    stateNameElement.innerHTML = stateElement.id;
+  }
 
   }
-}
