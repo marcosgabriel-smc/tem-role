@@ -65,10 +65,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_200705) do
 
   create_table "event_genres", force: :cascade do |t|
     t.bigint "genre_id", null: false
-    t.bigint "collective_id", null: false
+    t.bigint "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["collective_id"], name: "index_event_genres_on_collective_id"
+    t.index ["event_id"], name: "index_event_genres_on_event_id"
     t.index ["genre_id"], name: "index_event_genres_on_genre_id"
   end
 
@@ -157,7 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_200705) do
   add_foreign_key "collective_genres", "collectives"
   add_foreign_key "collective_genres", "genres"
   add_foreign_key "collectives", "users", column: "owner_id"
-  add_foreign_key "event_genres", "collectives"
+  add_foreign_key "event_genres", "events"
   add_foreign_key "event_genres", "genres"
   add_foreign_key "event_list_subscriptions", "event_lists"
   add_foreign_key "event_list_subscriptions", "users"
