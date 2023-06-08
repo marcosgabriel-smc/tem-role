@@ -34,18 +34,16 @@
   </ul>
   <!-- EVENTS -->
   <div class="container">
-    <h1>Next Events</h1>
-    <ul>
-      <div class="col">
+    <h2>Next Events</h2>
+    <div class="col">
+      <ul>
         <h3><% @collective.events.each do |event| %></h3>
-          <div>
-            <li>
-              <%= render 'events/event_card', event: %>
-            </li>
-          </div>
+          <li>
+            <%= render 'events/event_card', event: %>
+          </li>
         <% end %>
-      </div>
-    </ul>
+      </ul>
+    </div>
   </div>
   <hr>
   <div>

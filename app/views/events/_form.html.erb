@@ -2,9 +2,13 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <div class="form-inputs">
+    <% default_start = (Time.zone.now + 2.hours).strftime('%Y-%m-%d %H:%M') %>
+    <% default_end = (Time.zone.now + 8.hours).strftime('%Y-%m-%d %H:%M') %>
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :collective %>
+    <%= f.input :start_time, html5: true, input_html: { value: default_start } %>
+    <%= f.input :end_time, html5: true, input_html: { value: default_end } %>
+    <%= f.association :collective, collection: current_user.collectives %>
     <%= f.association :genres, collection: Genre.all, as: :check_boxes %>
     <%= f.input :city %>
   </div>

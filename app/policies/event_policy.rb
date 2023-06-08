@@ -23,10 +23,10 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    record.owner == user
+    record.collective.owner == user
   end
 
   def destroy?
-    record.owner == user
+    record.collective.owner == user
   end
 end
