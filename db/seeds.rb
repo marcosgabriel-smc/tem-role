@@ -81,18 +81,45 @@ collective_names = [
   "The Techno Nexus",
   "Vaporwave City"
 ]
-states = %w[RJ SP PR]
+states = [
+  "AC",
+  "AL",
+  "AP",
+  "AM",
+  "BA",
+  "CE",
+  "DF",
+  "ES",
+  "GO",
+  "MA",
+  "MT",
+  "MS",
+  "MG",
+  "PA",
+  "PB",
+  "PR",
+  "PE",
+  "PI",
+  "RJ",
+  "RN",
+  "RS",
+  "RO",
+  "RR",
+  "SC",
+  "SP",
+  "SE",
+  "TO"
+]
 lorem = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat earum sequi consequatur officiis inventore aut, sunt, maxime quis voluptate tempora error eaque eos nisi, voluptatem libero fugiat? Vero, quidem quia?'
 
-collective_names.each_with_index do |name, i|
-  id = i % 3
-  owner = User.find(id + 1)
+collective_names.each do |name|
+  owner = User.all.sample
   Collective.create!(
     {
       name:,
       description: lorem,
       city: 'any city',
-      state: states[id],
+      state: states.sample,
       owner:
     }
   )
@@ -105,7 +132,6 @@ lewagang.banner.attach(io: banner1, filename: "banner.png", content_type: "image
 logo1 = URI.open("https://i.imgur.com/LL69Go8.png")
 lewagang.logo.attach(io: logo1, filename: "logo1.png", content_type: "image/png")
 lewagang.save
-
 
 banner2 = URI.open("https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770")
 uzalemaun.banner.attach(io: banner2, filename: "banner2.png", content_type: "image/png")
