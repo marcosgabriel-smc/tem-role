@@ -1,8 +1,10 @@
-<div class="container">
-  <h1 class="text-capitalize">Novo Coletivo</h1>
-  <%= render "form", collective: @collective %>
-  <hr>
+<div class="centerpage">
   <div>
-    <%= link_to "Back to collectives", collectives_path, class: "text-muted"%>
+    <h1 class="text-capitalize">Novo Coletivo</h1>
+    <%= render "form", collective: @collective %>
+    <hr>
+    <div>
+      <%= link_to "Back to collectives", collectives_path, class: "text-muted"%>
+    </div>
   </div>
 </div>

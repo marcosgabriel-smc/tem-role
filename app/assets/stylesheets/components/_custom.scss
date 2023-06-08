@@ -75,7 +75,7 @@ li img {
 
 a {
 	text-decoration: none;
-	color: white;
+	color: rgb(35, 35, 35);
 	font-weight: bold;
 }
 
@@ -118,4 +118,38 @@ h1 {
 
 h2 {
 	padding-bottom: 0px;
+}
+
+.centerpage {
+	position: relative;
+	max-width: 800px;
+	top: 94px;
+	margin: auto;
+}
+
+.landing-logo img {
+	width: 100%;
+}
+
+.landing-text h5 {
+	color: black;
+}
+
+.landing-text {
+	width: 100%;
+	margin-top: 8%;
+}
+
+.landing-date {
+	position: absolute;
+	right: 40px;
+	bottom: 40px;
+}
+
+.landing-date img {
+	width: 68%;
+}
+
+.colectives-col {
+	width: 100%;
 }

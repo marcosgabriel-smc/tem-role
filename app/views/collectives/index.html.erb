@@ -1,7 +1,24 @@
+<div class="container masthead justify-content-center align-items-center d-flex">
+  <div class="landing-logo align-items-center justify-content-center w-25">
+    <%= image_tag "logo_fix.png" %>
+    <div class="landing-text justify-content-between d-flex text-center">
+      <h5 class="fs-5 fw-semibold">
+        EVENTOS
+      </h5>
+      <h5 class="fs-5 fw-semibold">
+        COLETIVOS
+      </h5>
+    </div>
+  </div>
+  <div class="align-self-end landing-date">
+    <%= image_tag "date_img.png" %>
+  </div>
+</div>
+<hr>
 <div class="container">
   <h1 class="text-capitalize">Coletivos</h1>
   <div class="row align-items-start">
-    <div id="collectives" class= "row justify-content-start mb-3">
+    <div id="collectives" class= "row justify-content-center colectives-col">
       <% @collectives.reverse.each do |collective| %>
         <%= render "collective_card", collective: %>
       <% end %>
