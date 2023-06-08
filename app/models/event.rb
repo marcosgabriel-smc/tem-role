@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :collective
 
-  has_many :event_genres
+  has_many :event_genres, dependent: :destroy
   has_many :genres, through: :event_genres
 
   has_many :event_lists
