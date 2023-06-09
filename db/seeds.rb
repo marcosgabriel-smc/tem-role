@@ -42,7 +42,7 @@ Collective.create!(
   [
     {
       name: 'lewagang',
-      description: 'mix masters pika das galaxias deluxe loren sajdlasjk jsdiowj lakdfka joiwej rqlk jrli lkehr  uasdh oa dowaha oiwh ethoi dlfh oie iroq niaekj nlaje eja flkdmj flj emdaç f jpaje ajkfea jaelk dgf osei jgsf kdslsj dfçg fkj ds k j',
+      description: 'Um coletivo de música eletrônica inovador, unindo batidas pulsantes e melodias cativantes em uma fusão sonora única. Suas performances hipnotizantes transmitem uma energia contagiante que envolve o público, transportando-o para uma jornada eletrizante através de paisagens sonoras vanguardistas. Um movimento que transcende fronteiras musicais e conecta pessoas através da paixão pela música eletrônica.',
       city: 'rio de janeiro',
       state: 'RJ',
       owner: lewagang_owner
