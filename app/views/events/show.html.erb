@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container centerpage">
   <h1><%= @event.name %></h1>
   <h2>by <%= link_to @event.collective.name, @event.collective %></h2>
   <p><%= @event.description %></p>
@@ -8,6 +8,6 @@
     <% if policy(@event).edit? %>
       <%= link_to "Edit this event", edit_event_path(@event) %> |
     <% end %>
-    <%= link_to "Back to events", events_path %>
+    <%= link_to "Back to colectives", events_path %>
   </div>
 </div>
