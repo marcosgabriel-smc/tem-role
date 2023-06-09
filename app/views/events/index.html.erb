@@ -1,3 +1,6 @@
+<div class="container masthead justify-content-center align-items-center d-flex">
+  <%= render "hero_banner_events" %>
+</div>
 <div class="container-fluid">
   <p style="color: green"><%= notice %></p>
   <h1 class="text-capitalize">Eventos</h1>
@@ -6,8 +9,9 @@
       <%= render "event_card", event: %>
     <% end %>
   </div>
-  <% if policy(@events).new? %>
-    <hr>
-    <%= link_to "New event", new_event_path %>
-  <% end %>
+  <div class="btn-new-event">
+    <% if policy(@events).new? %>
+      <%= link_to "New event", new_event_path, class: "btn btn-outline-dark" %>
+    <% end %>
+  </div>
 </div>
