@@ -1,11 +1,8 @@
-<div class="container masthead justify-content-center align-items-center d-flex">
-  <%= render "hero_banner" %>
-</div>
 <div class="container">
   <h1 class="text-capitalize">Coletivos</h1>
   <%= render "shared/map-div" %>
-  <div class="row align-items-start" data-controller="map">
-    <div id="collectives" class= "row justify-content-center colectives-col">
+  <div class="col" data-controller="map">
+    <div id="collectives" class= "row justify-content-around colectives-col">
       <% @collectives.reverse.each do |collective| %>
         <%= render "collective_card", collective: %>
       <% end %>
