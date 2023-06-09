@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container masthead-index justify-content-center align-items-center d-flex">
+  <%= render "hero_banner_events" %>
+</div>
+<div class="container-fluid">
   <p style="color: green"><%= notice %></p>
   <h1 class="text-capitalize">Eventos</h1>
-  <div id="events">
-    <ul>
-      <% @events.each do |event| %>
-        <li>
-          <%= render "event_card", event: %>
-        </li>
-      <% end %>
-    </ul>
+  <div id="events" class="d-flex flex-row align-items-center row">
+    <% @events.each do |event| %>
+      <%= render "event_card", event: %>
+    <% end %>
   </div>
-  <% if policy(@events).new? %>
-    <hr>
-    <%= link_to "New event", new_event_path %>
-  <% end %>
+  <div class="btn-new-event">
+    <% if policy(@events).new? %>
+      <%= link_to "New event", new_event_path, class: "btn btn-outline-dark" %>
+    <% end %>
+  </div>
 </div>
