@@ -9,10 +9,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <div class="nav-item m-2">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{current_user.name}", class: "avatar", alt: "avatar" %>
-            </a>
+          <div class="nav-item m-2 dropdown">
+            <%= image_tag(
+              "https://kitt.lewagon.com/placeholder/users/#{current_user.name}",
+              alt: "avatar",
+              id: "navbarDropdown",
+              class: "avatar dropdown-toggle",
+              data: { bs_toggle: "dropdown" }
+            )
+              %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to(
+                "Log out",
+                destroy_user_session_path,
+                class: "dropdown-item text-dark",
+                data: { turbo_method: :delete }
+              ) %>
+            </div>
           </div>
         <% else %>
           <li class="nav-item d-flex">
