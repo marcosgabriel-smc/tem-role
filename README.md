@@ -18,6 +18,7 @@
 - No index, centralizar os cards.
 - Como adicionar mais de um gênero por evento no seed
 - Fix logic of policy
+- Consertar hero banner do index
 
 ## DATATIME CONVERSIONS WITH .strfftime
 
