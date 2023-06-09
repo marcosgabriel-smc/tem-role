@@ -2,8 +2,8 @@
   <h1><%= @event.name %></h1>
   <h2>by <%= link_to @event.collective.name, @event.collective %></h2>
   <p><%= @event.description %></p>
-  <p><%= @event.start_time %></p>
-  <p><%= @event.end_time %></p>
+  <p>Horário de início: <%= @event.start_time %></p>
+  <!-- <p><%= @event.end_time %></p> -->
   <div>
     <% if policy(@event).edit? %>
       <%= link_to "Edit this event", edit_event_path(@event) %> |

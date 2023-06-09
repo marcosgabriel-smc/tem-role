@@ -9,14 +9,16 @@
       <p class="colectivedesc text-break text-start fw-semibold"><%= @collective.description %></p>
     </div>
     <div class= "align-self-end d-flex justify-content-evenly w-100">
+      <!--
       <h3>Members</h3>
       <h3>Events</h3>
       <h3>Mix Set</h3>
+      -->
     </div>
   </div>
 </div>
 <div class="container">
-  <div>
+  <div class="m-3">
     <%= link_to "Back to collectives", collectives_path %>
     <% if policy(@collective).edit? %>
       | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
