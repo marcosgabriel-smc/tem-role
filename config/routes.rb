@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :collectives
 
   resources :events
+
+  get "/teste", to: "pages#teste"
 end
