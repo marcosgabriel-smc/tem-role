@@ -1,14 +1,10 @@
-<div class="container">
+<div class="container-fluid">
   <p style="color: green"><%= notice %></p>
   <h1 class="text-capitalize">Eventos</h1>
-  <div id="events">
-    <ul>
-      <% @events.each do |event| %>
-        <li>
-          <%= render "event_card", event: %>
-        </li>
-      <% end %>
-    </ul>
+  <div id="events" class="d-flex flex-row align-items-center row">
+    <% @events.each do |event| %>
+      <%= render "event_card", event: %>
+    <% end %>
   </div>
   <% if policy(@events).new? %>
     <hr>
