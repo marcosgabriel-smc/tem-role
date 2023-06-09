@@ -116,7 +116,7 @@ User.first(3).each do |user|
   # the owner is automatically set as a member
   next if user == lewagang.owner
 
-  Membership.create!(user:, collective: lewagang)
+  Membership.create!(user:, collective: lewagang, accepted: true)
 end
 
 # EVENTS

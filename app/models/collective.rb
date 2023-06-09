@@ -8,7 +8,9 @@ class Collective < ApplicationRecord
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
 
   has_many :memberships, dependent: :destroy
-  has_many :members, through: :memberships, source: :user
+  has_many :accepted_memberships, -> { where(accepted: true) }, class_name: 'Membership'
+  has_many :pending_memberships, -> { where(accepted: false) }, class_name: 'Membership'
+  has_many :members, through: :accepted_memberships, source: :user
 
   has_many :subscriptions, dependent: :destroy
   has_many :subscribers, through: :subscriptions, source: :user
@@ -35,6 +37,6 @@ class Collective < ApplicationRecord
   # callbacks
   ##################################################
   after_create do
-    Membership.create(collective: self, user: owner)
+    Membership.create(collective: self, user: owner, accepted: true)
   end
 end

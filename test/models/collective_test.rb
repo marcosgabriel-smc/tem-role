@@ -12,7 +12,7 @@ class CollectiveTest < ActiveSupport::TestCase
     collective = collectives(:lewagang)
 
     users.each do |user|
-      Membership.create!(user:, collective:)
+      Membership.create!(user:, collective:, accepted: true)
     end
 
     assert_equal users, collective.members
