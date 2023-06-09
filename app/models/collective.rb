@@ -37,6 +37,6 @@ class Collective < ApplicationRecord
   # callbacks
   ##################################################
   after_create do
-    Membership.create(collective: self, user: owner)
+    Membership.create(collective: self, user: owner, accepted: true)
   end
 end
