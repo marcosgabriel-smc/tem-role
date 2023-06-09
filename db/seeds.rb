@@ -149,11 +149,19 @@ Genre.create!(
     { name: 'dubstep' }
   ]
 )
-two_genres = Genre.last(2)
+genres = Genre.all
+events = Event.all
+collectives = Collective.all
 
-puts 'Assigning genres to the collective...'
-two_genres.each do |genre|
-  CollectiveGenre.create!(collective: lewagang, genre:)
+puts 'Assigning genres to the collectives...'
+collectives.each do |collective|
+  CollectiveGenre.create!(collective:, genre: genres.sample)
+end
+
+puts 'Assigning genres to the events...'
+
+events.each do |event|
+  EventGenre.create!(event:, genre: genres.sample)
 end
 
 ######################################################################

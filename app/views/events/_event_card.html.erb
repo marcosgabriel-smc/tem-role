@@ -1,10 +1,21 @@
-<div class="eventname align-center text-uppercase">
-  <h3><%= link_to event.name, event %></h3>
+<div class="card p-0 m-2 event-card" style="width: 18rem;">
+  <div class="event-photo">
+    <%= image_tag "event_thumb.png", {class: "card-img-top img-fluid"} %>
+    <div class="event-collective">
+      <h3><%= event.collective.name %></h3>
+    </div>
+  </div>
+  <div class="event-time">
+    <h5><%= event.start_time.strftime("%d/%m/%Y") %></h5>
+  </div>
+  <div class="card-body d-flex row px-1">
+    <div class="col">
+      <h5 class="card-title text-uppercase m-0 p-0"><%= link_to event.name, event %></h5>
+      <% genres = event.genres.map { |genre| genre.name }%>
+      <p class="m-0 p-0"><strong><%= genres.join(", ") %></strong></p>
+    </div>
+    <div class="col">
+      <p class=" card-text text-end"><%= event.description %></p>
+    </div>
+  </div>
 </div>
-<div class="thumbtxt align-center">
-  <h3><%= event.collective.name %></h3>
-</div>
-<div class="thumbtxt align-center">
-  <h5><%= event.start_time %></h5>
-</div>
-<%= image_tag "event_thumb.png" %>

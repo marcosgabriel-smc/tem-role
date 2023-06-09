@@ -5,6 +5,13 @@
 	position: static;
 }
 
+.masthead-index {
+	background-size: cover;
+	min-height: 50vh;
+	color: white;
+	position: static;
+}
+
 .color-overlay {
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.8);
@@ -151,5 +158,5 @@ h2 {
 }
 
 .colectives-col img {
-	width: 100%;
+	width: 47%;
 }
