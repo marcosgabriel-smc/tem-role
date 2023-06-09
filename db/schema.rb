@@ -102,9 +102,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_142508) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.text "description"
-    t.string "photo1"
-    t.string "photo2"
-    t.string "photo3"
     t.index ["collective_id"], name: "index_events_on_collective_id"
   end
 
