@@ -7,8 +7,16 @@ export default class extends Controller {
     "next"
   ]
   connect() {
-    console.log("hello")
-    console.log(this.prevTarget)
-    console.log(this.nextTarget)
+    // console.log("hello")
+    // console.log(this.prevTarget)
+    // console.log(this.nextTarget)
+  }
+
+  prev(event) {
+    console.log(event)
+  }
+
+  next(event) {
+    console.log(event)
   }
 }

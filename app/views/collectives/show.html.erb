@@ -46,15 +46,12 @@
   <!-- EVENTS -->
   <div class="container">
     <h2>Next Events</h2>
-    <div class="col">
-      <ul>
-        <h3><% @collective.events.each do |event| %></h3>
-          <li>
-            <%= render 'events/event_card', event: %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    <div class="d-flex flex-row align-items-center row">
+      <% @collective.events.each do |event| %>
+        <%= render 'events/event_card', event: %>
+      <% end %>
+    </ul>
   </div>
-  <hr>
+</div>
+<hr>
 </div>
