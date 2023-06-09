@@ -17,6 +17,7 @@
 
 - No index, centralizar os cards.
 - Como adicionar mais de um gênero por evento no seed
+- Fix logic of policy
 
 ## DATATIME CONVERSIONS WITH .strfftime
 

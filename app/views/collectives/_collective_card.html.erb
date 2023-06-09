@@ -1,7 +1,9 @@
 <h2 class="col-3 row justify-content-center text-center" data-map-target="collective">
-  <% collective_avatar_class = "rounded-circle mb-3 avatar-large" %>
-  <% if collective.logo.key.nil? %>
-    <%= image_tag "stun.png", class: collective_avatar_class %>
+  <div>
+    <% collective_avatar_class = "rounded-circle mb-2 avatar-large" %>
+    <% if collective.logo.key.nil? %>
+      <%= image_tag "stun.png", class: collective_avatar_class %>
+    </div>
   <% else %>
     <%= cl_image_tag collective.logo.key, class: collective_avatar_class %>
   <% end %>
