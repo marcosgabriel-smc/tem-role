@@ -15,8 +15,17 @@
     </div>
   </div>
 </div>
-<!-- MEMBER LIST -->
 <div class="container">
+  <div>
+    <%= link_to "Back to collectives", collectives_path %>
+    <% if policy(@collective).edit? %>
+      | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
+    <% end %>
+    <% if current_user == @collective.owner && policy(Event).new? %>
+      | <%= link_to 'Create a new event', new_event_path %>
+    <% end %>
+  </div>
+  <!-- MEMBER LIST -->
   <h2>Owner</h2>
   <p><%= @collective.owner.name %></p>
   <h2>Members (<%= @collective.members.count %>)</h2>
@@ -46,10 +55,4 @@
     </div>
   </div>
   <hr>
-  <div>
-    <%= link_to "Back to collectives", collectives_path %>
-    <% if policy(@collective).edit? %>
-      | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
-    <% end %>
-  </div>
 </div>
