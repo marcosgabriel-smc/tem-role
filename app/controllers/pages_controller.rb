@@ -6,5 +6,6 @@ class PagesController < ApplicationController
 
   def teste
     @events = Event.all
+    @collectives = Collective.all
   end
 end

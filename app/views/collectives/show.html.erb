@@ -51,10 +51,10 @@
       <!-- Understand why when you access the page clicking in the collective the carousel does not work-->
       <div class="all-members row">
         <div id="carouselExampleControls" class="carousel slide" data-slide="carousel">
-          <% owner = @collective.members.first %>
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="col">
+                <% owner = @collective.members.first %>
                 <%= render "shared/member_card", member: owner %>
               </div>
             </div>

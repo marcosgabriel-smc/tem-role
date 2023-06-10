@@ -1,0 +1,37 @@
+
+
+.hero-user{
+  background-color: lightgray;
+  background-size: 50% auto;
+  width: 100%;
+  max-height: 40vh;
+}
+
+.user-icon {
+  width: 20%;
+  border-radius: 50%;
+}
+
+
+
+// EVENTS CAROUSEL
+.all-events {
+  width: 100%;
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+// COLLECTIVES CAROUSEL
+.all-collectives {
+  width: 100%;
+}
+
+.carousel-inner-collectives .carousel-item-collective.active,
+.carousel-inner-collectives .carousel-item-collective-next,
+.carousel-inner-collectives .carousel-item-collective-prev {
+  display: flex;
+}
