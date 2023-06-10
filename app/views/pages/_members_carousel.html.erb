@@ -1,0 +1,12 @@
+<!-- NEED TO BE ADAPTED TO RETRIEVE THE INFORMATION OF EACH MEMBER OF THE COLLECTIVE-->
+<div class="member-card">
+  <%= image_tag "member_icon.png", class: "w-100 member-icon" %>
+  <div class="w-100 member-card-body text-center">
+    <p class="member-name">Member Name</p>
+    <p class="member-role">Role</p>
+    <div class="social-links d-flex flex-row justify-content-around">
+      <%= link_to image_tag("soundcloud_logo.png", class: "soundcloud-icon", alt: "Soundcloud"), "https://soundcloud.com/discover", :target => "_blank" %>
+      <%= link_to image_tag("instagram_logo.png", class: "instagram-icon", alt: "Instagram"), "https://www.instagram.com/", :target => "_blank" %>
+    </div>
+  </div>
+</div>

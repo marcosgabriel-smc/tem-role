@@ -17,7 +17,7 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="m-3">
   <div class="m-3">
     <%= link_to "Back to collectives", collectives_path %>
     <% if policy(@collective).edit? %>
@@ -28,14 +28,35 @@
     <% end %>
   </div>
   <!-- MEMBER LIST -->
-  <h2>Owner</h2>
-  <p><%= @collective.owner.name %></p>
-  <h2>Members (<%= @collective.members.count %>)</h2>
-  <ul>
-    <% @collective.members.each do |member| %>
-      <li><%= member.name %></li>
-    <% end %>
-  </ul>
+  <h2>Members</h2>
+  <!-- Understand why when you access the page clicking in the collective the carousel does not work-->
+  <div class="all-members row">
+    <div id="carouselExampleControls" class="carousel slide" data-slide="carousel">
+      <% owner = @collective.members.first %>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="col">
+            <%= render "shared/member_card", member: owner %>
+          </div>
+        </div>
+        <% @collective.members[1..-1].each do |member| %>
+          <div class="carousel-item">
+            <div class="col">
+              <%= render "shared/member_card", member: member %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
   <!-- GENRE LIST -->
   <h2>Genres</h2>
   <ul>
@@ -44,7 +65,7 @@
     <% end %>
   </ul>
   <!-- EVENTS -->
-  <div class="container">
+  <div class="m-3">
     <h2>Next Events</h2>
     <div class="d-flex flex-row align-items-center row">
       <% @collective.events.each do |event| %>
