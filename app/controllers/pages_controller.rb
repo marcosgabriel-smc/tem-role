@@ -4,8 +4,11 @@ class PagesController < ApplicationController
   def home
   end
 
-  def teste
+  def my_profile
     @events = Event.all
     @collectives = Collective.all
+  end
+
+  def teste
   end
 end

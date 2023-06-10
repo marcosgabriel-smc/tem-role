@@ -1,3 +1,4 @@
+<!-- HERO BANNER DO COLLETIVO -->
 <div
   class= "masthead justify-content-center align-items-center d-flex"
   style="background-image: url('<%= cl_image_path @collective.banner.key, crop: :fill unless @collective.banner.key.nil? %>');">
@@ -17,9 +18,9 @@
     </div>
   </div>
 </div>
-<div class="m-3">
+<div class="container-fluid">
   <!-- ROUTES BUTTONS ##TO-DO CENTER AND STYLE IT-->
-  <div class="m-3">
+  <div class="m-4">
     <%= link_to "Back to collectives", collectives_path %>
     <% if policy(@collective).edit? %>
       | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
@@ -28,6 +29,7 @@
       | <%= link_to 'Create a new event', new_event_path %>
     <% end %>
   </div>
+  <!-- DIV BELOW THE BUTTONS - CONTAINING THE GENRES AND MEMBERS -->
   <div class="d-flex flex-row m-4 justify-content-between">
     <!-- DESCRIPTION -->
     <!-- PENSAR SE NÃO FICA MELHOR DEIXAR A DESCRIÇÃO AQUI DO QUE NO BANNER - COLOCAR O CIDADE/UF LÁ EM CIMA?
@@ -48,47 +50,76 @@
     <!-- MEMBER LIST -->
     <div class="col m-3">
       <h2>Membros</h2>
-      <!-- Understand why when you access the page clicking in the collective the carousel does not work-->
       <div class="all-members row">
-        <div id="carouselExampleControls" class="carousel slide" data-slide="carousel">
+        <% members_in_3 = @collective.members.each_slice(3).to_a %>
+        <div id="carouselExample" class="carousel slide">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div class="col">
-                <% owner = @collective.members.first %>
-                <%= render "shared/member_card", member: owner %>
+              <div class="cards-wrapper">
+                <% members_in_3[0].each do |member| %>
+                  <%= render "shared/member_card", member: member %>
+                <% end %>
               </div>
             </div>
-            <% @collective.members[1..-1].each do |member| %>
+            <% members_in_3[1..-1].each do |group| %>
               <div class="carousel-item">
-                <div class="col">
-                  <%= render "shared/member_card", member: member %>
+                <div class="cards-wrapper">
+                  <% group.each do |member| %>
+                    <%= render "shared/member_card", member: member %>
+                  <% end %>
                 </div>
               </div>
             <% end %>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
   <!-- EVENTS -->
   <div class="m-4">
-    <div class="m-3">
-      <h2>Next Events</h2>
-      <div class="d-flex flex-row align-items-center row">
-        <% @collective.events.each do |event| %>
-          <%= render 'events/event_card', event: %>
-        <% end %>
-      </ul>
+    <h2>Próximos Eventos</h2>
+    <div class="">
+      <!-- CRIA UMA ARRAY DE ARRAYS COM 4 EVENTOS CADA -->
+      <% events_in_4 = @collective.events.each_slice(4).to_a %>
+      <div id="carouselEvents" class="carousel carousel-dark slide">
+        <div class="carousel-inner mx-5 px-5 events-carousel">
+          <div class="carousel-item active">
+            <div class="cards-wrapper">
+              <!-- PEGA O PRIMEIRO CONJUNTO DE 4 EVENTOS DO COLETIVO E CRIA OS CARTÕES-->
+              <% events_in_4[0].each do |event| %>
+                <%= render "events/event_card", event: event %>
+              <% end %>
+            </div>
+          </div>
+          <!-- INICIA A ITERAÇÃO DOS DEMAIS CONJUNTOS DE 4 EVENTOS PARA CRIAR OS SLIDES DE 4 CARTÕES EM CADA -->
+          <% events_in_4[1..-1].each do |group| %>
+            <div class="carousel-item">
+              <div class="cards-wrapper">
+                <!-- PARA CADA ARRAY DE 4 CRIA-SE UM CARTÃO POR EVENTO -->
+                <% group.each do |event| %>
+                  <%= render "events/event_card", event: event %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselEvents" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselEvents" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
-<hr>
 </div>
