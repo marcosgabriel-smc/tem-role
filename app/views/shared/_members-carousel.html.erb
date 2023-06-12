@@ -1,0 +1,28 @@
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="cards-wrapper">
+        <% members_groups[0].each do |member| %>
+          <%= render "shared/member_card", member: member %>
+        <% end %>
+      </div>
+    </div>
+    <% members_groups[1..-1].each do |group| %>
+      <div class="carousel-item">
+        <div class="cards-wrapper">
+          <% group.each do |member| %>
+            <%= render "shared/member_card", member: member %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

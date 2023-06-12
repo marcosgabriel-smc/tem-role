@@ -1,0 +1,31 @@
+<div id="carouselEvents" class="carousel carousel-dark slide">
+  <div class="carousel-inner mx-5 px-5 events-carousel">
+    <div class="carousel-item active">
+      <div class="cards-wrapper">
+        <!-- PEGA O PRIMEIRO CONJUNTO DE 4 EVENTOS DO COLETIVO E CRIA OS CARTÕES-->
+        <% events_groups[0].each do |event| %>
+          <%= render "events/event_card", event: event %>
+        <% end %>
+      </div>
+    </div>
+    <!-- INICIA A ITERAÇÃO DOS DEMAIS CONJUNTOS DE 4 EVENTOS PARA CRIAR OS SLIDES DE 4 CARTÕES EM CADA -->
+    <% events_groups[1..-1].each do |group| %>
+      <div class="carousel-item">
+        <div class="cards-wrapper">
+          <!-- PARA CADA ARRAY DE 4 CRIA-SE UM CARTÃO POR EVENTO -->
+          <% group.each do |event| %>
+            <%= render "events/event_card", event: event %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselEvents" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselEvents" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

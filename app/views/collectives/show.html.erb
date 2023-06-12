@@ -52,34 +52,7 @@
       <h2>Membros</h2>
       <div class="all-members row">
         <% members_in_3 = @collective.members.each_slice(3).to_a %>
-        <div id="carouselExample" class="carousel slide">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="cards-wrapper">
-                <% members_in_3[0].each do |member| %>
-                  <%= render "shared/member_card", member: member %>
-                <% end %>
-              </div>
-            </div>
-            <% members_in_3[1..-1].each do |group| %>
-              <div class="carousel-item">
-                <div class="cards-wrapper">
-                  <% group.each do |member| %>
-                    <%= render "shared/member_card", member: member %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
+        <%= render "shared/members-carousel", members_groups: members_in_3 %>
       </div>
     </div>
   </div>
@@ -89,37 +62,7 @@
     <div class="">
       <!-- CRIA UMA ARRAY DE ARRAYS COM 4 EVENTOS CADA -->
       <% events_in_4 = @collective.events.each_slice(4).to_a %>
-      <div id="carouselEvents" class="carousel carousel-dark slide">
-        <div class="carousel-inner mx-5 px-5 events-carousel">
-          <div class="carousel-item active">
-            <div class="cards-wrapper">
-              <!-- PEGA O PRIMEIRO CONJUNTO DE 4 EVENTOS DO COLETIVO E CRIA OS CARTÕES-->
-              <% events_in_4[0].each do |event| %>
-                <%= render "events/event_card", event: event %>
-              <% end %>
-            </div>
-          </div>
-          <!-- INICIA A ITERAÇÃO DOS DEMAIS CONJUNTOS DE 4 EVENTOS PARA CRIAR OS SLIDES DE 4 CARTÕES EM CADA -->
-          <% events_in_4[1..-1].each do |group| %>
-            <div class="carousel-item">
-              <div class="cards-wrapper">
-                <!-- PARA CADA ARRAY DE 4 CRIA-SE UM CARTÃO POR EVENTO -->
-                <% group.each do |event| %>
-                  <%= render "events/event_card", event: event %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselEvents" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselEvents" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+      <%= render "shared/events-carousel", events_groups: events_in_4 %>
     </div>
   </div>
 </div>
