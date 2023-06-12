@@ -1,0 +1,31 @@
+<% collective = invite.collective %>
+<div class="membership-card d-flex row my-3 px-2 py-4 align-content-center justify-content-between">
+  <div class="col-2 membership-collective-section">
+    <div class="img-wrapper">
+      <%= image_tag "stun.png", class: "rounded-circle mb-2 avatar-large" %>
+      <!-- TODO: usar imagem do cloudinary -->
+      <%#= cl_image_tag collective.logo.key, default_image: "stun.png" %>
+    </div>
+    <h2 class="text-center mt-2"><%= collective.name %></h2>
+  </div>
+  <div class="col-8 d-flex row align-content-center">
+    <h2>Deseja aceitar o convite?</h2>
+    <p><%= collective.description %></p>
+  </div>
+  <div class="col-2">
+    <!-- TODO: implementar o Aceitar/Recusar com AJAX -->
+    <%= button_to(
+      'Aceitar',
+      collective_membership_path(collective, invite),
+      method: :patch,
+      params: { accepted: true },
+      class: "btn btn-outline-dark w-auto h-auto m-1"
+    ) %>
+    <%= button_to(
+      'Recusar',
+      collective_membership_path(collective, invite),
+      method: :delete,
+      class: "btn btn-outline-danger w-auto h-auto m-1"
+    ) %>
+  </div>
+</div>

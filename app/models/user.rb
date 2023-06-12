@@ -6,7 +6,11 @@ class User < ApplicationRecord
 
   has_many :collectives, foreign_key: :owner_id, class_name: "Collective"
   has_many :subscriptions
-  has_many :memberships
+
+  has_many :memberships, dependent: :destroy
+  has_many :accepted_invites, -> { where(accepted: true) }, class_name: 'Membership'
+  has_many :pending_invites, -> { where(accepted: false) }, class_name: 'Membership'
+  has_many :collective_memberships, through: :accepted_invites, source: :collective
 
   validates :name, presence: true
 
