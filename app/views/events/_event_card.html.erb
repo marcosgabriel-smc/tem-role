@@ -1,10 +1,12 @@
 <div class="card p-0 m-2 event-card" style="width: 18rem;">
-  <div class="event-photo">
-    <%= image_tag "event_thumb.png", {class: "card-img-top img-fluid"} %>
-    <div class="event-collective">
-      <h3><%= event.collective.name %></h3>
+  <a href="<%= event_path(event) %>">
+    <div class="event-photo">
+      <%= image_tag "event_thumb.png", {class: "card-img-top img-fluid"} %>
+      <div class="event-collective">
+        <h3><%= event.collective.name %></h3>
+      </div>
     </div>
-  </div>
+  </a>
   <div class="event-time">
     <h5><%= event.start_time.strftime("%d/%m/%Y") %></h5>
   </div>

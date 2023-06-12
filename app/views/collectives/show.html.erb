@@ -1,3 +1,4 @@
+<!-- HERO BANNER DO COLLETIVO -->
 <div
   class= "masthead justify-content-center align-items-center d-flex"
   style="background-image: url('<%= cl_image_path @collective.banner.key, crop: :fill unless @collective.banner.key.nil? %>');">
@@ -17,8 +18,9 @@
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="m-3">
+<div class="container-fluid">
+  <!-- ROUTES BUTTONS ##TO-DO CENTER AND STYLE IT-->
+  <div class="m-4">
     <%= link_to "Back to collectives", collectives_path %>
     <% if policy(@collective).edit? %>
       | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
@@ -27,31 +29,40 @@
       | <%= link_to 'Create a new event', new_event_path %>
     <% end %>
   </div>
-  <!-- MEMBER LIST -->
-  <h2>Owner</h2>
-  <p><%= @collective.owner.name %></p>
-  <h2>Members (<%= @collective.members.count %>)</h2>
-  <ul>
-    <% @collective.members.each do |member| %>
-      <li><%= member.name %></li>
-    <% end %>
-  </ul>
-  <!-- GENRE LIST -->
-  <h2>Genres</h2>
-  <ul>
-    <% @collective.genres.each do |genre| %>
-      <li><%= genre.name %></li>
-    <% end %>
-  </ul>
-  <!-- EVENTS -->
-  <div class="container">
-    <h2>Next Events</h2>
-    <div class="d-flex flex-row align-items-center row">
-      <% @collective.events.each do |event| %>
-        <%= render 'events/event_card', event: %>
-      <% end %>
-    </ul>
+  <!-- DIV BELOW THE BUTTONS - CONTAINING THE GENRES AND MEMBERS -->
+  <div class="d-flex flex-row m-4 justify-content-between">
+    <!-- DESCRIPTION -->
+    <!-- PENSAR SE NÃO FICA MELHOR DEIXAR A DESCRIÇÃO AQUI DO QUE NO BANNER - COLOCAR O CIDADE/UF LÁ EM CIMA?
+    <div class="col m-3">
+      <h2>Descrição</h2>
+      <p><%= @collective.description %></p>
+    </div>
+    -->
+    <!-- GENRE LIST -->
+    <div class="col m-3">
+      <h2>Gêneros</h2>
+      <ul>
+        <% @collective.genres.each do |genre| %>
+          <li><%= genre.name.capitalize %></li>
+        <% end %>
+      </ul>
+    </div>
+    <!-- MEMBER LIST -->
+    <div class="col m-3">
+      <h2>Membros</h2>
+      <div class="all-members row">
+        <% members_in_3 = @collective.members.each_slice(3).to_a %>
+        <%= render "shared/members-carousel", members_groups: members_in_3 %>
+      </div>
+    </div>
   </div>
-</div>
-<hr>
+  <!-- EVENTS -->
+  <div class="m-4">
+    <h2>Próximos Eventos</h2>
+    <div class="">
+      <!-- CRIA UMA ARRAY DE ARRAYS COM 4 EVENTOS CADA -->
+      <% events_in_4 = @collective.events.each_slice(4).to_a %>
+      <%= render "shared/events-carousel", events_groups: events_in_4 %>
+    </div>
+  </div>
 </div>

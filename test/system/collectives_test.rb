@@ -37,19 +37,19 @@ class CollectivesTest < ApplicationSystemTestCase
   end
 
   test "should update a Collective" do
-    login_as users(:meleu)
+     login_as users(:meleu)
 
-    visit collective_url(@collective)
-    click_on "Edit this collective", match: :first
+     visit collective_url(@collective)
+     click_on "Edit this collective", match: :first
 
-    fill_in "collective_name", with: "Dopez[Edited]"
-    fill_in "collective_description", with: "This is a dope [edited] Collective"
+     fill_in "collective_name", with: "Dopez[Edited]"
+     fill_in "collective_description", with: "This is a dope [edited] Collective"
 
-    click_on "Update Collective"
+     click_on "Update Collective"
 
-    assert_text "Collective was successfully updated"
-    click_on "Back"
-  end
+     assert_text "Collective was successfully updated"
+     click_on "Back"
+   end
 
   test "should not be able to view the edit page of another person's Collective" do
     login_as users(:meleu)
