@@ -10,6 +10,7 @@ class Collective < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :accepted_memberships, -> { where(accepted: true) }, class_name: 'Membership'
   has_many :pending_memberships, -> { where(accepted: false) }, class_name: 'Membership'
+  # the "members" are only the users who accepted the membership
   has_many :members, through: :accepted_memberships, source: :user
 
   has_many :subscriptions, dependent: :destroy
