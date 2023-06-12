@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
 
   root "pages#home"
@@ -10,8 +11,12 @@ Rails.application.routes.draw do
     resources :memberships
   end
 
-  resources :events
+  resources :events do
+    resources :event_lists, as: "lists" do
+      resources :event_list_subscriptions, only: [:create], as: "subscriptions"
+    end
+  end
 
-  get "my_profile", to: "pages#my_profile"
+  ## Sandbox page
   get "/teste", to: "pages#teste"
 end
