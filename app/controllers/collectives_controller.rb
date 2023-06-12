@@ -3,12 +3,12 @@ class CollectivesController < ApplicationController
   before_action :authorize_user, except: %i[index]
   skip_before_action :authenticate_user!, only: %i[index show]
 
-  # GET /collectives or /collectives.json
+  # GET /collectives
   def index
     @collectives = policy_scope(Collective)
   end
 
-  # GET /collectives/1 or /collectives/1.json
+  # GET /collectives/1
   def show
   end
 
@@ -17,7 +17,7 @@ class CollectivesController < ApplicationController
     @collective = Collective.new
   end
 
-  # POST /collectives or /collectives.json
+  # POST /collectives
   def create
     @collective = Collective.new(collective_params)
     @collective.owner = current_user
@@ -34,8 +34,10 @@ class CollectivesController < ApplicationController
   def edit
   end
 
-  # PATCH/PUT /collectives/1 or /collectives/1.json
+  # PATCH/PUT /collectives/1
   def update
+    set_collective
+    @collective.genre_ids = params[:collective][:genre_ids]
     if @collective.update(collective_params)
       redirect_to collective_url(@collective), notice: "Collective was successfully updated."
     else
@@ -43,7 +45,7 @@ class CollectivesController < ApplicationController
     end
   end
 
-  # DELETE /collectives/1 or /collectives/1.json
+  # DELETE /collectives/1
   def destroy
     @collective.destroy
 
