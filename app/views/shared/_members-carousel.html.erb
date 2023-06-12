@@ -15,15 +15,9 @@
     </div>
   <% end %>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="cards-wrapper">
-        <% members_groups[0].each do |member| %>
-          <%= render "shared/member_card", member: member %>
-        <% end %>
-      </div>
-    </div>
-    <% members_groups[1..-1].each do |group| %>
-      <div class="carousel-item">
+    <% members_groups.each_with_index do |group, i| %>
+      <% active = i == 0 ? "active" : ""%>
+      <div class="carousel-item <%= active %>">
         <div class="cards-wrapper">
           <% group.each do |member| %>
             <%= render "shared/member_card", member: member %>
