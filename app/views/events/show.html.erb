@@ -33,7 +33,12 @@
             <div class="fw-bold"><%= list.name %></div>
             <%= list.requirement %>
           </div>
-          <%= button_to "Subscribe", event_list_subscriptions_path(@event, list), class: "badge bg-primary rounded-pill" %>
+          <%= button_to(
+          "Subscribe",
+          event_list_subscriptions_path(@event, list),
+          params: {user: current_user},
+          class: "badge bg-primary rounded-pill"
+          ) %>
         </li>
       <% end %>
     </ol>
