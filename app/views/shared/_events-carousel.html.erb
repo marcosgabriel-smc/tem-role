@@ -1,4 +1,19 @@
-<div id="carouselEvents" class="carousel carousel-dark slide">
+<div id="carouselEvents" class="carousel carousel-dark slide position-relative">
+  <% if events_groups.count > 1 %>
+    <div class="carousel-indicators">
+      <% slides_numbers = events_groups.count %>
+      <% i = 1 %>
+      <button type="button" data-bs-target="#carouselEvents" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <% until i == slides_numbers %>
+        <%= button_tag "", type: "button", data: {
+        bs_target: "#carouselEvents",
+        bs_slide_to: "#{i}",
+        aria_label: "Slide #{i + 1}"
+        } %>
+        <% i += 1 %>
+      <% end %>
+    </div>
+  <% end %>
   <div class="carousel-inner mx-5 px-5 events-carousel">
     <div class="carousel-item active">
       <div class="cards-wrapper">
@@ -20,12 +35,14 @@
       </div>
     <% end %>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselEvents" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselEvents" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  <% if events_groups.count > 1 %>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselEvents" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselEvents" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  <% end %>
 </div>

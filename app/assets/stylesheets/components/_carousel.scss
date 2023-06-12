@@ -3,6 +3,54 @@
   justify-content: space-between;
 }
 
-.events-carousel {
+// BUTTONS AND INDICATORS
+#carouselEvents .carousel-control-prev {
+  position: absolute;
+  left: -170px;
+}
 
+#carouselEvents .carousel-control-prev-icon {
+  position: absolute;
+  left: 210px;
+}
+
+#carouselEvents .carousel-control-next {
+  position: absolute;
+  right: 250px;
+}
+
+#carouselEvents .carousel-control-next-icon {
+  position: absolute;
+  right: 210px;
+}
+
+#carouselEvents .carousel-indicators {
+  position: absolute;
+  bottom: -35px;
+}
+
+#carouselMembers .carousel-control-prev {
+  position: absolute;
+  left: -70px;
+}
+
+#carouselMembers .carousel-control-prev-icon {
+  position: absolute;
+  left: 50px;
+}
+
+#carouselMembers .carousel-control-next {
+  position: absolute;
+  right: 210px;
+}
+
+#carouselMembers .carousel-control-next-icon {
+  position: absolute;
+  right: 50px;
+}
+
+#carouselMembers .carousel-indicators {
+  position: absolute;
+  bottom: -30px;
+  right: 280px;
 }
