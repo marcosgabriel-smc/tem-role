@@ -1,0 +1,76 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.all-members {
+  width: 40rem;
+}
+
+.member-card {
+  width: 5rem;
+  margin: 1rem;
+}
+
+
+.member-icon {
+  width: 100%;
+  height: 3rem;
+}
+
+.member-name {
+  font-size: xx-small;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.member-role {
+  font-size: xx-small;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.instagram-icon {
+  width: 1.5rem;
+}
+
+.soundcloud-icon {
+  width: 1.5rem;
+}
+
+
+
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+// .carousel-inner .carousel-item-end,
+// .carousel-inner .carousel-item-start {
+// transform: translateX(0);
+// }
+
+// /* small screens */
+// @media (max-width: 767px) {
+//   .carousel-inner .carousel-item > div {
+//       display: none;
+//   }
+//   .carousel-inner .carousel-item > div:first-child {
+//       display: block;
+//   }
+// }
+// /* medium and up screens */
+// @media (min-width: 768px) {
+
+//   .carousel-inner .carousel-item-end.active,
+//   .carousel-inner .carousel-item-next {
+//     transform: translateX(25%);
+//   }
+
+//   .carousel-inner .carousel-item-start.active,
+//   .carousel-inner .carousel-item-prev {
+//     transform: translateX(-25%);
+//   }
+// }
