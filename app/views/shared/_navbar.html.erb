@@ -20,6 +20,16 @@
               %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to(
+                "My Profile",
+                current_user,
+                class: "dropdown-item text-dark"
+              ) %>
+              <%= link_to(
+                "Account settings",
+                edit_user_registration_path,
+                class: "dropdown-item text-dark"
+              ) %>
+              <%= link_to(
                 "Log out",
                 destroy_user_session_path,
                 class: "dropdown-item text-dark",

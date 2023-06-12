@@ -113,6 +113,9 @@ uzalemaun.save
 # MEMBERSHIP
 ######################################################################
 User.first(3).each do |user|
+  # create an invite
+  Membership.create!(user:, collective: uzalemaun, accepted: false)
+
   # the owner is automatically set as a member
   next if user == lewagang.owner
 
