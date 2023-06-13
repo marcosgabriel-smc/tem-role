@@ -24,7 +24,7 @@ class EventListsController < ApplicationController
     @event = Event.find(params[:event_id])
     @event_list = EventList.new(event_list_params)
     @event_list.event = @event
-    if @event.save
+    if @event_list.save
       redirect_to @event, notice: "List was successfully created."
     else
       render @event, status: :unprocessable_entity
