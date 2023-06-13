@@ -1,28 +1,24 @@
 .cards-wrapper {
   display: flex;
   justify-content: space-evenly;
-  padding-left: 10%;
+  padding-left: 2%;
 }
 
 // BUTTONS AND INDICATORS
 #carouselEvents .carousel-control-prev {
   position: absolute;
-  left: -170px;
 }
 
 #carouselEvents .carousel-control-prev-icon {
   position: absolute;
-  left: 210px;
 }
 
 #carouselEvents .carousel-control-next {
   position: absolute;
-  right: 250px;
 }
 
 #carouselEvents .carousel-control-next-icon {
   position: absolute;
-  right: 210px;
 }
 
 #carouselEvents .carousel-indicators {
