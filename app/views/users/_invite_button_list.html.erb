@@ -1,0 +1,9 @@
+<% current_user.collectives.each do |collective| %>
+  <% next if Membership.exists?(collective:, user: @user) %>
+  <%= button_to(
+    collective.name,
+    collective_memberships_path(collective),
+    params: { user_id: user.id, collective: },
+    class: "btn btn-outline-dark w-auto h-auto m-1"
+  ) %>
+<% end %>

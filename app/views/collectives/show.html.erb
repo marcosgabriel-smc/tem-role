@@ -52,7 +52,7 @@
       <h2>Membros</h2>
       <div class="all-members row">
         <% members_in_3 = @collective.members.each_slice(3).to_a %>
-        <%= render "shared/members-carousel", members_groups: members_in_3 %>
+        <%= render "shared/members_carousel", members_groups: members_in_3 %>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@
     <div class="">
       <!-- CRIA UMA ARRAY DE ARRAYS COM 4 EVENTOS CADA -->
       <% events_in_4 = @collective.events.each_slice(4).to_a %>
-      <%= render "shared/events-carousel", events_groups: events_in_4 %>
+      <%= render "shared/events_carousel", events_groups: events_in_4 %>
     </div>
   </div>
 </div>
