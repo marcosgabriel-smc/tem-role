@@ -1,40 +1,25 @@
 <div class="container">
   <h1><%= @user.name %></h1>
-  <!-- CONVITES PENDENTES -->
+  <!-- CONVITES -->
   <% if @user == current_user %>
-    <hr>
-    <h2>Convites de Coletivos</h2>
-    <% @user.pending_invites.each do |invite| %>
-      <%= render "invite_card", invite: %>
+    <!-- CONVITES PENDENTES -->
+    <% if @user.pending_invites.any? %>
+      <hr>
+      <h2>Convites de Coletivos</h2>
+      <% @user.pending_invites.each do |invite| %>
+        <%= render "pending_invite_card", invite: %>
+      <% end %>
     <% end %>
+  <% elsif user_signed_in? && current_user.collectives.any? %>
+    <!-- CONVIDAR -->
+    <h2>Convidar <%= @user.name %> para algum coletivo?</h2>
+    <%= render 'invite_button_list', user: @user %>
   <% end %>
   <hr>
   <!-- ASSOCIAÇÕES A COLETIVOS -->
-  <% collective_groups = @user.collective_memberships.each_slice(4).to_a %>
   <div class="user-collectives my-4">
-    <h2>Seus Coletivos</h2>
-    <div id="carouselCollective" class="carousel slide">
-      <div class="carousel-inner">
-        <% collective_groups.each_with_index do |group, i| %>
-          <% active = i == 0 ? "active" : ""%>
-          <div class="carousel-item <%= active %>">
-            <div class="cards-wrapper">
-              <% group.each do |collective| %>
-                <%= render "collectives/collective_card", collective: %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCollective" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselCollective" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+    <h2>Coletivos</h2>
+    <%= render 'shared/collectives_carousel', collectives: @user.collective_memberships, user: @user %>
     <hr>
     <!-- PRÓXIMOS EVENTOS -->
     <!-- TODO: pendente lógica de event_lists e event_list_subscriptions -->

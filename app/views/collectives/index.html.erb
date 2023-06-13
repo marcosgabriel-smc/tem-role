@@ -2,10 +2,10 @@
   <%= render "hero_banner_collectives" %>
 </div>
 <div class="container">
-  <h1 class="text-capitalize">Coletivos</h1>
+  <h1 class="text-capitalize ms-3 mb-4">Coletivos</h1>
   <%#= render "shared/map-div" %>
   <div class="col" data-controller="map">
-    <div id="collectives" class= "row justify-content-around colectives-col">
+    <div id="collectives" class= "row justify-content-start ms-5 colectives-col">
       <% @collectives.reverse.each do |collective| %>
         <%= render "collective_card", collective: %>
       <% end %>

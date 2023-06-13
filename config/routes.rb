@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  resources :users, only: [:show]
+  resources :users, only: %i[index show]
 
   resources :collectives do
     # TODO: eliminar rotas não utilizadas?
-    resources :memberships
+    resources :memberships, except: %i[index show new edit]
   end
 
   resources :events do

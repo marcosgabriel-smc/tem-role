@@ -1,6 +1,6 @@
 .masthead {
 	background-size: cover;
-	min-height: 90vh;
+	min-height: 100vh;
 	color: white;
 	position: static;
 }
@@ -15,8 +15,9 @@
 .color-overlay {
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.8);
-	height: 90%;
+	height: 100%;
 	width: 100%;
+	min-height: 100vh;
 }
 
 .colec-title {
@@ -135,7 +136,10 @@ h2 {
 }
 
 .landing-logo img {
-	width: 100%;
+	width: 70%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .landing-text h5 {
