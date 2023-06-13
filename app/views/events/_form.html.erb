@@ -6,8 +6,12 @@
     <% default_end = (Time.zone.now + 8.hours).strftime('%Y-%m-%d %H:%M') %>
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :state, collection: Collective::STATES %>
-    <%= f.input :city %>
+    <%= f.input :zipcode, input_html: { id: "cep"} %>
+    <%= f.input :street, input_html: { id: "rua"} %>
+    <%= f.input :street_number %>
+    <%= f.input :neighborhood, input_html: { id: "bairro"} %>
+    <%= f.input :city, input_html: { id: "cidade"} %>
+    <%= f.input :state, input_html: { id: "uf"} %>
     <%= f.input :start_time, html5: true, input_html: { value: default_start } %>
     <%= f.input :end_time, html5: true, input_html: { value: default_end } %>
     <%= f.association :collective, collection: current_user.collectives %>

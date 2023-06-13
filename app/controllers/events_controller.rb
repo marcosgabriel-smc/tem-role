@@ -21,7 +21,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.genre_ids = params[:event][:genre_ids]
-
+    @event.address = "#{@event.street} #{@event.street_number} #{@event.city} #{@event.state} #{@event.zipcode}"
+    raise
     if @event.save
       redirect_to event_url(@event), notice: "Event was successfully created."
     else
