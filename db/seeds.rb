@@ -158,13 +158,18 @@ collectives = Collective.all
 
 puts 'Assigning genres to the collectives...'
 collectives.each do |collective|
-  CollectiveGenre.create!(collective:, genre: genres.sample)
+  random_genres = genres.sample(4)
+  random_genres.each do |genre|
+    CollectiveGenre.create!(collective:, genre:)
+  end
 end
 
 puts 'Assigning genres to the events...'
-
 events.each do |event|
-  EventGenre.create!(event:, genre: genres.sample)
+  random_genres = genres.sample(4)
+  random_genres.each do |genre|
+    EventGenre.create!(event:, genre:)
+  end
 end
 
 ######################################################################
