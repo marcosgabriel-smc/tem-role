@@ -10,6 +10,11 @@
       <p class="colectivedesc text-break text-start fw-semibold"><%= @collective.description %></p>
     </div>
     <div class= "align-self-end d-flex justify-content-evenly w-100">
+      <div class="d-flex align-items-center">
+        <% @collective.genres.each do |genre| %>
+          <h5><%= genre.name.capitalize %></h5>
+        <% end %>
+      </div>
       <!--
       <h3>Members</h3>
       <h3>Events</h3>
