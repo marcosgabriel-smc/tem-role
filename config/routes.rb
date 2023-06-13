@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :event_lists, as: "lists" do
-      resources :event_list_subscriptions, only: [:create], as: "subscriptions"
+    resources :event_lists, path: 'lists', as: :lists do
+      post '/subscribe', to: 'event_lists#subscribe'
+      delete '/subscribe', to: 'event_lists#unsubscribe'
     end
   end
 

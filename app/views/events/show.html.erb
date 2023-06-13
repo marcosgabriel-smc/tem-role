@@ -33,12 +33,29 @@
             <div class="fw-bold"><%= list.name %></div>
             <%= list.requirement %>
           </div>
+<<<<<<< HEAD
           <%= button_to(
           "Subscribe",
           event_list_subscriptions_path(@event, list),
           params: {user: current_user},
           class: "badge bg-primary rounded-pill"
           ) %>
+=======
+          <% if EventListSubscription.exists?(user: current_user, event_list: list) %>
+            <%= button_to(
+              "Unsubscribe",
+              event_list_subscribe_path(@event, list),
+              method: :delete,
+              class: "badge bg-danger rounded-pill"
+            ) %>
+          <% else %>
+            <%= button_to(
+              "Subscribe",
+              event_list_subscribe_path(@event, list),
+              class: "badge bg-primary rounded-pill"
+            ) %>
+          <% end %>
+>>>>>>> event-list-subscribe
         </li>
       <% end %>
     </ol>
