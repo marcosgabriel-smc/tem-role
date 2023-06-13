@@ -1,19 +1,16 @@
 class MembershipsController < ApplicationController
-  before_action :set_membership, only: %i[show update destroy]
-  before_action :authorize_user, only: %i[create update destroy]
-
-  def show
-  end
+  before_action :set_membership, only: %i[update destroy]
+  before_action :authorize_user, only: %i[update destroy]
 
   def create
-    @membership = Membership.new(membership_params)
     collective = Collective.find(params[:collective_id])
-    @membership.collective = collective
-    if @membership.save
-      redirect_to collective
-    else
-      render 'collective/show', status: :unprocessable_entity
-    end
+    user = User.find(params[:user_id])
+
+    @membership = Membership.new(collective:, user:)
+    authorize @membership
+
+    @membership.save
+    redirect_to user
   end
 
   def update

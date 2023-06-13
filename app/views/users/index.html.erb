@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Users</h1>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <%= render 'shared/member_card', member: user %>
+      </li>
+    <% end %>
+  </ul>
+</div>

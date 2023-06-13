@@ -8,4 +8,7 @@
     <% end %>
   </div>
   <%= link_to collective.name, collective, class: "text-muted" %>
+  <% if defined?(user) && collective.owner == user %>
+    <small>(owner)</small>
+  <% end %>
 </h2>
