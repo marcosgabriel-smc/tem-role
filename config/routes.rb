@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
 
   root "pages#home"
@@ -10,7 +11,13 @@ Rails.application.routes.draw do
     resources :memberships
   end
 
-  resources :events
+  resources :events do
+    resources :event_lists, path: 'lists', as: :lists do
+      post '/subscribe', to: 'event_lists#subscribe'
+      delete '/subscribe', to: 'event_lists#unsubscribe'
+    end
+  end
 
+  ## Sandbox page
   get "/teste", to: "pages#teste"
 end

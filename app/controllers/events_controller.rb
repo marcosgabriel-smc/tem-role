@@ -3,12 +3,12 @@ class EventsController < ApplicationController
   before_action :authorize_user, except: %i[index]
   skip_before_action :authenticate_user!, only: %i[index show]
 
-  # GET /events or /events.json
+  # GET /events
   def index
     @events = policy_scope(Event)
   end
 
-  # GET /events/1 or /events/1.json
+  # GET /events/1
   def show
   end
 
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
-  # POST /events or /events.json
+  # POST /events
   def create
     @event = Event.new(event_params)
     @event.genre_ids = params[:event][:genre_ids]
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   def edit
   end
 
-  # PATCH/PUT /events/1 or /events/1.json
+  # PATCH/PUT /events/1
   def update
     if @event.update(event_params)
       redirect_to event_url(@event), notice: "Event was successfully updated."
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1 or /events/1.json
+  # DELETE /events/1
   def destroy
     @event.destroy
 
