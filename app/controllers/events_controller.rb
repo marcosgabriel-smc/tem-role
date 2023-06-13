@@ -10,6 +10,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
+    @event_list = EventList.new
   end
 
   # GET /events/new

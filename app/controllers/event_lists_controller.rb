@@ -20,6 +20,17 @@ class EventListsController < ApplicationController
     redirect_to @event_list.event
   end
 
+  def create
+    @event = Event.find(params[:event_id])
+    @event_list = EventList.new(event_list_params)
+    @event_list.event = @event
+    if @event.save
+      redirect_to @event, notice: "List was successfully created."
+    else
+      render @event, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def authorize_user
@@ -30,4 +41,9 @@ class EventListsController < ApplicationController
   def set_event_list
     @event_list = EventList.find(params[:list_id])
   end
+
+  def event_list_params
+    params.require(:event_list).permit(:name, :requirement)
+  end
+
 end
