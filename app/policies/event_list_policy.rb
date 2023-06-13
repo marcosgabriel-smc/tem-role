@@ -13,4 +13,8 @@ class EventListPolicy < ApplicationPolicy
   def unsubscribe?
     subscribe?
   end
+
+  def create?
+    record.event.collective.owner == user
+  end
 end

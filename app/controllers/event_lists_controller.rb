@@ -1,6 +1,6 @@
 class EventListsController < ApplicationController
   before_action :set_event_list, only: %i[subscribe unsubscribe]
-  before_action :authorize_user, only: %i[subscribe unsubscribe]
+  before_action :authorize_user, only: %i[subscribe unsubscribe create]
 
   def subscribe
     list_subscription = EventListSubscription.new
