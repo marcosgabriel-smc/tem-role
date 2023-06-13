@@ -1,38 +1,54 @@
-<div class="container-fluid centerpage d-flex flex-row">
-  <div class="col-4 m-5">
-    <h1><%= @event.name %></h1>
-    <h2>por <%= link_to @event.collective.name, @event.collective %></h2>
-    <p><%= @event.description %></p>
-    <p><%= @event.start_time.strftime("%d/%m/%Y %H:%M") %></p>
-    <p><%= @event.end_time.strftime("%d/%m/%Y %H:%M") %></p>
-    <div>
-      <% if policy(@event).edit? %>
-        <%= link_to "Edit this event", edit_event_path(@event) %> |
+<div class="container-fluid centerpage">
+  <!--EVENT HERO BANNER -->
+  <div class="card mb-3 event-hero" >
+    <div class="row g-0">
+      <div class="col-md-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= @event.name %></h5>
+          <p class="card-text"><%= @event.description %></p>
+          <p class="card-text"><small class="text-body-secondary"><%= @event.start_time.strftime("%d/%m/%Y %H:%M") %></small></p>
+          <p class="card-text"><small class="text-body-secondary"><%= @event.end_time.strftime("%d/%m/%Y %H:%M") %></small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <!-- ADD CLOUDINARY TO EVENTS-->
+        <%= image_tag "flyer_1.jpeg", class: "img-fluid rounded-end", alt: "event-flyer" %>
+        <%# <img src="assets/images/flyer_1.jpeg" class="img-fluid rounded-start" alt="event-flyer"> %>
+      </div>
+    </div>
+  </div>
+  <!-- Btn "Back to Events"-->
+  <div>
+    <% if policy(@event).edit? %>
+      <%= link_to "Edit this event", edit_event_path(@event) %> |
+    <% end %>
+    <%= link_to "Back to events", events_path %>
+  </div>
+  <div class="all-lists">
+    <h2>Listas do Evento</h2>
+    <ol class="list-group list-group-numbered">
+      <% @event.event_lists.each do |list| %>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold"><%= list.name %></div>
+            <%= list.requirement %>
+          </div>
+          <% if EventListSubscription.exists?(user: current_user, event_list: list) %>
+            <%= button_to(
+              "Unsubscribe",
+              event_list_subscribe_path(@event, list),
+              method: :delete,
+              class: "badge bg-danger rounded-pill"
+            ) %>
+          <% else %>
+            <%= button_to(
+              "Subscribe",
+              event_list_subscribe_path(@event, list),
+              class: "badge bg-primary rounded-pill"
+            ) %>
+          <% end %>
+        </li>
       <% end %>
-      <%= link_to "Back to events", events_path %>
-    </div>
+    </ol>
   </div>
-  <!--
-  <div id="carouselExampleControls" class="carousel slide col-8" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active party-carousel">
-        <%#= image_tag "party_pic_1.jpeg", class: "d-block", alt: "First slide"  %>
-      </div>
-      <div class="carousel-item">
-        <%#= image_tag "party_pic_2.jpeg", class: "d-block w-100", alt: "Second slide"  %>
-      </div>
-      <div class="carousel-item">
-        <%#= image_tag "party_pic_3.jpeg", class: "d-block w-100", alt: "Third slide"  %>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  -->
 </div>
