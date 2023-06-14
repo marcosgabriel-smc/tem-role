@@ -32,6 +32,20 @@ class EventListsController < ApplicationController
     end
   end
 
+  # GET /events/1/edit
+  def edit
+  end
+
+  # PATCH/PUT /events/1
+  def update
+    if @event.update(event_params)
+      redirect_to event_url(@event), notice: "Event was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
   private
 
   def authorize_user
