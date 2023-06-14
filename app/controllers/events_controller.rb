@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authorize_user, except: %i[index]
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show state]
 
   # GET /events
   def index
@@ -56,6 +56,7 @@ class EventsController < ApplicationController
     return unless Event::STATES.include?(my_state)
 
     @events = Event.where("state = ? AND start_time > ?", my_state, DateTime.now)
+    respond_to(&:json)
   end
 
   private
