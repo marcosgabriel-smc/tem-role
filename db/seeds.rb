@@ -152,8 +152,8 @@ collectives_in_rio.each do |collective|
       collective: collective,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
-      start_time: DateTime.current - (n),
-      end_time: DateTime.tomorrow - (n),
+      start_time: DateTime.current - n,
+      end_time: DateTime.tomorrow - n,
       address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
@@ -229,14 +229,14 @@ collectives_in_jf.each do |collective|
       description: Faker::Lorem.paragraphs,
       start_time: DateTime.current + n,
       end_time: DateTime.tomorrow + n,
-      address: "Estr. Eng. Gentil Forn, 1000 - São Pedro, Juiz de Fora - MG",
+      address: "Estrada Engenheiro Gentil Forn, 1000 - Juiz de Fora - MG",
       city: juiz_de_fora[:city],
       state: juiz_de_fora[:state]
     )
   end
 end
 
-# TO BE ADDED
+# TO BE ADDED - NO MOMENTO 5 COLETIVOS ESTÃO SEM EVENTOS
 
 
 # COLLECTIVES with no incoming events and 3 previous events
@@ -252,7 +252,7 @@ end
 #     address: "#{Faker::Address.city}, #{Faker::Address.state}",
 #     city: Faker::Address.city,
 #     state: Faker::Address.state
-#   )
+#   )RAI
 # end
 
 # 4.times do

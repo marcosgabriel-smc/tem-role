@@ -15,7 +15,7 @@ class Event < ApplicationRecord
 
   ## GEOCODING
   geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address? ## NEED TO IMPLEMENT BETTER LOGIC
+  before_save :geocode, if: :will_save_change_to_address? ## NEED TO IMPLEMENT BETTER LOGIC
 
   # callbacks
   ##################################################
