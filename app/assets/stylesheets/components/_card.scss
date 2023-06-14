@@ -19,5 +19,14 @@
   color: white;
   right: 0;
   background-color: black;
-  // border-radius: 50%;
+  padding-right: 5%;
+  padding-top: 2%;
+}
+
+.event-collective a {
+  color: white;
+}
+
+.event-collective a:hover {
+  color: rgb(255, 0, 0);
 }
