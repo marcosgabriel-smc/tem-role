@@ -1,68 +1,20 @@
-<div class="container-fluid centerpage">
-  <!--EVENT HERO BANNER -->
-  <div class="card mb-3 event-hero" >
-    <div class="row g-0">
-      <div class="col-md-4">
-        <div class="card-body">
-          <h5 class="card-title"><%= @event.name %></h5>
-          <p class="card-text"><%= @event.description %></p>
-          <p class="card-text"><small class="text-body-secondary"><%= @event.start_time.strftime("%d/%m/%Y %H:%M") %></small></p>
-          <p class="card-text"><small class="text-body-secondary"><%= @event.end_time.strftime("%d/%m/%Y %H:%M") %></small></p>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <!-- ADD CLOUDINARY TO EVENTS-->
-        <%= image_tag "flyer_1.jpeg", class: "img-fluid rounded-end", alt: "event-flyer" %>
-        <%# <img src="assets/images/flyer_1.jpeg" class="img-fluid rounded-start" alt="event-flyer"> %>
-      </div>
-    </div>
+<div class="container d-flex">
+  <!--
+  <div class="img-fluid">
+    <%= image_tag "flyer_1.jpeg", class: "img-fluid rounded-end", alt: "event-flyer" %>
   </div>
-  <!-- Btn "Back to Events"-->
-  <div>
-    <% if policy(@event).edit? %>
-      <%= link_to "Edit this event", edit_event_path(@event) %> |
-    <% end %>
-    <%= link_to "Back to events", events_path %>
+  <div class="card-body">
+    <h5 class="card-title"><%= @event.name %></h5>
+    <p class="card-text"><%= @event.description %></p>
+    <p class="card-text"><small class="text-body-secondary"><%= @event.start_time.strftime("%d/%m/%Y %H:%M") %></small></p>
+    <p class="card-text"><small class="text-body-secondary"><%= @event.end_time.strftime("%d/%m/%Y %H:%M") %></small></p>
   </div>
-  <!-- FORM FOR A NEW EVENT-LIST -->
-  <div>
-    <%= simple_form_for [@events, @event_list], url: event_lists_path(@event) do |f| %>
-      <%= f.error_notification %>
-      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-      <div class="form-inputs">
-        <%= f.input :name %>
-        <%= f.input :requirement %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit %>
-      </div>
-    <% end %>
+  -->
+  <div style='width: 400px; height: 300px;'
+         data-controller="mapbox"
+         data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+         data-mapbox-marker-value="<%= @marker %>">
   </div>
-  <div class="all-lists">
-    <h2>Listas do Evento</h2>
-    <ol class="list-group list-group-numbered">
-      <% @event.event_lists.each do |list| %>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold"><%= list.name %></div>
-            <%= list.requirement %>
-          </div>
-          <% if EventListSubscription.exists?(user: current_user, event_list: list) %>
-            <%= button_to(
-              "Unsubscribe",
-              event_list_subscribe_path(@event, list),
-              method: :delete,
-              class: "badge bg-danger rounded-pill"
-            ) %>
-          <% else %>
-            <%= button_to(
-              "Subscribe",
-              event_list_subscribe_path(@event, list),
-              class: "badge bg-primary rounded-pill"
-            ) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ol>
+  <div class="align-self-center">
   </div>
 </div>
