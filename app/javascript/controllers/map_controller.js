@@ -40,6 +40,8 @@ export default class extends Controller {
     this.instructionsTarget.remove();
     stateNameElement.innerHTML = stateElement.getAttribute("title");
 
+    // JOGAR O ID NA QUERY
+
     // AJAX to apply the filtering
   }
   }
