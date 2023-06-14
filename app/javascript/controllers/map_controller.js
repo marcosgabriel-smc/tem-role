@@ -11,21 +11,21 @@ export default class extends Controller {
   ]
 
   connect() {
-    console.log(this)
+
   }
 
-  StateEnter(event) {
-    const stateElement = event.currentTarget;
-    const stateNameElement = document.getElementById('state-name');
-    stateNameElement.innerHTML = stateElement.getAttribute("title");
-  }
+  // StateEnter(event) {
+  //   const stateElement = event.currentTarget;
+  //   const stateNameElement = document.getElementById('state-name');
+  //   stateNameElement.innerHTML = stateElement.getAttribute("title");
+  // }
 
-  StateLeave(event) {
-    const stateElement = event.currentTarget;
-    const stateNameElement = document.getElementById('state-name');
-    const previousStateElement = document.querySelector('.selected-state');
-    stateNameElement.innerHTML = previousStateElement.getAttribute("title"); // Reset to clicked state name
-  }
+  // StateLeave(event) {
+  //   const stateElement = event.currentTarget;
+  //   const stateNameElement = document.getElementById('state-name');
+  //   const previousStateElement = document.querySelector('.selected-state');
+  //   stateNameElement.innerHTML = previousStateElement.getAttribute("title"); // Reset to clicked state name
+  // }
 
   StateClick(event) {
     const stateElement = event.currentTarget;
@@ -41,25 +41,25 @@ export default class extends Controller {
     stateElement.style.fill = "red";
     stateElement.classList.add('selected-state');
 
-    this.instructionsTarget.remove();
     stateNameElement.innerHTML = stateElement.getAttribute("title");
+    this.#creatingCards(uf)
   }
 
-  #creatingCards() {
-    fetch(`${window.location.href}/state/${uf}`)
+  #creatingCards(state) {
+    document.getElementById("teste").innerHTML = ""
+    fetch(`${window.location.href}/state/${state}`)
       .then(response => response.json())
       .then((data) => {
         const cities = Object.keys(data.content)
 
         cities.forEach((city) => {
           const h2 = `<h2>${city}</h2>`
-          let eventCards;
-
+          let eventCards = "<div class=\"row row-cols-3\">"
           data.content[city].forEach((eventCard) => {
             eventCards += eventCard
           })
-
-          console.log(this)
+          eventCards += "</div>"
+          document.getElementById("teste").insertAdjacentHTML('beforeend', h2 + eventCards)
           // this.eventsByCityTarget.insertAdjacentHTML('beforeend', h2)
           // console.log(this.eventsByCityTarget, h2, eventCards)
         })
