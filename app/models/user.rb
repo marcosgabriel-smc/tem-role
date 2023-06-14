@@ -15,4 +15,12 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   before_validation { self.name = email.gsub(/@.*/, '') if name.nil? }
+
+  def soundcloud_url
+    soundcloud || "https://soundcloud.com/discover"
+  end
+
+  def instagram_url
+    instagram || "https://www.instagram.com/"
+  end
 end

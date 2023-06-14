@@ -18,8 +18,8 @@
     <p class="member-role">Role</p>
     <div class="social-links d-flex flex-row justify-content-around">
       <!-- HERE -->
-      <%= link_to "", "https://soundcloud.com/discover", :target => "_blank", class: "fa-brands fa-soundcloud" %>
-      <%= link_to "", "https://www.instagram.com/", :target => "_blank", class: "fa-brands fa-instagram" %>
+      <%= link_to "", member.soundcloud_url, :target => "_blank", class: "fa-brands fa-soundcloud" %>
+      <%= link_to "", member.instagram_url, :target => "_blank", class: "fa-brands fa-instagram" %>
     </div>
   </div>
 </div>
