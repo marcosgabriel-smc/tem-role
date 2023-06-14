@@ -142,14 +142,41 @@ end
 puts 'Creating some genres...'
 Genre.create!(
   [
-    { name: 'house' },
-    { name: 'trance' },
-    { name: 'drum&bass' },
-    { name: 'techno' },
-    { name: 'hard techno' },
-    { name: 'jungle' },
     { name: 'acid house' },
-    { name: 'dubstep' }
+    { name: 'afrohouse' },
+    { name: 'amapiano' },
+    { name: 'bass' },
+    { name: 'breakbeat' },
+    { name: 'dance' },
+    { name: 'deep house' },
+    { name: 'deep tech' },
+    { name: 'disco' },
+    { name: 'drum & bass' },
+    { name: 'dubstep' },
+    { name: 'electro' },
+    { name: 'electronica' },
+    { name: 'funky house' },
+    { name: 'grime' },
+    { name: 'hard dance' },
+    { name: 'hard techno' },
+    { name: 'hardgroove' },
+    { name: 'house' },
+    { name: 'hypnotic tecnho' },
+    { name: 'indie dance' },
+    { name: 'jackin house' },
+    { name: 'jungle' },
+    { name: 'melodic techno' },
+    { name: 'minimal' },
+    { name: 'nu disco' },
+    { name: 'organic house' },
+    { name: 'peak-time' },
+    { name: 'progressive house' },
+    { name: 'psy-trance' },
+    { name: 'tech house' },
+    { name: 'techno' },
+    { name: 'trance' },
+    { name: 'trap' },
+    { name: 'uk garage' }
   ]
 )
 genres = Genre.all
