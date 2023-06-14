@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :memberships, except: %i[index show new edit]
   end
 
+  get '/events/state/:state', to: "events#state", as: 'events_by_state'
   resources :events do
     resources :event_lists, path: 'lists', as: :lists do
       post '/subscribe', to: 'event_lists#subscribe'

@@ -51,6 +51,13 @@ class EventsController < ApplicationController
     redirect_to events_url, notice: "Event was successfully destroyed."
   end
 
+  def state
+    my_state = params[:state].upcase
+    return unless Event::STATES.include?(my_state)
+
+    @events = Event.where("state = ? AND start_time > ?", my_state, DateTime.now)
+  end
+
   private
 
   def authorize_user
