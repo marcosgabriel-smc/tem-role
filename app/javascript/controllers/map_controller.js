@@ -46,7 +46,7 @@ export default class extends Controller {
   }
 
   #creatingCards(state) {
-    document.getElementById("teste").innerHTML = ""
+    document.getElementById("cards-by-city").innerHTML = ""
     fetch(`${window.location.href}/state/${state}`)
       .then(response => response.json())
       .then((data) => {
@@ -54,12 +54,12 @@ export default class extends Controller {
 
         cities.forEach((city) => {
           const h2 = `<h2>${city}</h2>`
-          let eventCards = "<div class=\"row row-cols-3\">"
+          let eventCards = "<div class=\"d-flex justify-content-center my-3 mx-2 row row-cols-3\">"
           data.content[city].forEach((eventCard) => {
             eventCards += eventCard
           })
           eventCards += "</div>"
-          document.getElementById("teste").insertAdjacentHTML('beforeend', h2 + eventCards)
+          document.getElementById("cards-by-city").insertAdjacentHTML('beforeend', h2 + eventCards)
           // this.eventsByCityTarget.insertAdjacentHTML('beforeend', h2)
           // console.log(this.eventsByCityTarget, h2, eventCards)
         })
