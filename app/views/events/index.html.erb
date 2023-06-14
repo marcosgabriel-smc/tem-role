@@ -3,15 +3,9 @@
 </div>
 <div class="container">
   <p style="color: green"><%= notice %></p>
-  <h1 class="text-capitalize ms-3 mb-4">Eventos</h1>
-  <div id="events" class="d-flex flex-row align-items-center justify-content-center row">
-    <% @events.each do |event| %>
-      <%= render "event_card", event: %>
-    <% end %>
-  </div>
-  <div class="btn-new-event">
-    <% if policy(@events).new? %>
-      <%= link_to "New event", new_event_path, class: "btn btn-outline-dark" %>
-    <% end %>
+  <div id="events" data-controller="map" >
+    <%= render "shared/map-div"%>
+    <div data-map-target="eventsByCity">
+    </div>
   </div>
 </div>

@@ -5,10 +5,13 @@ export default class extends Controller {
   static targets = [
     "state",
     "instructions",
-    "collective"
+    "collective",
+    "eventsByCity",
+    "teste"
   ]
-  connect() {
 
+  connect() {
+    console.log(this)
   }
 
   StateEnter(event) {
@@ -26,6 +29,7 @@ export default class extends Controller {
 
   StateClick(event) {
     const stateElement = event.currentTarget;
+    const uf = stateElement.getAttribute('id');
     const stateNameElement = document.getElementById('state-name');
     // Reset previously selected state
     const previousStateElement = document.querySelector('.selected-state');
@@ -39,9 +43,29 @@ export default class extends Controller {
 
     this.instructionsTarget.remove();
     stateNameElement.innerHTML = stateElement.getAttribute("title");
-
-    // JOGAR O ID NA QUERY
-
-    // AJAX to apply the filtering
   }
+
+  #creatingCards() {
+    fetch(`${window.location.href}/state/${uf}`)
+      .then(response => response.json())
+      .then((data) => {
+        const cities = Object.keys(data.content)
+
+        cities.forEach((city) => {
+          const h2 = `<h2>${city}</h2>`
+          let eventCards;
+
+          data.content[city].forEach((eventCard) => {
+            eventCards += eventCard
+          })
+
+          console.log(this)
+          // this.eventsByCityTarget.insertAdjacentHTML('beforeend', h2)
+          // console.log(this.eventsByCityTarget, h2, eventCards)
+        })
+
+      })
+
+  }
+
   }
