@@ -11,14 +11,12 @@
           <%= render "pending_invite_card", invite: %>
         <% end %>
       <% end %>
-    </div>
-  <% elsif user_signed_in? && current_user.collectives.any? %>
-    <!-- CONVIDAR -->
-    <h2>Convidar <%= @user.name %> para algum coletivo?</h2>
-    <%= render 'invite_button_list', user: @user %>
-  <% end %>
-  <!-- ASSOCIAÇÕES A COLETIVOS -->
-  <div class="user-collectives">
+    <% elsif user_signed_in? && current_user.collectives.any? %>
+      <!-- CONVIDAR -->
+      <h2>Convidar <%= @user.name %> para algum coletivo?</h2>
+      <%= render 'invite_button_list', user: @user %>
+    <% end %>
+    <!-- ASSOCIAÇÕES A COLETIVOS -->
     <hr>
     <h2>Coletivos</h2>
     <%= render 'shared/collectives_carousel', collectives: @user.collective_memberships, user: @user %>
@@ -26,3 +24,4 @@
     <!-- PRÓXIMOS EVENTOS -->
     <!-- TODO: pendente lógica de event_lists e event_list_subscriptions -->
   </div>
+</div>

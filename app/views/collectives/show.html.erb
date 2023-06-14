@@ -17,11 +17,6 @@
           </div>
         <% end %>
       </div>
-      <!--
-      <h3>Members</h3>
-      <h3>Events</h3>
-      <h3>Mix Set</h3>
-      -->
     </div>
   </div>
 </div>
@@ -63,5 +58,4 @@
     <% events_in_3 = @collective.events.each_slice(3).to_a %>
     <%= render "shared/events_carousel", events_groups: events_in_3 %>
   </div>
-</div>
 </div>
