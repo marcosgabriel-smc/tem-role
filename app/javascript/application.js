@@ -4,8 +4,6 @@ import "./controllers"
 import "bootstrap"
 
 
-
-
 // CUSTOM JS FOR ZIP CODE
 // O VALOR TO HTML TAG ESTÁ SENDO ALTERADO MAS NÃO CONSTA COMO INPUT DO SIMPLE FORM
 document.querySelector("#cep").addEventListener("focusout", function(event) {
