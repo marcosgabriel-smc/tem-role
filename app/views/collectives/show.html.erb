@@ -12,9 +12,7 @@
     <div class= "align-self-end d-flex justify-content-evenly w-100">
       <div class="d-flex text-end text-break pb-4">
         <% @collective.genres.each do |genre| %>
-          <div class="m-3">
-            <h5><%= genre.name.capitalize %></h5>
-          </div>
+          <h5 class="m-3"><%= genre.name.capitalize %></h5>
         <% end %>
       </div>
     </div>
