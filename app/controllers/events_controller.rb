@@ -10,6 +10,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
+    @event_list = EventList.new
   end
 
   # GET /events/new
@@ -21,9 +22,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.genre_ids = params[:event][:genre_ids]
-
+    @event.address = "#{@event.street} #{@event.street_number} #{@event.city} #{@event.state} #{@event.zipcode}"
     if @event.save
-      redirect_to event_url(@event), notice: "Event was successfully created."
+      redirect_to @event, notice: "Event was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -71,7 +72,11 @@ class EventsController < ApplicationController
       :collective_id,
       :genre_ids,
       :city,
-      :state
+      :state,
+      :zipcode,
+      :street,
+      :neighborhood,
+      :street_number
     )
   end
 end
