@@ -12,14 +12,9 @@
     <div class= "align-self-end d-flex justify-content-evenly w-100">
       <div class="d-flex text-end text-break pb-4">
         <% @collective.genres.each do |genre| %>
-          <h5><%= genre.name.capitalize %></h5>
+          <h5 class="m-3"><%= genre.name.capitalize %></h5>
         <% end %>
       </div>
-      <!--
-      <h3>Members</h3>
-      <h3>Events</h3>
-      <h3>Mix Set</h3>
-      -->
     </div>
   </div>
 </div>
@@ -43,31 +38,22 @@
       <p><%= @collective.description %></p>
     </div>
     -->
-    <!-- GENRE LIST -->
-    <div class="col m-3">
-      <h2>Gêneros</h2>
-      <ul>
-        <% @collective.genres.each do |genre| %>
-          <li><%= genre.name.capitalize %></li>
-        <% end %>
-      </ul>
-    </div>
-    <!-- MEMBER LIST -->
-    <div class="col m-3">
-      <h2>Membros</h2>
-      <div class="all-members row align-items-center">
-        <% members_in_3 = @collective.members.each_slice(3).to_a %>
-        <%= render "shared/members_carousel", members_groups: members_in_3 %>
-      </div>
+  </div>
+  <!-- MEMBER LIST -->
+  <div class="col m-3">
+    <h2>Membros</h2>
+    <div class="all-members row align-items-center">
+      <% members_in_3 = @collective.members.each_slice(3).to_a %>
+      <%= render "shared/members_carousel", members_groups: members_in_3 %>
     </div>
   </div>
-  <!-- EVENTS -->
-  <div class="m-4">
-    <h2>Próximos Eventos</h2>
-    <div class="justify-content-evenly">
-      <!-- CRIA UMA ARRAY DE ARRAYS COM 3 EVENTOS CADA -->
-      <% events_in_3 = @collective.events.each_slice(3).to_a %>
-      <%= render "shared/events_carousel", events_groups: events_in_3 %>
-    </div>
+</div>
+<!-- EVENTS -->
+<div class="m-4">
+  <h2>Próximos Eventos</h2>
+  <div class="justify-content-evenly">
+    <!-- CRIA UMA ARRAY DE ARRAYS COM 3 EVENTOS CADA -->
+    <% events_in_3 = @collective.events.each_slice(3).to_a %>
+    <%= render "shared/events_carousel", events_groups: events_in_3 %>
   </div>
 </div>
