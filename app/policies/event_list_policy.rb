@@ -17,4 +17,12 @@ class EventListPolicy < ApplicationPolicy
   def create?
     record.event.collective.owner == user
   end
+
+  def update?
+    record.event.collective.owner == user
+  end
+
+  def destroy?
+    record.event.collective.owner == user
+  end
 end

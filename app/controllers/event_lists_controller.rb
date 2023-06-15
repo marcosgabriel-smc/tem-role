@@ -32,19 +32,29 @@ class EventListsController < ApplicationController
     end
   end
 
-  # GET /events/1/edit
-  def edit
-  end
-
   # PATCH/PUT /events/1
   def update
-    if @event.update(event_params)
-      redirect_to event_url(@event), notice: "Event was successfully updated."
+    @event_list = EventList.find(params[:id])
+    authorize @event_list
+
+    @event_list.open = !@event_list.open
+    if @event_list.save
+      redirect_to @event_list.event, notice: "O status da lista foi alterado!"
     else
-      render :edit, status: :unprocessable_entity
+      render @event_list.event, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    @event_list = EventList.find(params[:id])
+    authorize @event_list
+
+    if @event_list.destroy
+      redirect_to @event_list.event, notice: "A lista foi apagada!"
+    else
+      render @event_list.event, status: :unprocessable_entity
+    end
+  end
 
   private
 

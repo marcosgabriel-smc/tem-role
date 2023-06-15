@@ -29,7 +29,10 @@
         <%= render "mapbox", marker: @marker %>
       </div>
       <div class="all-lists my-4">
-        <h2>Listas do Evento</h2>
+        <div class="d-flex justify-content-between">
+          <h2>Listas do Evento</h2>
+          <%= render "modal_edit_eventlist", event: @event %>
+        </div>
         <%= render "event_lists", event: @event %>
       </div>
     </div>

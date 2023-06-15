@@ -25,6 +25,9 @@
       'Recusar',
       collective_membership_path(collective, invite),
       method: :delete,
+      data: {
+        turbo_confirm: 'Are you sure?'
+      },
       class: "btn btn-outline-danger w-auto h-auto m-1"
     ) %>
   </div>
