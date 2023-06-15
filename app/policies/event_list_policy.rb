@@ -25,4 +25,8 @@ class EventListPolicy < ApplicationPolicy
   def destroy?
     record.event.collective.owner == user
   end
+
+  def print?
+    record.event.collective.owner == user
+  end
 end
