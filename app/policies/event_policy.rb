@@ -6,6 +6,10 @@ class EventPolicy < ApplicationPolicy
     end
   end
 
+  def state?
+    true
+  end
+
   def show?
     true
   end

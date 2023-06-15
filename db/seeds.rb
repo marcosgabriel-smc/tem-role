@@ -167,7 +167,7 @@ sao_paulo = { city: "São Paulo", state: "SP" }
 collectives_in_sao_paulo =  Collective.order(created_at: :asc).offset(5).first(5)
 
 collectives_in_sao_paulo.each do |collective|
- 5.times do
+  5.times do
     n = rand(1..10)
     Event.create!(
       collective: collective,
