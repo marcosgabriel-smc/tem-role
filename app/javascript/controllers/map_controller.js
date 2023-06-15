@@ -11,15 +11,18 @@ export default class extends Controller {
   ]
 
   connect() {
-
   }
 
+  StateEnter(event) {
+  }
   // StateEnter(event) {
   //   const stateElement = event.currentTarget;
   //   const stateNameElement = document.getElementById('state-name');
   //   stateNameElement.innerHTML = stateElement.getAttribute("title");
   // }
 
+  StateLeave(event) {
+  }
   // StateLeave(event) {
   //   const stateElement = event.currentTarget;
   //   const stateNameElement = document.getElementById('state-name');
@@ -30,7 +33,8 @@ export default class extends Controller {
   StateClick(event) {
     const stateElement = event.currentTarget;
     const uf = stateElement.getAttribute('id');
-    const stateNameElement = document.getElementById('state-name');
+    const stateName = stateElement.getAttribute('title');
+
     // Reset previously selected state
     const previousStateElement = document.querySelector('.selected-state');
     if (previousStateElement) {
@@ -41,31 +45,59 @@ export default class extends Controller {
     stateElement.style.fill = "red";
     stateElement.classList.add('selected-state');
 
-    stateNameElement.innerHTML = stateElement.getAttribute("title");
-    this.#creatingCards(uf)
+    this.instructionsTarget.innerHTML = `<h3>${stateName}</h3>`;
+    this.#createEventsByCityCards(uf)
   }
 
-  #creatingCards(state) {
-    document.getElementById("cards-by-city").innerHTML = ""
-    fetch(`${window.location.href}/state/${state}`)
+  #createEventsByCityCards(state) {
+    this.eventsByCityTarget.innerHTML = ""
+
+    fetch(`${window.location.origin}/events/state/${state}`)
       .then(response => response.json())
       .then((data) => {
-        const cities = Object.keys(data.content)
+        const content = data.content
+        const cities = Object.keys(content)
+
+        if (cities.length == 0) {
+          this.#noEventsMessage()
+          return
+        }
+
+        this.instructionsTarget.insertAdjacentHTML(
+          'beforeend',
+          `Confira abaixo os eventos em:`
+        )
 
         cities.forEach((city) => {
-          const h2 = `<h2>${city}</h2>`
-          let eventCards = "<div class=\"d-flex justify-content-center my-3 mx-2 row row-cols-3\">"
-          data.content[city].forEach((eventCard) => {
-            eventCards += eventCard
-          })
-          eventCards += "</div>"
-          document.getElementById("cards-by-city").insertAdjacentHTML('beforeend', h2 + eventCards)
-          // this.eventsByCityTarget.insertAdjacentHTML('beforeend', h2)
-          // console.log(this.eventsByCityTarget, h2, eventCards)
+          this.#generateEventsInCityHTML(city, content)
         })
-
       })
-
   }
 
+  #generateEventsInCityHTML(city, content) {
+    const cityId = city.toLowerCase().replace(/[^a-z0-9]+/g, '');
+    const h2 = `<h2 id="${cityId}">${city}</h2>`
+    let eventCards = "<div class=\"d-flex justify-content-center my-3 mx-2 row row-cols-3\">"
+    content[city].forEach((eventCard) => {
+      eventCards += eventCard
+    })
+    eventCards += "</div>"
+
+    this.eventsByCityTarget.insertAdjacentHTML(
+      'beforeend',
+      h2 + eventCards
+    )
+    this.instructionsTarget.insertAdjacentHTML(
+      'beforeend',
+      `<br>- ${city}`
+    )
   }
+
+  #noEventsMessage() {
+    this.instructionsTarget.insertAdjacentHTML(
+      'beforeend',
+      'Por enquanto não temos conteúdo nesse estado'
+    )
+  }
+
+}
