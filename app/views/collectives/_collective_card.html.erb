@@ -7,7 +7,7 @@
       <%= cl_image_tag collective.logo.key, class: collective_avatar_class %>
     <% end %>
   </div>
-  <%= link_to collective.name, collective, class: "text-muted" %>
+  <%= link_to collective.name, collective, class: "" %>
   <% if defined?(user) && collective.owner == user %>
     <small>(owner)</small>
   <% end %>

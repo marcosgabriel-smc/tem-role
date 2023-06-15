@@ -1,14 +1,14 @@
 .masthead {
 	background-size: cover;
 	min-height: 100vh;
-	color: white;
+	color: rgb(243, 230, 230);
 	position: static;
 }
 
 .masthead-index {
 	background-size: cover;
 	min-height: 50vh;
-	color: white;
+	color: rgb(243, 230, 230);
 	position: static;
 }
 
@@ -30,6 +30,10 @@
 	color: white;
 }
 
+label {
+	color: white;
+}
+
 input[type=submit] {
 	background-color: #000000;
 	color: white;
@@ -37,8 +41,15 @@ input[type=submit] {
 }
 
 input[type=text] {
-	background-color: rgb(247, 247, 247);
+	background-color: rgb(245, 245, 245);
 }
+
+.form-text {
+	color: white;
+	font-style: italic;
+	opacity: 0.5;
+}
+
 
 .colectivedesc {
 	position: absolute;
@@ -50,9 +61,6 @@ input[type=text] {
 	height: 5rem;
 }
 
-body {
-	background-image: url("https://uploads-ssl.webflow.com/61e1b04694e6f184bba3eff9/621cf399f207d82e537e582d_bckgd_noise3.png");
-}
 
 nav {
 	width: 100%;
@@ -83,19 +91,19 @@ li img {
 
 a {
 	text-decoration: none;
-	color: rgb(35, 35, 35);
+	color: rgb(245, 245, 245);
 	font-weight: bold;
 }
 
 a:hover {
-	color: red;
+	color: #da00cb;
 	transition: color 0.3s ease-in-out;
 	font-weight: bold;
 }
 
 .thumbtxt {
 	background-color: black;
-	color: white;
+	color: rgb(245, 245, 245);
 	font-weight: bold;
 	height: 6%;
 	padding-left: 2%;
@@ -103,25 +111,36 @@ a:hover {
 }
 
 h3 {
+	color: rgb(245, 245, 245);
 	margin-bottom: 0px;
 }
 
 h5 {
+	color: rgb(245, 245, 245);
 	margin-bottom: 0px;
 }
 
+h2 {
+	color: rgb(245, 245, 245);
+}
+
+p {
+	color: rgb(245, 245, 245);
+}
+
 .eventname a {
-	color: black;
+	color: rgb(245, 245, 245);
 	font-weight: bold;
 }
 
 .eventname a:hover {
-	color: red;
+	color: #da00cb;
 	font-weight: bold;
 }
 
 h1 {
 	font-weight: bold;
+	color: rgb(245, 245, 245);
 }
 
 h2 {
@@ -143,7 +162,7 @@ h2 {
 }
 
 .landing-text h5 {
-	color: black;
+	color: rgb(245, 245, 245);
 }
 
 .landing-text {
@@ -202,25 +221,25 @@ section img {
 .logo_m {
 	z-index: 7;
 	position: absolute;
-	background: linear-gradient(#410f18, #591522);
+	background: linear-gradient(#1e0221, #120114);
 }
 
 .sec {
 	z-index: 9;
 	position: relative;
 	padding: 100px;
-	background: #210e0e;
+	background: #120114;
 }
 
 .sec h2 {
 	font-size: 3.5em;
 	margin-bottom: 10px;
-	color: white;
+	color: rgb(245, 245, 245);
 }
 
 .sec p {
 	font-size: 1.2em;
-	color: white;
+	color: rgb(245, 245, 245);
 }
 
 section::before {
@@ -229,10 +248,19 @@ section::before {
 	bottom: 0;
 	width: 100%;
 	height: 100px;
-	background: linear-gradient(to top, #210e0e, transparent);
+	background: linear-gradient(to top, #120114, transparent);
 	z-index: 1000;
 }
 
 body {
 	overflow-x: hidden;
+	background-color: #120114;
+}
+
+.eventos_selected {
+	color: #da00cb;
+}
+
+.colectives_selected {
+	color: #da00cb;
 }
