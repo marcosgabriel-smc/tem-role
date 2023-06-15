@@ -174,6 +174,9 @@ section {
 	width: 100%;
 	padding: 100px;
 	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 section img {
@@ -183,4 +186,53 @@ section img {
 	object-fit: cover;
 	width: 100%;
 	height: 100%;
+}
+
+.folha_l {
+	position: absolute;
+	z-index: 8;
+}
+
+.folha_r {
+	position: absolute;
+	z-index: 10;
+	left: 62px;
+}
+
+.logo_m {
+	z-index: 7;
+	position: absolute;
+	background: linear-gradient(#410f18, #591522);
+}
+
+.sec {
+	z-index: 9;
+	position: relative;
+	padding: 100px;
+	background: #210e0e;
+}
+
+.sec h2 {
+	font-size: 3.5em;
+	margin-bottom: 10px;
+	color: white;
+}
+
+.sec p {
+	font-size: 1.2em;
+	color: white;
+}
+
+section::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	background: linear-gradient(to top, #210e0e, transparent);
+	z-index: 1000;
+}
+
+body {
+	overflow-x: hidden;
 }
