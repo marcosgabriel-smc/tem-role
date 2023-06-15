@@ -11,22 +11,22 @@ puts 'Creating some users...'
 User.create!(
   [
     {
-      name: 'meleu',
+      username: 'meleu',
       password: 'asdfgçlkjh',
       email: 'meleu@temrole.org'
     },
     {
-      name: 'douglasgpassos',
+      username: 'douglasgpassos',
       password: 'asdfgçlkjh',
       email: 'douglas@temrole.org'
     },
     {
-      name: 'marcosgabriel-smc',
+      username: 'marcosgabriel-smc',
       password: 'asdfgçlkjh',
       email: 'marcos@temrole.org'
     },
     {
-      name: 'ze',
+      username: 'ze',
       password: 'asdfgçlkjh',
       email: 'ze@temrole.org'
     }
@@ -135,7 +135,7 @@ collectives_in_rio.each do |collective|
   5.times do
     n = rand(1..10)
     Event.create!(
-      collective: collective,
+      collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
       start_time: DateTime.current + n,
@@ -149,7 +149,7 @@ collectives_in_rio.each do |collective|
   3.times do
     n = rand(1..10)
     Event.new(
-      collective: collective,
+      collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
       start_time: DateTime.current - n,
@@ -161,16 +161,15 @@ collectives_in_rio.each do |collective|
   end
 end
 
-
 # EVENTS IN SÃO PAULO
 sao_paulo = { city: "São Paulo", state: "SP" }
-collectives_in_sao_paulo =  Collective.order(created_at: :asc).offset(5).first(5)
+collectives_in_sao_paulo = Collective.order(created_at: :asc).offset(5).first(5)
 
 collectives_in_sao_paulo.each do |collective|
   5.times do
     n = rand(1..10)
     Event.create!(
-      collective: collective,
+      collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
       start_time: DateTime.current + n,
@@ -185,7 +184,7 @@ collectives_in_sao_paulo.each do |collective|
   3.times do
     n = rand(1..10)
     Event.new(
-      collective: collective,
+      collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
       start_time: DateTime.current - n,
@@ -205,7 +204,7 @@ collectives_in_bh.each do |collective|
   3.times do
     n = rand(1..10)
     Event.create!(
-      collective: collective,
+      collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
       start_time: DateTime.current + n,
@@ -224,7 +223,7 @@ collectives_in_jf.each do |collective|
   3.times do
     n = rand(1..10)
     Event.create!(
-      collective: collective,
+      collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
       start_time: DateTime.current + n,
@@ -237,7 +236,6 @@ collectives_in_jf.each do |collective|
 end
 
 # TO BE ADDED - NO MOMENTO 5 COLETIVOS ESTÃO SEM EVENTOS
-
 
 # COLLECTIVES with no incoming events and 3 previous events
 # collectives_with_previous_only = Collective.order(created_at: :asc).offset(15).last(5)
