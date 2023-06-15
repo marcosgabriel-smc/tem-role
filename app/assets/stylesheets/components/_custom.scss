@@ -52,10 +52,10 @@ input[type=text] {
 
 form {
 	max-width: 70%;
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	left: 15%;
-	position: relative;
+	position: relative; */
 }
 
 
@@ -282,13 +282,13 @@ body {
 }
 
 .about-div p {
-  font-size: 1.3rem;
-  max-width: 70%;
+	font-size: 1.3rem;
+	max-width: 70%;
 }
 
 .about-link {
-  position: absolute;
-  right: 10rem;
+	position: absolute;
+	right: 10rem;
 }
 
 p {
@@ -298,4 +298,37 @@ p {
 input[type=submit] {
 	background: none;
 	color: white;
+}
+
+a:not([href]):not([class]) {
+	color: white;
+	text-decoration: none;
+}
+
+a:not([href]):not([class]):hover {
+	color: #da00cb;
+	text-decoration: none;
+}
+
+.printer-link {
+	color: black;
+}
+
+.modal-header h1 {
+	color: black;
+}
+
+.modal-header form {
+	color: black;
+}
+
+.modal-body {
+	color: rgb(0, 0, 0);
+}
+
+.form-page {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
 }
