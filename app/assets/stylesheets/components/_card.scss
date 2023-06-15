@@ -1,5 +1,6 @@
 .event-card {
   position: relative;
+  background-color: #120114;
 }
 
 .event-photo {
@@ -8,7 +9,7 @@
 
 .event-collective {
   position: absolute;
-  color: white;
+  color: rgb(243, 230, 230);
   background-color: black;
   bottom: 0;
   border-radius: 50%;
@@ -16,8 +17,17 @@
 
 .event-time {
   position: absolute;
-  color: white;
+  color: rgb(243, 230, 230);
   right: 0;
   background-color: black;
-  // border-radius: 50%;
+  padding-right: 5%;
+  padding-top: 2%;
+}
+
+.event-collective a {
+  color: rgb(243, 230, 230);
+}
+
+.event-collective a:hover {
+  color: rgb(255, 0, 0);
 }

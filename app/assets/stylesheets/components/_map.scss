@@ -12,6 +12,11 @@
 
 // Hover styles for the states
 [data-map-target="state"]:hover {
-  stroke: red; // Set the stroke color when hovering over a state
+  // stroke: red; // Set the stroke color when hovering over a state
+  stroke: #DA00CB;
   stroke-width: 3px; // Increase the width of the state outlines when hovering
+}
+
+.selected-state {
+  fill: #DA00CB;
 }

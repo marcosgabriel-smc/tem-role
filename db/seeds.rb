@@ -12,21 +12,78 @@ User.create!(
   [
     {
       username: 'meleu',
+      first_name: 'Augusto',
+      last_name: 'Lopes',
       password: 'asdfgçlkjh',
       email: 'meleu@temrole.org'
     },
     {
       username: 'douglasgpassos',
+      first_name: 'Douglas',
+      last_name: 'Passos',
       password: 'asdfgçlkjh',
       email: 'douglas@temrole.org'
     },
     {
       username: 'marcosgabriel-smc',
+      first_name: 'Marcos',
+      last_name: 'Costa',
       password: 'asdfgçlkjh',
       email: 'marcos@temrole.org'
     },
     {
+      username: 'yurimzk',
+      first_name: 'Yuri',
+      last_name: 'Tagomori',
+      password: 'asdfgçlkjh',
+      email: 'yuri@temrole.org'
+    },
+    {
+      username: 'pedrosouzadevs',
+      first_name: 'Pedro',
+      last_name: 'Souza',
+      password: 'asdfgçlkjh',
+      email: 'pedrosouza@temrole.org'
+    },
+    {
+      username: 'Petkoffoli',
+      first_name: 'Pedro',
+      last_name: 'Zoffli',
+      password: 'asdfgçlkjh',
+      email: 'pzoff@temrole.org'
+    },
+    {
+      username: 'leonardorba',
+      first_name: 'Leanardo',
+      last_name: 'Silva',
+      password: 'asdfgçlkjh',
+      email: 'leo@temrole.org'
+    },
+    {
+      username: 'ANNEBORTOLI',
+      first_name: 'Anne',
+      last_name: 'Bortoli',
+      password: 'asdfgçlkjh',
+      email: 'anne@temrole.org'
+    },
+    {
+      username: 'bfazz',
+      first_name: 'Bruno',
+      last_name: 'Fazz',
+      password: 'asdfgçlkjh',
+      email: 'bruno@temrole.org'
+    },
+    {
+      username: 'atrajkovic',
+      first_name: 'Areceli',
+      last_name: 'Gallardo',
+      password: 'asdfgçlkjh',
+      email: 'ara@temrole.org'
+    },
+    {
       username: 'ze',
+      first_name: 'José',
+      last_name: 'Ferreira',
       password: 'asdfgçlkjh',
       email: 'ze@temrole.org'
     }
@@ -130,6 +187,13 @@ puts "Creating some events..."
 rio_de_janeiro = { city: "Rio de Janeiro", state: "RJ" }
 collectives_in_rio = Collective.order(created_at: :asc).first(5)
 
+def subscribe_all_users_to_last_event_list
+  User.all.each do |user|
+    event_list = EventList.last
+    EventListSubscription.create!(event_list:, user:)
+  end
+end
+
 collectives_in_rio.each do |collective|
   # Create incoming events
   5.times do
@@ -144,6 +208,7 @@ collectives_in_rio.each do |collective|
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
     )
+    subscribe_all_users_to_last_event_list
   end
   # Create previous events
   3.times do
@@ -158,6 +223,7 @@ collectives_in_rio.each do |collective|
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
     ).save(validate: false)
+    subscribe_all_users_to_last_event_list
   end
 end
 
@@ -178,6 +244,7 @@ collectives_in_sao_paulo.each do |collective|
       city: sao_paulo[:city],
       state: sao_paulo[:state]
     )
+    subscribe_all_users_to_last_event_list
   end
 
   # Create previous events
@@ -193,6 +260,7 @@ collectives_in_sao_paulo.each do |collective|
       city: sao_paulo[:city],
       state: sao_paulo[:state]
     ).save(validate: false)
+    subscribe_all_users_to_last_event_list
   end
 end
 
@@ -213,6 +281,7 @@ collectives_in_bh.each do |collective|
       city: belo_horizonte[:city],
       state: belo_horizonte[:state]
     )
+    subscribe_all_users_to_last_event_list
   end
 end
 
@@ -232,6 +301,7 @@ collectives_in_jf.each do |collective|
       city: juiz_de_fora[:city],
       state: juiz_de_fora[:state]
     )
+    subscribe_all_users_to_last_event_list
   end
 end
 

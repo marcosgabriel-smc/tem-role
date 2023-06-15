@@ -1,19 +1,12 @@
-<div class="container masthead justify-content-center center-block align-items-center d-flex">
-  <div class="landing-logo align-items-center center-block justify-content-center">
-    <%= image_tag "logo_fix.png" %>
-    <div class="landing-text justify-content-around d-flex text-center">
-      <h5 class="fw-light text-uppercase"><%= link_to "Eventos", events_path %></h5>
-      <h5 class="fw-light text-uppercase"><%= link_to "Coletivos", collectives_path %></h5>
-    </div>
-    <div class="align-self-end landing-date">
-      <%= image_tag "date_img.png" %>
+<div class="container-fluid home-page d-flex">
+  <div class="d-flex flex-column justify-content-center align-items-center w-100">
+    <%= image_tag "logo_white.png", class: "img-fluid align-self-center" %>
+    <div class="d-flex mt-4 w-auto">
+      <h3 class="fw-light text-uppercase"><%= link_to "Eventos", events_path, class:"mx-5"%>
+      </h3>
+      <h3 class="fw-light text-uppercase">
+        <%=link_to "Coletivos", collectives_path, class:"mx-5"%>
+      </h3>
     </div>
   </div>
-</div>
-<div>
-  <footer class="text-center p-3" style="background-color: rgba(0, 0, 0, 1)">
-    <a class="text-white" href="https://temrole.herokuapp.com">
-      <h6>TemRole.org</h6>
-    </a>
-  </footer>
 </div>

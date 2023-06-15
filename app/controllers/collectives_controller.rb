@@ -10,6 +10,7 @@ class CollectivesController < ApplicationController
 
   # GET /collectives/1
   def show
+    @membership = Membership.new
   end
 
   # GET /collectives/new

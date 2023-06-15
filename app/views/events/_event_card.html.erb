@@ -2,12 +2,17 @@
   <a href="<%= event_path(event) %>">
     <div class="event-photo">
       <%= image_tag "event_thumb.png", {class: "card-img-top img-fluid"} %>
-      <div class="event-collective">
-        <h3><%= event.name %></h3>
+      <div class="event-collective align-self-center">
+        <h5><%= link_to event.name, event %></h5>
       </div>
     </div>
   </a>
-  <div class="event-time">
+  <div class="event-time align-self-center">
     <h5><%= event.start_time.strftime("%d/%m/%Y") %></h5>
+  </div>
+  <div class="card-body d-flex row px-1">
+    <div class="col">
+      <h5 class="card-title text-uppercase m-0 p-0"><%= link_to event.collective.name %></h5>
+    </div>
   </div>
 </div>

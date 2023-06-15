@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # relations
+  ##################################################
   has_many :collectives, foreign_key: :owner_id, class_name: "Collective"
   has_many :subscriptions
 
@@ -12,15 +14,25 @@ class User < ApplicationRecord
   has_many :pending_invites, -> { where(accepted: false) }, class_name: 'Membership'
   has_many :collective_memberships, through: :accepted_invites, source: :collective
 
+  # validations
+  ##################################################
   validates :username, presence: true
 
+  # callbacks
+  ##################################################
   before_validation { self.username = email.gsub(/@.*/, '') if username.nil? }
 
+  # customizations
+  ##################################################
   def soundcloud_url
     soundcloud || "https://soundcloud.com/discover"
   end
 
   def instagram_url
     instagram || "https://www.instagram.com/"
+  end
+
+  def full_name
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
 end

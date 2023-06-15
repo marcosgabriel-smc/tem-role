@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :collectives do
     # TODO: eliminar rotas não utilizadas?
     resources :memberships, except: %i[index show new edit]
+    post '/membership/:username', to: 'membership#new_membership', as: :new_membership
   end
 
   get '/events/state/:state', to: "events#state", as: 'events_by_state'
