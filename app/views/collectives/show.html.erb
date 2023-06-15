@@ -9,7 +9,8 @@
       </div>
       <p class="colectivedesc text-break text-start fw-semibold"><%= @collective.description %></p>
     </div>
-    <div class= "align-self-end d-flex justify-content-evenly w-100">
+    <!-- GENRES -->
+    <div class= "align-self-end d-flex justify-content-end w-100">
       <div class="d-flex text-end text-break pb-4">
         <% @collective.genres.each do |genre| %>
           <h5 class="m-3"><%= genre.name.capitalize %></h5>
@@ -18,30 +19,20 @@
     </div>
   </div>
 </div>
-<div class="container-fluid">
+<div class="container">
   <!-- ROUTES BUTTONS ##TO-DO CENTER AND STYLE IT-->
-  <div class="m-4">
-    <%= link_to "Back to collectives", collectives_path %>
+  <div class="m-4 d-flex flex-row justify-content-center">
+    <%= link_to "Back to collectives", collectives_path, class: "mx-4" %>
     <% if policy(@collective).edit? %>
-      | <%= link_to "Edit this collective", edit_collective_path(@collective) %>
+      | <%= link_to "Edit this collective", edit_collective_path(@collective), class: "mx-4" %>
     <% end %>
     <% if current_user == @collective.owner && policy(Event).new? %>
-      | <%= link_to 'Create a new event', new_event_path %>
+      | <%= link_to 'Create a new event', new_event_path, class: "mx-4" %>
     <% end %>
   </div>
-  <!-- DIV BELOW THE BUTTONS - CONTAINING THE GENRES AND MEMBERS -->
-  <div class="d-flex flex-row m-4 justify-content-between">
-    <!-- DESCRIPTION -->
-    <!-- PENSAR SE NÃO FICA MELHOR DEIXAR A DESCRIÇÃO AQUI DO QUE NO BANNER - COLOCAR O CIDADE/UF LÁ EM CIMA?
-    <div class="col m-3">
-      <h2>Descrição</h2>
-      <p><%= @collective.description %></p>
-    </div>
-    -->
-  </div>
   <!-- MEMBER LIST -->
-  <div class="col m-3">
-    <div class="d-flex justifý-content-between">
+  <div class="col m-4">
+    <div class="d-flex flex-row justifý-content-between">
       <h2>Membros</h2>
       <%= render "membership_modal", membership: @membership, collective: @collective %>
     </div>
@@ -56,15 +47,21 @@
   <h2>Próximos Eventos</h2>
   <div class="justify-content-evenly">
     <% events_in_3 = @collective.next_events.each_slice(3).to_a %>
-    <%= render "shared/events_carousel", events_groups: events_in_3 %>
+    <% if events_in_3.empty? %>
+      <h3>O coletivo não tem eventos anteriores</h3>
+    <% else %>
+      <%= render "shared/events_carousel", events_groups: events_in_3 %>
+    <% end %>
   </div>
 </div>
-<!--
 <div class="m-4">
   <h2>Eventos Anteriores</h2>
   <div class="justify-content-evenly">
-    <%# events_in_3 = @collective.previous_events.each_slice(3).to_a %>
-    <%#= render "shared/events_carousel", events_groups: events_in_3 %>
+    <% events_in_3 = @collective.previous_events.each_slice(3).to_a %>
+    <% if events_in_3.empty? %>
+      <h3>O coletivo não tem eventos anteriores</h3>
+    <% else %>
+      <%= render "shared/events_carousel", events_groups: events_in_3 %>
+    <% end %>
   </div>
 </div>
--->

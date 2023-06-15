@@ -8,10 +8,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="mb-3">
-          <form action="<%= collective_memberships_path(collective) %>" method="post">
-            <label for="exampleInputEmail1" class="form-label">Username</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp">
+        <form action="<%= collective_memberships_path(collective) %>" method="post">
+          <div class="mb-3">
+            <label for="InputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="InputUsername" name="username" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">Insira o username do membro a ser adicionado</div>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>

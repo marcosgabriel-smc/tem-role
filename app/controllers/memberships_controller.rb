@@ -9,9 +9,9 @@ class MembershipsController < ApplicationController
     @membership = Membership.new(collective:, user:)
     authorize @membership
 
+    # IF/ELSE LOGIC SHOULD  BE IMPLEMENTED
     @membership.save
     redirect_to collective
-
   end
 
 
