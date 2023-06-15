@@ -43,7 +43,7 @@ export default class extends Controller {
     }
     // Set current state as selected
     // stateElement.style.fill = "red";
-    stateElement.style.fill = "#DA00CB";
+
     stateElement.classList.add('selected-state');
 
     this.instructionsTarget.innerHTML = `<h3>${stateName}</h3>`;

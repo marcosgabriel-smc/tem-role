@@ -1,59 +1,12 @@
-<section>
-  <%= image_tag "fl_neon.png", :class => "folha_l" %>
-  <%= image_tag "fr_neon.png", :class => "folha_r" %>
-  <%= image_tag "logo_neon.png", :class => "logo_m" %>
-</section>
-<div class="sec">
-  <h2>como funciona?</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero est repellat sunt.
-    Nihil enim deleniti libero sed sit, repudiandae assumenda alias reprehenderit rem inventore est nisi ab veniam,
-    quibusdam doloribus. Lorem ipsum, dolor sit amet consectetur
-    adipisicing elit. Nesciunt consectetur, nihil aliquid incidunt esse expedita repellendus! 
-    Ipsa a minus laborum et commodi voluptates, in maiores, illo rem architecto non quisquam? Lorem ipsum
-    dolor sit amet consectetur adipisicing elit. Iure, fugit eveniet sed eaque perferendis deleniti
-    . Qui vitae dolorem, molestiae sequi cum id voluptates, maxime molestias nisi quis, repellendus vero natus.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam adipisci est alias accusantium veniam ipsam 
-    tenetur deleniti asperiores voluptate, perspiciatis quaerat culpa nemo quae laboriosam corrupti quos ab illum eos.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Exercitationem ea, repellendus laborum consectetur qui 
-    aut at sed fugit modi natus, cum, corrupti earum ipsa ipsam necessitatibus enim rerum
-    beatae ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus enim ut ducimus 
-    beatae placeat maxime. Qui placeat nulla dolore tempora quos! Explicabo aut aperiam neque ad magni
-    impedit a dicta! Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore architecto harum 
-    consequatur tempora. Aliquam blanditiis voluptate nisi eum, quam, facilis non quas incidunt cupiditate
-    placeat odio quis laboriosam, commodi eos?</p>
-  <div class="d-flex justify-content-evenly">
-    <h2 class="fw-light text-uppercase"><%= link_to "Eventos", events_path, class:"text-white"%>
-    </h2>
-    <h2 class="fw-light text-uppercase">
-      <%=link_to "Coletivos", collectives_path, class:"text-white"%>
-    </h2>
+<div class="container-fluid home-page d-flex">
+  <div class="d-flex flex-column justify-content-center align-items-center w-100">
+    <%= image_tag "logo_white.png", class: "img-fluid align-self-center" %>
+    <div class="d-flex mt-4 w-auto">
+      <h3 class="fw-light text-uppercase"><%= link_to "Eventos", events_path, class:"mx-5"%>
+      </h3>
+      <h3 class="fw-light text-uppercase">
+        <%=link_to "Coletivos", collectives_path, class:"mx-5"%>
+      </h3>
+    </div>
   </div>
-  <script>
-    let folhas_left = document.getElementsByClassName('folha_l');
-    let folhas_right = document.getElementsByClassName('folha_r');
-    let logo_center = document.getElementsByClassName('logo_m');
-
-    window.addEventListener('scroll', function(){
-      let value = window.scrollY;
-      folha_l.style.top = value = 0.5 = 'px';
-      logo_m.style.top = value = 1.05 = 'px';
-    })
-  </script>
-  <%# <div class="container masthead justify-content-center center-block align-items-center d-flex"> %>
-  <%# <div class="landing-logo align-items-center center-block justify-content-center"> %>
-  <%# <%= image_tag "logo_fix.png" %>
-  <%# <div class="landing-text justify-content-around d-flex text-center"> %>
-  <%# <h5 class="fw-light text-uppercase"><%= link_to "Eventos", events_path</h5> %>
-  <%# <h5 class="fw-light text-uppercase"><%= link_to "Coletivos", collectives_path</h5> %>
-  <%# </div> %>
-  <%# <div class="align-self-end landing-date"> %>
-  <%# <%= image_tag "date_img.png" %>
-  <%# </div> %>
-  <%# </div> %>
-  <%# <footer class="text-center p-3" style="background-color: rgba(0, 0, 0, 1)"> %>
-  <%# <a class="text-white" href="https://temrole.herokuapp.com"> %>
-  <%# <h6>TemRole.org</h6> %>
-  <%# </a> %>
-  <%# </footer> %>
-  <%# </div> %>
+</div>

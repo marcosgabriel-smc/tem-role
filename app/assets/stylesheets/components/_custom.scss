@@ -61,6 +61,7 @@ input[type=text] {
 	height: 5rem;
 }
 
+
 nav {
 	width: 100%;
 	display: flex;
@@ -220,7 +221,6 @@ section img {
 .logo_m {
 	z-index: 7;
 	position: absolute;
-	background: linear-gradient(#1e0221, #120114);
 }
 
 .sec {
@@ -262,4 +262,14 @@ body {
 
 .colectives_selected {
 	color: #da00cb;
+}
+
+.home-page {
+	background: url("lights.png") no-repeat center center fixed;
+	background-size: cover;
+	height: 100vh;
+}
+
+.home-page img {
+	width: 37%;
 }
