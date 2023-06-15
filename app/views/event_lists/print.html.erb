@@ -10,12 +10,12 @@
         <a href="<%= user_path(user) %>">
           <% default_avatar = asset_path('member_icon.png') %>
           <%= image_tag(
-            "https://kitt.lewagon.com/placeholder/users/#{user.full_name}",
+            "https://kitt.lewagon.com/placeholder/users/#{user.username}",
             alt: "avatar",
             class: "avatar my-1",
             onerror: "this.onerror=null;this.src='#{default_avatar}'"
           ) %>
-          <%= user.username %>
+          <%= user.full_name %>
         </a>
       </li>
     <% end %>
