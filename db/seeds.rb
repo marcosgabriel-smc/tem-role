@@ -11,22 +11,79 @@ puts 'Creating some users...'
 User.create!(
   [
     {
-      name: 'meleu',
+      username: 'meleu',
+      first_name: 'Augusto',
+      last_name: 'Lopes',
       password: 'asdfgçlkjh',
       email: 'meleu@temrole.org'
     },
     {
-      name: 'douglasgpassos',
+      username: 'douglasgpassos',
+      first_name: 'Douglas',
+      last_name: 'Passos',
       password: 'asdfgçlkjh',
       email: 'douglas@temrole.org'
     },
     {
-      name: 'marcosgabriel-smc',
+      username: 'marcosgabriel-smc',
+      first_name: 'Marcos',
+      last_name: 'Costa',
       password: 'asdfgçlkjh',
       email: 'marcos@temrole.org'
     },
     {
-      name: 'ze',
+      username: 'yurimzk',
+      first_name: 'Yuri',
+      last_name: 'Tagomori',
+      password: 'asdfgçlkjh',
+      email: 'yuri@temrole.org'
+    },
+    {
+      username: 'pedrosouzadevs',
+      first_name: 'Pedro',
+      last_name: 'Souza',
+      password: 'asdfgçlkjh',
+      email: 'pedrosouza@temrole.org'
+    },
+    {
+      username: 'Petkoffoli',
+      first_name: 'Pedro',
+      last_name: 'Zoffli',
+      password: 'asdfgçlkjh',
+      email: 'pzoff@temrole.org'
+    },
+    {
+      username: 'leonardorba',
+      first_name: 'Leanardo',
+      last_name: 'Silva',
+      password: 'asdfgçlkjh',
+      email: 'leo@temrole.org'
+    },
+    {
+      username: 'ANNEBORTOLI',
+      first_name: 'Anne',
+      last_name: 'Bortoli',
+      password: 'asdfgçlkjh',
+      email: 'anne@temrole.org'
+    },
+    {
+      username: 'bfazz',
+      first_name: 'Bruno',
+      last_name: 'Fazz',
+      password: 'asdfgçlkjh',
+      email: 'bruno@temrole.org'
+    },
+    {
+      username: 'atrajkovic',
+      first_name: 'Areceli',
+      last_name: 'Gallardo',
+      password: 'asdfgçlkjh',
+      email: 'ara@temrole.org'
+    },
+    {
+      username: 'ze',
+      first_name: 'José',
+      last_name: 'Ferreira',
       password: 'asdfgçlkjh',
       email: 'ze@temrole.org'
     }
@@ -125,17 +182,196 @@ end
 # EVENTS
 ######################################################################
 puts "Creating some events..."
-20.times do |i|
-  collective = (i % 3).zero? ? Collective.last : Collective.first
-  Event.create!(
-    collective:,
-    name: "Party #{i}",
-    description: "This is the version #{i} of an awesome party!",
-    start_time: DateTime.current + i,
-    end_time: DateTime.tomorrow + i,
-    state: Event::STATES.sample
-  )
+
+## EVENTS IN RIO
+rio_de_janeiro = { city: "Rio de Janeiro", state: "RJ" }
+collectives_in_rio = Collective.order(created_at: :asc).first(5)
+
+def subscribe_all_users_to_last_event_list
+  User.all.each do |user|
+    event_list = EventList.last
+    EventListSubscription.create!(event_list:, user:)
+  end
 end
+
+collectives_in_rio.each do |collective|
+  # Create incoming events
+  5.times do
+    n = rand(1..10)
+    Event.create!(
+      collective:,
+      name: Faker::Book.title,
+      description: Faker::Lorem.paragraphs,
+      start_time: DateTime.current + n,
+      end_time: DateTime.tomorrow + n,
+      address: "R. Cordeiro da Graça - Santo Cristo - Rio de Janeiro - RJ",
+      city: rio_de_janeiro[:city],
+      state: rio_de_janeiro[:state]
+    )
+    subscribe_all_users_to_last_event_list
+  end
+  # Create previous events
+  3.times do
+    n = rand(1..10)
+    Event.new(
+      collective:,
+      name: Faker::Book.title,
+      description: Faker::Lorem.paragraphs,
+      start_time: DateTime.current - n,
+      end_time: DateTime.tomorrow - n,
+      address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
+      city: rio_de_janeiro[:city],
+      state: rio_de_janeiro[:state]
+    ).save(validate: false)
+    subscribe_all_users_to_last_event_list
+  end
+end
+
+# EVENTS IN SÃO PAULO
+sao_paulo = { city: "São Paulo", state: "SP" }
+collectives_in_sao_paulo = Collective.order(created_at: :asc).offset(5).first(5)
+
+collectives_in_sao_paulo.each do |collective|
+  5.times do
+    n = rand(1..10)
+    Event.create!(
+      collective:,
+      name: Faker::Book.title,
+      description: Faker::Lorem.paragraphs,
+      start_time: DateTime.current + n,
+      end_time: DateTime.tomorrow + n,
+      address: "Av. Mário de Andrade, 141 - Barra Funda, São Paulo - SP",
+      city: sao_paulo[:city],
+      state: sao_paulo[:state]
+    )
+    subscribe_all_users_to_last_event_list
+  end
+
+  # Create previous events
+  3.times do
+    n = rand(1..10)
+    Event.new(
+      collective:,
+      name: Faker::Book.title,
+      description: Faker::Lorem.paragraphs,
+      start_time: DateTime.current - n,
+      end_time: DateTime.tomorrow - n,
+      address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
+      city: sao_paulo[:city],
+      state: sao_paulo[:state]
+    ).save(validate: false)
+    subscribe_all_users_to_last_event_list
+  end
+end
+
+# EVENTS IN BH
+belo_horizonte = { city: "Belo Horizonte", state: "MG" }
+collectives_in_bh = Collective.order(created_at: :asc).offset(10).first(3)
+
+collectives_in_bh.each do |collective|
+  3.times do
+    n = rand(1..10)
+    Event.create!(
+      collective:,
+      name: Faker::Book.title,
+      description: Faker::Lorem.paragraphs,
+      start_time: DateTime.current + n,
+      end_time: DateTime.tomorrow + n,
+      address: "Av. Antônio Abrahão Caram, 1001 - São José, Belo Horizonte - MG",
+      city: belo_horizonte[:city],
+      state: belo_horizonte[:state]
+    )
+    subscribe_all_users_to_last_event_list
+  end
+end
+
+# EVENTS IN JF
+juiz_de_fora = { city: "Juiz de Fora", state: "MG" }
+collectives_in_jf = Collective.order(created_at: :asc).offset(15).first(2)
+collectives_in_jf.each do |collective|
+  3.times do
+    n = rand(1..10)
+    Event.create!(
+      collective:,
+      name: Faker::Book.title,
+      description: Faker::Lorem.paragraphs,
+      start_time: DateTime.current + n,
+      end_time: DateTime.tomorrow + n,
+      address: "Estrada Engenheiro Gentil Forn, 1000 - Juiz de Fora - MG",
+      city: juiz_de_fora[:city],
+      state: juiz_de_fora[:state]
+    )
+    subscribe_all_users_to_last_event_list
+  end
+end
+
+# TO BE ADDED - NO MOMENTO 5 COLETIVOS ESTÃO SEM EVENTOS
+
+# COLLECTIVES with no incoming events and 3 previous events
+# collectives_with_previous_only = Collective.order(created_at: :asc).offset(15).last(5)
+
+# 3.times do
+#   Event.create!(
+#     collective: collectives_with_previous_only[0],
+#     name: Faker::Music.band,
+#     description: Faker::Lorem.paragraphs,
+#     start_time: DateTime.current - (i + 1),
+#     end_time: DateTime.yesterday - (i + 1),
+#     address: "#{Faker::Address.city}, #{Faker::Address.state}",
+#     city: Faker::Address.city,
+#     state: Faker::Address.state
+#   )RAI
+# end
+
+# 4.times do
+#   Event.create!(
+#     collective: collectives_with_previous_only[1],
+#     name: Faker::Music.band,
+#     description: Faker::Lorem.sentence,
+#     start_time: DateTime.current - (i + 1),
+#     end_time: DateTime.yesterday - (i + 1),
+#     address: "#{Faker::Address.city}, #{Faker::Address.state}",
+#     city: Faker::Address.city,
+#     state: Faker::Address.state
+#   )
+# end
+
+# 7.times do
+#   Event.create!(
+#     collective: collectives_with_previous_only[2],
+#     name: Faker::Music.band,
+#     description: Faker::Lorem.sentence,
+#     start_time: DateTime.current - (i + 1),
+#     end_time: DateTime.yesterday - (i + 1),
+#     address: "#{Faker::Address.city}, #{Faker::Address.state}",
+#     city: Faker::Address.city,
+#     state: Faker::Address.state
+#   )
+# end
+
+# 11.times do
+#   Event.create!(
+#     collective: collectives_with_previous_only[3],
+#     name: Faker::Music.band,
+#     description: Faker::Lorem.sentence,
+#     start_time: DateTime.current - (i + 1),
+#     end_time: DateTime.yesterday - (i + 1),
+#     address: "#{Faker::Address.city}, #{Faker::Address.state}",
+#     city: Faker::Address.city,
+#     state: Faker::Address.state
+#   )
+# end
+
+# Event.create!(
+#   collective: collectives_with_previous_only[4],
+#   name: Faker::Music.band,
+#   description: Faker::Lorem.sentence,
+#   start_time: DateTime.current - (i + 1),
+#   end_time: DateTime.yesterday - (i + 1),
+#   address: "#{Faker::Address.city}, #{Faker::Address.state}",
+#   city: Faker::Address.city,
+#   state: Faker::Address.state
+# )
 
 # GENRES
 ######################################################################

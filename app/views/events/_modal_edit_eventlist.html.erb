@@ -1,0 +1,49 @@
+<!-- Button trigger modal -->
+<a type="button" data-bs-toggle="modal" data-bs-target="#editEventListModal">Editar listas!</a>
+<!-- Modal -->
+<div class="modal fade" id="editEventListModal" tabindex="-1" aria-labelledby="editEventListModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editEventListModalLabel">Edite suas listas</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- LISTAGEM DAS LISTAS -->
+        <ul class="list-group">
+          <% event.event_lists.each do |list| %>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold"><%= list.name %></div>
+                <%= list.requirement %>
+              </div>
+              <%= button_to(
+                    list.open ? "Encerrar" : "Reabrir",
+                    event_list_path(event, list),
+                    method: :patch,
+                    class: ""
+                  ) %>
+              <%= button_to(
+                    "",
+                    event_list_path(event, list),
+                    method: :delete,
+                    data: {
+                      turbo_confirm: 'Tem certeza?'
+                    },
+                    class: "fa-solid fa-trash h-auto ms-2"
+                ) %>
+              <!-- AGUSTO AQUI É O PLACEHOLDER DO DOWNLOAD
+              <%= button_to(
+                  "Download",
+                  event_list_subscribe_path(event, list),
+                  method: :delete,
+                  class: "badge bg-danger rounded-pill"
+                ) %>
+                -->
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

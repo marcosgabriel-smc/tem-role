@@ -1,16 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authorize_user, except: %i[index]
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show state]
 
   # GET /events
   def index
-    @events = policy_scope(Event)
+    @events = policy_scope(Event).next
   end
 
   # GET /events/1
   def show
     @event_list = EventList.new
+    @marker = { lat: @event.latitude, lng: @event.longitude }
   end
 
   # GET /events/new
@@ -48,6 +49,14 @@ class EventsController < ApplicationController
     @event.destroy
 
     redirect_to events_url, notice: "Event was successfully destroyed."
+  end
+
+  def state
+    my_state = params[:state].upcase
+    return unless Event::STATES.include?(my_state)
+
+    @events = Event.where("state = ? AND start_time > ?", my_state, DateTime.now)
+    respond_to(&:json)
   end
 
   private

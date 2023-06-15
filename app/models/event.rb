@@ -15,11 +15,27 @@ class Event < ApplicationRecord
 
   ## GEOCODING
   geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address? ## NEED TO IMPLEMENT BETTER LOGIC
+  before_save :geocode, if: :will_save_change_to_address? ## NEED TO IMPLEMENT BETTER LOGIC
 
   # callbacks
   ##################################################
   after_create do
-    EventList.create(event: self, name: "Lista Tem Role?", requirement: "")
+    EventList.create(event: self, name: "Tem Role", requirement: "interessados no evento")
+  end
+
+  # customizations
+  ##################################################
+
+  # always sort by start_time
+  default_scope { order(start_time: :asc) }
+
+  # next events
+  def self.next
+    where('start_time > ?', DateTime.current)
+  end
+
+  # previous
+  def self.previous
+    where('start_time < ?', DateTime.current)
   end
 end

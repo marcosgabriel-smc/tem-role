@@ -1,68 +1,40 @@
-<div class="container-fluid centerpage">
-  <!--EVENT HERO BANNER -->
-  <div class="card mb-3 event-hero" >
-    <div class="row g-0">
-      <div class="col-md-4">
-        <div class="card-body">
-          <h5 class="card-title"><%= @event.name %></h5>
-          <p class="card-text"><%= @event.description %></p>
-          <p class="card-text"><small class="text-body-secondary"><%= @event.start_time.strftime("%d/%m/%Y %H:%M") %></small></p>
-          <p class="card-text"><small class="text-body-secondary"><%= @event.end_time.strftime("%d/%m/%Y %H:%M") %></small></p>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <!-- ADD CLOUDINARY TO EVENTS-->
-        <%= image_tag "flyer_1.jpeg", class: "img-fluid rounded-end", alt: "event-flyer" %>
-        <%# <img src="assets/images/flyer_1.jpeg" class="img-fluid rounded-start" alt="event-flyer"> %>
-      </div>
+<div class="container">
+  <div class="hero-event d-flex flex-row mt-5 pt-5">
+    <div class="img-fluid rounded float-start col-6">
+      <%= image_tag "flyer_1.jpeg", class: "img-fluid rounded-end", alt: "event-flyer" %>
+    </div>
+    <div class="col-6 align-self-center ms-3">
+      <h2 class="card-title"><%= @event.name %></h2>
+      <p class="card-text"><%= @event.address %></p>
+      <p class="card-text my-0">Início: <%= @event.start_time.strftime("%d/%m/%Y %H:%M") %></p>
+      <p class="card-text my-0">Fim: <%= @event.end_time.strftime("%d/%m/%Y %H:%M") %></p>
     </div>
   </div>
-  <!-- Btn "Back to Events"-->
-  <div>
+  <div class="w-100 d-flex justify-content-around my-5">
+    <%= link_to "Todos os Eventos", events_path %>
+    <%= link_to "Conheça o coletivo!", collective_path(@event.collective) %>
     <% if policy(@event).edit? %>
-      <%= link_to "Edit this event", edit_event_path(@event) %> |
-    <% end %>
-    <%= link_to "Back to events", events_path %>
-  </div>
-  <!-- FORM FOR A NEW EVENT-LIST -->
-  <div>
-    <%= simple_form_for [@events, @event_list], url: event_lists_path(@event) do |f| %>
-      <%= f.error_notification %>
-      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-      <div class="form-inputs">
-        <%= f.input :name %>
-        <%= f.input :requirement %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit %>
-      </div>
+      <%= link_to "Edit this event", edit_event_path(@event) %>
+      <%= render "modal_list", event: @event, event_list: @event_list %>
     <% end %>
   </div>
-  <div class="all-lists">
-    <h2>Listas do Evento</h2>
-    <ol class="list-group list-group-numbered">
-      <% @event.event_lists.each do |list| %>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold"><%= list.name %></div>
-            <%= list.requirement %>
-          </div>
-          <% if EventListSubscription.exists?(user: current_user, event_list: list) %>
-            <%= button_to(
-              "Unsubscribe",
-              event_list_subscribe_path(@event, list),
-              method: :delete,
-              class: "badge bg-danger rounded-pill"
-            ) %>
-          <% else %>
-            <%= button_to(
-              "Subscribe",
-              event_list_subscribe_path(@event, list),
-              class: "badge bg-primary rounded-pill"
-            ) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ol>
+  <div class="event-description d-flex flex-row my-3">
+    <div class="col-6 mx-2">
+      <h2>Descrição</h2>
+      <%= @event.description %>
+    </div>
+    <div class="col-6 mx-2">
+      <div class="map-box my-2">
+        <h2>Localização</h2>
+        <%= render "mapbox", marker: @marker %>
+      </div>
+      <div class="all-lists my-4">
+        <div class="d-flex justify-content-between">
+          <h2>Listas do Evento</h2>
+          <%= render "modal_edit_eventlist", event: @event %>
+        </div>
+        <%= render "event_lists", event: @event %>
+      </div>
+    </div>
   </div>
 </div>
