@@ -21,7 +21,7 @@ class Collective < ApplicationRecord
 
   has_many :posts
 
-  has_many :events, dependent: :destroy
+  has_many :events, -> { order(start_time: :asc) }, dependent: :destroy
 
   # validations
   ##################################################
@@ -39,5 +39,15 @@ class Collective < ApplicationRecord
   ##################################################
   after_create do
     Membership.create(collective: self, user: owner, accepted: true)
+  end
+
+  # customizations
+  ##################################################
+  def next_events
+    events.where("start_time > ?", DateTime.current)
+  end
+
+  def previous_events
+    events.where("start_time < ?", DateTime.current).reorder(start_time: :desc)
   end
 end

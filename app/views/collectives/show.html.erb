@@ -52,8 +52,16 @@
 <div class="m-4">
   <h2>Próximos Eventos</h2>
   <div class="justify-content-evenly">
-    <!-- CRIA UMA ARRAY DE ARRAYS COM 3 EVENTOS CADA -->
-    <% events_in_3 = @collective.events.each_slice(3).to_a %>
+    <% events_in_3 = @collective.next_events.each_slice(3).to_a %>
     <%= render "shared/events_carousel", events_groups: events_in_3 %>
   </div>
 </div>
+<!--
+<div class="m-4">
+  <h2>Eventos Anteriores</h2>
+  <div class="justify-content-evenly">
+    <%# events_in_3 = @collective.previous_events.each_slice(3).to_a %>
+    <%#= render "shared/events_carousel", events_groups: events_in_3 %>
+  </div>
+</div>
+-->
