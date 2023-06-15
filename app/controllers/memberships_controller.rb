@@ -4,14 +4,17 @@ class MembershipsController < ApplicationController
 
   def create
     collective = Collective.find(params[:collective_id])
-    user = User.find(params[:user_id])
+    user = User.find_by(username: params[:username])
 
     @membership = Membership.new(collective:, user:)
     authorize @membership
 
     @membership.save
-    redirect_to user
+    redirect_to collective
+
   end
+
+
 
   def update
     # TODO: update with AJAX

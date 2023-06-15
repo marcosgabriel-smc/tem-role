@@ -11,22 +11,30 @@ puts 'Creating some users...'
 User.create!(
   [
     {
-      name: 'meleu',
+      username: 'meleu',
+      first_name: 'Augusto',
+      last_name: 'Lopes',
       password: 'asdfgçlkjh',
       email: 'meleu@temrole.org'
     },
     {
-      name: 'douglasgpassos',
+      username: 'douglasgpassos',
+      first_name: 'Douglas',
+      last_name: 'Passos',
       password: 'asdfgçlkjh',
       email: 'douglas@temrole.org'
     },
     {
-      name: 'marcosgabriel-smc',
+      username: 'marcosgabriel-smc',
+      first_name: 'Marcos',
+      last_name: 'Costa',
       password: 'asdfgçlkjh',
       email: 'marcos@temrole.org'
     },
     {
-      name: 'ze',
+      username: 'zelele',
+      first_name: 'José',
+      last_name: 'Ferreira',
       password: 'asdfgçlkjh',
       email: 'ze@temrole.org'
     }

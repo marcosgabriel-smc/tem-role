@@ -41,7 +41,10 @@
   </div>
   <!-- MEMBER LIST -->
   <div class="col m-3">
-    <h2>Membros</h2>
+    <div class="d-flex justifý-content-between">
+      <h2>Membros</h2>
+      <%= render "membership_modal", membership: @membership, collective: @collective %>
+    </div>
     <div class="all-members row align-items-center">
       <% members_in_3 = @collective.members.each_slice(3).to_a %>
       <%= render "shared/members_carousel", members_groups: members_in_3 %>
