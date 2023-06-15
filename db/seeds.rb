@@ -194,15 +194,31 @@ def subscribe_all_users_to_last_event_list
   end
 end
 
-# event_images = [
-
+# EVENT_IMAGES = [
+#   "https://encurtador.com.br/izGMY",
+#   "https://encurtador.com.br/jmAS5",
+#   "https://encurtador.com.br/fjT67",
+#   "https://encurtador.com.br/jmuzS",
+#   "https://shre.ink/lSZB",
+#   "https://shre.ink/lSM2",
+#   "https://tinyurl.com/2pc4arj5",
+#   "https://tinyurl.com/yc7fnr35",
+#   "https://tinyurl.com/mwmz2vs5",
+#   "https://tinyurl.com/5drwnwsj",
+#   "https://tinyurl.com/3hkfdjw2"
 # ]
 
-# def add_banner_to_event(event)
-#   banner = URI.open(event_images.sample)
-#   event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
-#   event.save
-# end
+def add_banner_to_event(event)
+  puts 'oi'
+  # image_url = EVENT_IMAGES.sample
+  # return if image_url.empty?
+
+  # puts "image URL: #{image_url}"
+  # banner = URI.open(image_url)
+  # event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
+  # event.save
+  # puts "done!"
+end
 
 collectives_in_rio.each do |collective|
   # Create incoming events
@@ -218,6 +234,8 @@ collectives_in_rio.each do |collective|
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
     )
+    event = Event.last
+    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
   # Create previous events
@@ -233,6 +251,8 @@ collectives_in_rio.each do |collective|
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
     ).save(validate: false)
+    event = Event.last
+    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 end
@@ -254,6 +274,8 @@ collectives_in_sao_paulo.each do |collective|
       city: sao_paulo[:city],
       state: sao_paulo[:state]
     )
+    event = Event.last
+    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 
@@ -270,6 +292,8 @@ collectives_in_sao_paulo.each do |collective|
       city: sao_paulo[:city],
       state: sao_paulo[:state]
     ).save(validate: false)
+    event = Event.last
+    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 end
@@ -291,6 +315,8 @@ collectives_in_bh.each do |collective|
       city: belo_horizonte[:city],
       state: belo_horizonte[:state]
     )
+    event = Event.last
+    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 end
@@ -311,6 +337,8 @@ collectives_in_jf.each do |collective|
       city: juiz_de_fora[:city],
       state: juiz_de_fora[:state]
     )
+    event = Event.last
+    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 end
