@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/events/state/:state', to: "events#state", as: 'events_by_state'
   resources :events do
     resources :event_lists, path: 'lists', as: :lists do
+      get '/print', to: 'event_lists#print'
       post '/subscribe', to: 'event_lists#subscribe'
       delete '/subscribe', to: 'event_lists#unsubscribe'
     end
