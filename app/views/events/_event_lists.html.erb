@@ -2,7 +2,14 @@
   <% event.event_lists.each do |list| %>
     <li class="list-group-item d-flex justify-content-between align-items-start">
       <div class="ms-2 me-auto">
-        <div class="fw-bold"><%= list.name %></div>
+        <div class="fw-bold">
+          <%= list.name %>
+          <% if current_user == event.collective.owner %>
+            <a href="<%= event_list_print_path(event, list)%>" class="printer-link" target="_blank">
+              <i class="fas fa-print"></i>
+            </a>
+          <% end %>
+        </div>
         <%= list.requirement %>
       </div>
       <% unless list.open? %>
@@ -10,17 +17,17 @@
       <% else %>
         <% if EventListSubscription.exists?(user: current_user, event_list: list) %>
           <%= button_to(
-                  "Unsubscribe",
-                  event_list_subscribe_path(event, list),
-                  method: :delete,
-                  class: "badge bg-danger rounded-pill"
-                ) %>
+            "Unsubscribe",
+            event_list_subscribe_path(event, list),
+            method: :delete,
+            class: "badge bg-danger rounded-pill"
+          ) %>
         <% else %>
           <%= button_to(
-                  "Subscribe",
-                  event_list_subscribe_path(event, list),
-                  class: "badge bg-primary rounded-pill"
-                ) %>
+            "Subscribe",
+            event_list_subscribe_path(event, list),
+            class: "badge bg-primary rounded-pill"
+          ) %>
         <% end %>
       <% end %>
     </li>

@@ -22,6 +22,19 @@
     <%= render 'shared/collectives_carousel', collectives: @user.collective_memberships, user: @user %>
     <hr>
     <!-- PRÓXIMOS EVENTOS -->
+    <% if @user.collectives.any? %>
+      <h2>Eventos criados</h2>
+      <% @user.collectives.each_with_index do |collective, i| %>
+        <% if collective.next_events.any? %>
+          <h3><%= collective.name %></h3>
+          <div class="d-flex justify-content-center row row-cols-3">
+            <% collective.next_events.each do |event| %>
+              <%= render "events/event_card", event: %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
     <!-- TODO: pendente lógica de event_lists e event_list_subscriptions -->
   </div>
 </div>

@@ -15,3 +15,6 @@ application.register("map", MapController)
 
 import MapboxController from "./mapbox_controller"
 application.register("mapbox", MapboxController)
+
+import PrintController from "./print_controller"
+application.register("print", PrintController)

@@ -20,6 +20,11 @@ class EventListsController < ApplicationController
     redirect_to @event_list.event
   end
 
+  def print
+    @event_list = EventList.find(params[:list_id])
+    authorize @event_list
+  end
+
   def create
     @event = Event.find(params[:event_id])
     @event_list = EventList.new(event_list_params)
