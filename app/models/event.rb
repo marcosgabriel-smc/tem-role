@@ -22,4 +22,20 @@ class Event < ApplicationRecord
   after_create do
     EventList.create(event: self, name: "Lista Tem Role?", requirement: "")
   end
+
+  # customizations
+  ##################################################
+
+  # always sort by start_time
+  default_scope { order(start_time: :asc) }
+
+  # next events
+  def self.next
+    where('start_time > ?', DateTime.current)
+  end
+
+  # previous
+  def self.previous
+    where('start_time < ?', DateTime.current)
+  end
 end
