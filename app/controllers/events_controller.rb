@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = policy_scope(Event)
+    @events = policy_scope(Event).next
   end
 
   # GET /events/1
