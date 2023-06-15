@@ -26,6 +26,41 @@ User.create!(
       email: 'marcos@temrole.org'
     },
     {
+      username: 'yurimzk',
+      password: 'asdfgçlkjh',
+      email: 'yuri@temrole.org'
+    },
+    {
+      username: 'pedrosouzadevs',
+      password: 'asdfgçlkjh',
+      email: 'pedrosouza@temrole.org'
+    },
+    {
+      username: 'Petkoffoli',
+      password: 'asdfgçlkjh',
+      email: 'pzoff@temrole.org'
+    },
+    {
+      username: 'leonardorba',
+      password: 'asdfgçlkjh',
+      email: 'leo@temrole.org'
+    },
+    {
+      username: 'ANNEBORTOLI',
+      password: 'asdfgçlkjh',
+      email: 'anne@temrole.org'
+    },
+    {
+      username: 'bfazz',
+      password: 'asdfgçlkjh',
+      email: 'bruno@temrole.org'
+    },
+    {
+      username: 'atrajkovic',
+      password: 'asdfgçlkjh',
+      email: 'ara@temrole.org'
+    },
+    {
       username: 'ze',
       password: 'asdfgçlkjh',
       email: 'ze@temrole.org'
@@ -130,6 +165,13 @@ puts "Creating some events..."
 rio_de_janeiro = { city: "Rio de Janeiro", state: "RJ" }
 collectives_in_rio = Collective.order(created_at: :asc).first(5)
 
+def subscribe_all_users_to_last_event_list
+  User.all.each do |user|
+    event_list = EventList.last
+    EventListSubscription.create!(event_list:, user:)
+  end
+end
+
 collectives_in_rio.each do |collective|
   # Create incoming events
   5.times do
@@ -144,6 +186,7 @@ collectives_in_rio.each do |collective|
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
     )
+    subscribe_all_users_to_last_event_list
   end
   # Create previous events
   3.times do
@@ -158,6 +201,7 @@ collectives_in_rio.each do |collective|
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
     ).save(validate: false)
+    subscribe_all_users_to_last_event_list
   end
 end
 
@@ -178,6 +222,7 @@ collectives_in_sao_paulo.each do |collective|
       city: sao_paulo[:city],
       state: sao_paulo[:state]
     )
+    subscribe_all_users_to_last_event_list
   end
 
   # Create previous events
@@ -193,6 +238,7 @@ collectives_in_sao_paulo.each do |collective|
       city: sao_paulo[:city],
       state: sao_paulo[:state]
     ).save(validate: false)
+    subscribe_all_users_to_last_event_list
   end
 end
 
@@ -213,6 +259,7 @@ collectives_in_bh.each do |collective|
       city: belo_horizonte[:city],
       state: belo_horizonte[:state]
     )
+    subscribe_all_users_to_last_event_list
   end
 end
 
@@ -232,6 +279,7 @@ collectives_in_jf.each do |collective|
       city: juiz_de_fora[:city],
       state: juiz_de_fora[:state]
     )
+    subscribe_all_users_to_last_event_list
   end
 end
 
