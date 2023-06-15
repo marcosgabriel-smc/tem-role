@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_140732) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_001835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -153,7 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_140732) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", null: false
+    t.string "username", null: false
     t.string "avatar"
     t.string "soundcloud"
     t.string "instagram"

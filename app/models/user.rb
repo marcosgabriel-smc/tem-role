@@ -12,9 +12,9 @@ class User < ApplicationRecord
   has_many :pending_invites, -> { where(accepted: false) }, class_name: 'Membership'
   has_many :collective_memberships, through: :accepted_invites, source: :collective
 
-  validates :name, presence: true
+  validates :username, presence: true
 
-  before_validation { self.name = email.gsub(/@.*/, '') if name.nil? }
+  before_validation { self.username = email.gsub(/@.*/, '') if username.nil? }
 
   def soundcloud_url
     soundcloud || "https://soundcloud.com/discover"

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="centerpage">
-    <h1><%= @user.name %></h1>
+    <h1><%= @user.username %></h1>
     <!-- CONVITES -->
     <% if @user == current_user %>
       <!-- CONVITES PENDENTES -->
@@ -13,7 +13,7 @@
       <% end %>
     <% elsif user_signed_in? && current_user.collectives.any? %>
       <!-- CONVIDAR -->
-      <h2>Convidar <%= @user.name %> para algum coletivo?</h2>
+      <h2>Convidar <%= @user.username %> para algum coletivo?</h2>
       <%= render 'invite_button_list', user: @user %>
     <% end %>
     <!-- ASSOCIAÇÕES A COLETIVOS -->
