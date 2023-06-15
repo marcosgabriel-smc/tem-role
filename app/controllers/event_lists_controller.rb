@@ -32,6 +32,30 @@ class EventListsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /events/1
+  def update
+    @event_list = EventList.find(params[:id])
+    authorize @event_list
+
+    @event_list.open = !@event_list.open
+    if @event_list.save
+      redirect_to @event_list.event, notice: "O status da lista foi alterado!"
+    else
+      render @event_list.event, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @event_list = EventList.find(params[:id])
+    authorize @event_list
+
+    if @event_list.destroy
+      redirect_to @event_list.event, notice: "A lista foi apagada!"
+    else
+      render @event_list.event, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def authorize_user

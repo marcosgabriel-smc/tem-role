@@ -87,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_001835) do
     t.text "requirement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "open", default: true
     t.index ["event_id"], name: "index_event_lists_on_event_id"
   end
 
