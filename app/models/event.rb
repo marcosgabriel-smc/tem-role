@@ -6,6 +6,10 @@ class Event < ApplicationRecord
 
   has_many :event_lists
 
+  # cloudinary
+  #############################
+  has_one_attached :banner
+
   # validations
   #############################
   validates :name, presence: true

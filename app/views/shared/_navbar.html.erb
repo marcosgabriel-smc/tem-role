@@ -3,6 +3,9 @@
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "logo_white.png" %>
     <% end %>
+    <!-- botão de about -->
+    <%= link_to "Sobre", about_path, class: "about-link" %>
+    <!-- final botão de about -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,17 +23,17 @@
               %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to(
-                "My Profile",
+                "Meu Perfil",
                 current_user,
                 class: "dropdown-item text-dark"
               ) %>
               <%= link_to(
-                "Account settings",
+                "Configurações",
                 edit_user_registration_path,
                 class: "dropdown-item text-dark"
               ) %>
               <%= link_to(
-                "Log out",
+                "Sair",
                 destroy_user_session_path,
                 class: "dropdown-item text-dark",
                 data: { turbo_method: :delete }

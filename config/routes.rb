@@ -23,5 +23,5 @@ Rails.application.routes.draw do
   end
 
   ## Sandbox page
-  get "/teste", to: "pages#teste"
+  get "/about", to: "pages#about"
 end

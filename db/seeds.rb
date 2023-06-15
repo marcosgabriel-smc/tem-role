@@ -194,6 +194,16 @@ def subscribe_all_users_to_last_event_list
   end
 end
 
+# event_images = [
+
+# ]
+
+# def add_banner_to_event(event)
+#   banner = URI.open(event_images.sample)
+#   event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
+#   event.save
+# end
+
 collectives_in_rio.each do |collective|
   # Create incoming events
   5.times do
