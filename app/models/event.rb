@@ -24,7 +24,7 @@ class Event < ApplicationRecord
   # callbacks
   ##################################################
   after_create do
-    EventList.create(event: self, name: "Tem Role", requirement: "interessados no evento")
+    EventList.create(event: self, name: "Tem Role", requirement: "Interessados no evento")
   end
 
   # customizations
