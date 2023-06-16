@@ -189,9 +189,28 @@ end
 ######################################################################
 puts "Creating some events..."
 
-## EVENTS IN RIO
-rio_de_janeiro = { city: "Rio de Janeiro", state: "RJ" }
-collectives_in_rio = Collective.order(created_at: :asc).first(5)
+event_description = "Bem-vindo, usuário.
+
+Estamos prontos para uma nova missão, onde você será o jogador e os DJs assumem o controle da pista para levá-lo até as últimas fases da noite.
+
+No dia 12 de maio a Crua estará de volta ao club Madre, onde a sistema de som Pure Groove é o kit perfeito pra nos guiar nesta fase que entraremos.
+
+Nessa edição, teremos no comando dos decks:
+
+- Ananda
+- Capetini
+- Zei
+- Mateus Tuk
+- Nina Roq
+- Forastiere
+- Rafael Não Existe
+- Bernardo Ryfer
+- Mago Di
+
+Então deixa agendado: 12 de maio é o dia de voltarmos a explorar esse universo de instintos e inspirações. Prepare seus controles.
+
+Até breve. Aperta o play e dê o start.
+"
 
 def subscribe_all_users_to_last_event_list
   User.all.each do |user|
@@ -228,6 +247,10 @@ def add_banner_to_event(event)
   event.save
   puts "#{Event.count} - done!"
 end
+
+## EVENTS IN RIO
+rio_de_janeiro = { city: "Rio de Janeiro", state: "RJ" }
+collectives_in_rio = Collective.order(created_at: :asc).first(5)
 
 collectives_in_rio.each do |collective|
   # Create incoming events
