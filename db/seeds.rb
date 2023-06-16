@@ -259,7 +259,6 @@ def subscribe_all_users_to_last_event_list
   end
 end
 
-
 ## EVENTS IN RIO
 rio_de_janeiro = { city: "Rio de Janeiro", state: "RJ" }
 collectives_in_rio = Collective.order(created_at: :asc).first(5)
@@ -479,8 +478,8 @@ event_images = [
 Event.all.each do |event|
   i = event.id % event_images.length
   url = event_images[i]
-  logo = URI.open(url)
-  event.logo.attach(io: logo, filename: "logo.jpg", content_type: "image/png")
+  banner = URI.open(url)
+  event.banner.attach(io: banner, filename: "banner.jpg", content_type: "image/png")
   event.save
   puts "-> #{event.name} - done!"
 end
