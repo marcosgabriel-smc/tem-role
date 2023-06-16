@@ -108,6 +108,11 @@ uzalemaum_owner = User.last
 # COLLECTIVES
 ######################################################################
 puts 'Creating collectives...'
+
+collective_description = "O coletivo de música eletrônica é uma comunidade vibrante e apaixonada dedicada à exploração sonora e à criação de experiências únicas. Composto por artistas, produtores e entusiastas, esse coletivo busca promover a diversidade musical, unindo pessoas através das batidas pulsantes e das melodias cativantes do universo eletrônico.
+
+Nesse ecossistema colaborativo, os membros compartilham conhecimentos, habilidades e inspirações, criando um ambiente propício para o crescimento artístico e a experimentação sonora. O coletivo promove eventos eletrizantes, onde DJs e produtores talentosos se revezam nos decks, criando uma atmosfera envolvente que faz o público mergulhar em uma jornada sonora única."
+
 Collective.create!(
   [
     {
@@ -151,14 +156,13 @@ collective_names = [
   "The Techno Nexus",
   "Vaporwave City"
 ]
-lorem = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat earum sequi consequatur officiis inventore aut, sunt, maxime quis voluptate tempora error eaque eos nisi, voluptatem libero fugiat? Vero, quidem quia?'
 
 collective_names.each do |name|
   owner = User.all.sample
   Collective.create!(
     {
       name:,
-      description: lorem,
+      description: collective_description,
       city: 'any city',
       state: Event::STATES.sample,
       owner:
@@ -236,21 +240,16 @@ puts "Creating some events..."
 event_description = "
 Estamos prontos para uma nova missão, onde você será o jogador e os DJs assumem o controle da pista para levá-lo até as últimas fases da noite.
 
-No dia 12 de maio a Crua estará de volta ao club Madre, onde a sistema de som Pure Groove é o kit perfeito pra nos guiar nesta fase que entraremos.
+No dia 16 de junho os alunos do Le Wagon Rio de Janeiro terminam seu batch e estão prontos pra comemorar.
 
-Nessa edição, teremos no comando dos decks:
+Nesse finalíssimo happy-hour, teremos no comando dos decks:
 
-- Ananda
-- Capetini
-- Zei
-- Mateus Tuk
-- Nina Roq
-- Forastiere
-- Rafael Não Existe
-- Bernardo Ryfer
-- Mago Di
+- Dede Menezes
+- Ariel
+- Marcos
+- Viktor
 
-Então deixa agendado: 12 de maio é o dia de voltarmos a explorar esse universo de instintos e inspirações. Prepare seus controles.
+Então deixa agendado: 16 de junho é o dia de fecharmos essa experiência e explorar esse universo de instintos e inspirações. Prepare seus controles.
 
 Até breve. Aperta o play e dê o start.
 "
@@ -262,34 +261,6 @@ def subscribe_all_users_to_last_event_list
   end
 end
 
-EVENT_IMAGES = [
-  "https://images.pexels.com/photos/1677573/pexels-photo-1677573.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/2513605/pexels-photo-2513605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/3249760/pexels-photo-3249760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/2263410/pexels-photo-2263410.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/3025096/pexels-photo-3025096.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/9005440/pexels-photo-9005440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/9005433/pexels-photo-9005433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1763067/pexels-photo-1763067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/10206936/pexels-photo-10206936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1928131/pexels-photo-1928131.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1154189/pexels-photo-1154189.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://media.redbullmusicacademy.com/assets/1.ac7fd238.jpg?auto=format&w=700"
-]
-
-def add_banner_to_event(event)
-  image_url = EVENT_IMAGES.sample
-  puts "image: #{image_url}"
-
-  return if image_url.empty?
-
-  banner = URI.open(image_url)
-  event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
-  event.save
-  puts "#{Event.count} - done!"
-end
 
 ## EVENTS IN RIO
 rio_de_janeiro = { city: "Rio de Janeiro", state: "RJ" }
@@ -302,7 +273,7 @@ collectives_in_rio.each do |collective|
     event = Event.new(
       collective:,
       name: Faker::Book.title,
-      description: Faker::Lorem.paragraphs,
+      description: event_description,
       start_time: DateTime.current + n,
       end_time: DateTime.tomorrow + n,
       address: "R. Cordeiro da Graça - Santo Cristo - Rio de Janeiro - RJ",
@@ -310,7 +281,6 @@ collectives_in_rio.each do |collective|
       state: rio_de_janeiro[:state]
     )
     event.save!
-    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
   # Create previous events
@@ -319,7 +289,7 @@ collectives_in_rio.each do |collective|
     event = Event.create(
       collective:,
       name: Faker::Book.title,
-      description: Faker::Lorem.paragraphs,
+      description: event_description,
       start_time: DateTime.current - n,
       end_time: DateTime.tomorrow - n,
       address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
@@ -327,7 +297,6 @@ collectives_in_rio.each do |collective|
       state: rio_de_janeiro[:state]
     )
     event.save(validate: false)
-    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 end
@@ -342,7 +311,7 @@ collectives_in_sao_paulo.each do |collective|
     event = Event.create(
       collective:,
       name: Faker::Book.title,
-      description: Faker::Lorem.paragraphs,
+      description: event_description,
       start_time: DateTime.current + n,
       end_time: DateTime.tomorrow + n,
       address: "Av. Mário de Andrade, 141 - Barra Funda, São Paulo - SP",
@@ -350,7 +319,6 @@ collectives_in_sao_paulo.each do |collective|
       state: sao_paulo[:state]
     )
     event.save!
-    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 
@@ -360,7 +328,7 @@ collectives_in_sao_paulo.each do |collective|
     event = Event.create(
       collective:,
       name: Faker::Book.title,
-      description: Faker::Lorem.paragraphs,
+      description: event_description,
       start_time: DateTime.current - n,
       end_time: DateTime.tomorrow - n,
       address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
@@ -368,7 +336,6 @@ collectives_in_sao_paulo.each do |collective|
       state: sao_paulo[:state]
     )
     event.save(validate: false)
-    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 end
@@ -383,7 +350,7 @@ collectives_in_bh.each do |collective|
     event = Event.create(
       collective:,
       name: Faker::Book.title,
-      description: Faker::Lorem.paragraphs,
+      description: event_description,
       start_time: DateTime.current + n,
       end_time: DateTime.tomorrow + n,
       address: "Av. Antônio Abrahão Caram, 1001 - São José, Belo Horizonte - MG",
@@ -391,7 +358,6 @@ collectives_in_bh.each do |collective|
       state: belo_horizonte[:state]
     )
     event.save!
-    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 end
@@ -405,7 +371,7 @@ collectives_in_jf.each do |collective|
     event = Event.create(
       collective:,
       name: Faker::Book.title,
-      description: Faker::Lorem.paragraphs,
+      description: event_description,
       start_time: DateTime.current + n,
       end_time: DateTime.tomorrow + n,
       address: "Estrada Engenheiro Gentil Forn, 1000 - Juiz de Fora - MG",
@@ -413,7 +379,6 @@ collectives_in_jf.each do |collective|
       state: juiz_de_fora[:state]
     )
     event.save!
-    add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
 end
@@ -427,7 +392,7 @@ end
 #   Event.create(
 #     collective: collectives_with_previous_only[0],
 #     name: Faker::Music.band,
-#     description: Faker::Lorem.paragraphs,
+#     description: event_description,
 #     start_time: DateTime.current - (i + 1),
 #     end_time: DateTime.yesterday - (i + 1),
 #     address: "#{Faker::Address.city}, #{Faker::Address.state}",
@@ -485,6 +450,42 @@ end
 #   city: Faker::Address.city,
 #   state: Faker::Address.state
 # )
+
+# ADDING FLYERS TO ALL EVENTS
+######################################################################
+
+event_images = [
+  "https://media.redbullmusicacademy.com/assets/1.ac7fd238.jpg?auto=format&w=700",
+  "https://www.electronicbeats.net/app/uploads/2016/12/moby-610x710.jpeg",
+  "https://www.electronicbeats.net/app/uploads/2016/02/raveflyer-e1455641396469.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/c571fa7762add7ac2b87c26f9b6b06c7a8b012ac.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/c571fa7762add7ac2b87c26f9b6b06c7a8b012ac.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/56f8e143-6910-41db-8bed-765b1e4e373c.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/56f8e143-6910-41db-8bed-765b1e4e373c.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/35ade87ff83fc46d31396189608ff2396ac72317.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/ad9d8d27-78a5-4f18-b8b1-34f2c4d6e28d.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/a1f166ff-b1cc-495f-a051-373120597f29.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/f4d0ba68-4323-4398-807a-b82e9ca2ab37.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/dee47b97-454f-49d0-850f-adb62bc29829.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/90de8e317f946bd0d793c603826cc64633c3c877.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/ab3399e4-0a3b-4a93-93d2-211ad59359a3.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/ad9d8d27-78a5-4f18-b8b1-34f2c4d6e28d.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/d3fffad2-b551-4cd7-b7d1-7b475484f32b.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/17cb3e13-42c5-4dc9-9d32-1b470a720c23.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/835733d7-fb7d-4f53-96bd-0550411321e8.jpg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/b7739f82-a66b-41af-9afd-51b14c867ee5.jpeg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/8cb365ef-5efc-4e71-b508-a16e11d0301b.jpeg",
+  "https://assets.phatmedia.co.uk/public/flyers/preview/a2945331-adb9-4f2e-8781-6d8223e355d5.jpeg"
+]
+
+Event.all.each do |event|
+  i = event.id % event_images.length
+  url = event_images[i]
+  logo = URI.open(url)
+  event.logo.attach(io: logo, filename: "logo.jpg", content_type: "image/png")
+  event.save
+  puts "-> #{event.name} - done!"
+end
 
 # GENRES
 ######################################################################
