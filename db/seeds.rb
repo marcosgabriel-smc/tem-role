@@ -109,9 +109,7 @@ uzalemaum_owner = User.last
 ######################################################################
 puts 'Creating collectives...'
 
-collective_description = "O coletivo de música eletrônica é uma comunidade vibrante e apaixonada dedicada à exploração sonora e à criação de experiências únicas. Composto por artistas, produtores e entusiastas, esse coletivo busca promover a diversidade musical, unindo pessoas através das batidas pulsantes e das melodias cativantes do universo eletrônico.
-
-Nesse ecossistema colaborativo, os membros compartilham conhecimentos, habilidades e inspirações, criando um ambiente propício para o crescimento artístico e a experimentação sonora. O coletivo promove eventos eletrizantes, onde DJs e produtores talentosos se revezam nos decks, criando uma atmosfera envolvente que faz o público mergulhar em uma jornada sonora única."
+collective_description = "O coletivo de música eletrônica é uma comunidade vibrante e apaixonada dedicada à exploração sonora e à criação de experiências únicas. Composto por artistas, produtores e entusiastas, esse coletivo busca promover a diversidade musical, unindo pessoas através das batidas pulsantes e das melodias cativantes do universo eletrônico."
 
 Collective.create!(
   [
