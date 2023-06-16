@@ -1,6 +1,10 @@
 require 'open-uri'
 
+# CLEAN DB
+######################################################################
+puts 'Cleaning the database...'
 CollectiveGenre.destroy_all
+EventGenre.destroy_all
 Genre.destroy_all
 EventListSubscription.destroy_all
 EventList.destroy_all
@@ -157,7 +161,7 @@ end
 
 puts 'Uploading images to cloudinary...'
 
-banner1 = URI.open("https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770")
+banner1 = URI.open("https://images.pexels.com/photos/1540319/pexels-photo-1540319.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 lewagang.banner.attach(io: banner1, filename: "banner.png", content_type: "image/png")
 logo1 = URI.open("https://i.imgur.com/LL69Go8.png")
 lewagang.logo.attach(io: logo1, filename: "logo1.png", content_type: "image/png")
@@ -209,18 +213,20 @@ EVENT_IMAGES = [
   "https://images.pexels.com/photos/10206936/pexels-photo-10206936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/1928131/pexels-photo-1928131.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/1154189/pexels-photo-1154189.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://media.redbullmusicacademy.com/assets/1.ac7fd238.jpg?auto=format&w=700"
 ]
 
 def add_banner_to_event(event)
   image_url = EVENT_IMAGES.sample
+  puts "image: #{image_url}"
+
   return if image_url.empty?
 
-  puts "image URL: #{image_url}"
   banner = URI.open(image_url)
   event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
   event.save
-  puts "done!"
+  puts "#{Event.count} - done!"
 end
 
 collectives_in_rio.each do |collective|
