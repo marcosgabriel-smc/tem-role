@@ -8,7 +8,7 @@
       <div class="align-self-end">
         <h1 class="colec-title"><%= @collective.name %></h1>
       </div>
-      <p class="colectivedesc text-break text-start fw-semibold"><%= @collective.description %></p>
+      <p class="colectivedesc text-break text-start fw-semibold"><%= simple_format(@collective.description) %></p>
     </div>
     <!-- GENRES -->
     <div class= "align-self-end d-flex justify-content-end w-100">

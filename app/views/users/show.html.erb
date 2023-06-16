@@ -1,6 +1,6 @@
 <div class="container">
   <div class="centerpage">
-    <h1 class="text-center ">Bem-vindo, <%= @user.username %></h1>
+    <h1 class="text-center ">Bem-vindo, <%= @user.first_name.capitalize %></h1>
     <!-- CONVITES -->
     <% if @user == current_user %>
       <!-- CONVITES PENDENTES -->
@@ -41,7 +41,7 @@
           <% end %>
         </div>
       <% else %>
-        <h4 class="text-center fst-italic">Escolha um evento para criar um evento!</h4>
+        <h4 class="text-center fst-italic">Escolha um coletivo para criar um evento!</h4>
       <% end %>
     </div>
     <hr>

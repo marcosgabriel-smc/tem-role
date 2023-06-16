@@ -2,14 +2,12 @@
 <div class="member-card">
   <!-- HERE -->
   <div>
-    <a href="<%= user_path(member)%>">
-      <%= image_tag(
+    <%= image_tag(
         "https://kitt.lewagon.com/placeholder/users/#{member.username}",
         alt: "avatar",
         class: "member-icon",
         onerror: "this.onerror=null;this.src='#{asset_path('member_icon.png')}'"
       ) %>
-    </a>
   </div>
   <div class="w-100 member-card-body text-center">
     <p class="member-name"><%= member.username %></p>
