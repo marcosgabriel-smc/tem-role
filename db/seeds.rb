@@ -87,6 +87,13 @@ User.create!(
       email: 'ara@temrole.org'
     },
     {
+      username: 'zeninguem',
+      first_name: 'José',
+      last_name: 'Nobody',
+      password: 'asdfgçlkjh',
+      email: 'zeninguem@temrole.org'
+    },
+    {
       username: 'ze',
       first_name: 'José',
       last_name: 'Ferreira',
