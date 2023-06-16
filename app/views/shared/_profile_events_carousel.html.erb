@@ -1,0 +1,41 @@
+<div id="carouselEvents<%= x %>" class="carousel slide position-relative">
+  <% if events_groups.count > 1 %>
+    <div class="carousel-indicators">
+      <% slides_numbers = events_groups.count %>
+      <% i = 1 %>
+      <button type="button" data-bs-target="#carouselEvents<%= x %>" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <% until i == slides_numbers %>
+        <%= button_tag "", type: "button", data: {
+        bs_target: "#carouselEvents#{x}",
+        bs_slide_to: "#{i}",
+        aria_label: "Slide #{i + 1}"
+        } %>
+        <% i += 1 %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="carousel-inner mx-5 px-5 events-carousel">
+    <!-- INICIA A ITERAÇÃO DOS DEMAIS CONJUNTOS DE 4 EVENTOS PARA CRIAR OS SLIDES DE 4 CARTÕES EM CADA -->
+    <% events_groups.each_with_index do |group, i| %>
+      <% active = i == 0 ? "active" : ""%>
+      <div class="carousel-item <%= active %>">
+        <div class="cards-wrapper">
+          <!-- PARA CADA ARRAY DE 4 CRIA-SE UM CARTÃO POR EVENTO -->
+          <% group.each do |event| %>
+            <%= render "events/event_card", event: %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <% if events_groups.count > 1 %>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselEvents<%= x %>" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselEvents<%= x %>" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  <% end %>
+</div>

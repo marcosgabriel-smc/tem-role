@@ -7,7 +7,10 @@ class User < ApplicationRecord
   # relations
   ##################################################
   has_many :collectives, foreign_key: :owner_id, class_name: "Collective"
-  has_many :subscriptions
+
+  has_many :event_list_subscriptions, dependent: :destroy
+  has_many :event_lists, through: :event_list_subscriptions
+  has_many :subscribed_events, -> { where('end_time > ?', DateTime.current) }, through: :event_lists, source: :event
 
   has_many :memberships, dependent: :destroy
   has_many :accepted_invites, -> { where(accepted: true) }, class_name: 'Membership'
