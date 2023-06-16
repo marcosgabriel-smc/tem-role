@@ -208,13 +208,13 @@ collective_avatars = [
   "https://i1.sndcdn.com/avatars-000571376391-w6gdii-t500x500.jpg"
 ]
 
-id = Collective.first.id
-collective_avatars.each do |url|
+Collective.all.each do |collective|
+  i = collective.id % collective_avatars.length
+  url = collective_avatars[i]
   logo = URI.open(url)
-  collective = Collective.find(id)
   collective.logo.attach(io: logo, filename: "logo.jpg", content_type: "image/png")
   collective.save
-  id += 1
+  puts "-> #{collective.name} - done!"
 end
 
 # MEMBERSHIP
