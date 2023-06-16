@@ -11,13 +11,11 @@ class MembershipsController < ApplicationController
 
     # IF/ELSE LOGIC SHOULD  BE IMPLEMENTED
     if @membership.save
-      redirect_to collective, notice: "Convite enviado!"
+      redirect_to collective, notice: "Convite enviado com sucesso!"
     else
       redirect_to collective, notice: "Não foi possível enviar o convite."
     end
   end
-
-
 
   def update
     # TODO: update with AJAX

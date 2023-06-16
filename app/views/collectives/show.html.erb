@@ -1,7 +1,8 @@
 <!-- HERO BANNER DO COLLETIVO -->
+<% image_url = @collective.banner.key.nil? ? image_path("collective_banner.jpg") : cl_image_path(@collective.banner.key, crop: :fill) %>
 <div
   class= "masthead justify-content-center align-items-center d-flex"
-  style="background-image: url('<%= cl_image_path @collective.banner.key, crop: :fill unless @collective.banner.key.nil? %>');">
+  style="background-image: url('<%= image_url %>');">
   <div class="row d-flex color-overlay">
     <div class="text-center d-flex row">
       <div class="align-self-end">
@@ -41,27 +42,27 @@
       <%= render "shared/members_carousel", members_groups: members_in_3 %>
     </div>
   </div>
-</div>
-<!-- EVENTS -->
-<div class="m-4">
-  <h2>Próximos Eventos</h2>
-  <div class="justify-content-evenly">
-    <% events_in_3 = @collective.next_events.each_slice(3).to_a %>
-    <% if events_in_3.empty? %>
-      <h3>O coletivo não tem eventos anteriores</h3>
-    <% else %>
-      <%= render "shared/events_carousel", events_groups: events_in_3 %>
-    <% end %>
+  <!-- EVENTS -->
+  <div class="m-4">
+    <h2>Próximos Eventos</h2>
+    <div class="justify-content-evenly">
+      <% events_in_3 = @collective.next_events.each_slice(3).to_a %>
+      <% if events_in_3.empty? %>
+        <h4 class="text-center fst-italic">O coletivo não possui eventos futuros</h4>
+      <% else %>
+        <%= render "shared/events_carousel", events_groups: events_in_3 %>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class="m-4">
-  <h2>Eventos Anteriores</h2>
-  <div class="justify-content-evenly">
-    <% events_in_3 = @collective.previous_events.each_slice(3).to_a %>
-    <% if events_in_3.empty? %>
-      <h3>O coletivo não tem eventos anteriores</h3>
-    <% else %>
-      <%= render "shared/events_carousel", events_groups: events_in_3 %>
-    <% end %>
+  <div class="m-4">
+    <h2>Eventos Anteriores</h2>
+    <div class="justify-content-evenly">
+      <% events_in_3 = @collective.previous_events.each_slice(3).to_a %>
+      <% if events_in_3.empty? %>
+        <h4 class="text-center fst-italic">O coletivo não possui eventos anteriores</h4>
+      <% else %>
+        <%= render "shared/events_carousel", events_groups: events_in_3 %>
+      <% end %>
+    </div>
   </div>
 </div>

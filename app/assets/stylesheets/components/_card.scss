@@ -1,31 +1,31 @@
 .event-card {
-  position: relative;
-  background-color: #120114;
+  background-color: black;
+  border: solid;
+  border-color: black;
+  border-width: 0 10px;
+ /*  border-radius: 5px;
+  box-shadow: 1px 2px 3px 4px rgba(12,12,12,0.2); */
 }
 
 .event-photo {
-  position: relative;
   background-position: center center;
   background-repeat: no-repeat;
   height: 190px;
   overflow: hidden;
 }
 
+.img-card {
+  height: 100%;
+}
+
 .event-collective {
-  position: absolute;
   color: rgb(243, 230, 230);
   background-color: black;
-  bottom: 0;
-  border-radius: 50%;
 }
 
 .event-time {
-  position: absolute;
   color: rgb(243, 230, 230);
-  right: 0;
   background-color: black;
-  padding-right: 5%;
-  padding-top: 2%;
 }
 
 .event-collective a {
