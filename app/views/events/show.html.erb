@@ -14,18 +14,23 @@
       <p class="card-text my-0">Fim: <%= @event.end_time.strftime("%d/%m/%Y %H:%M") %></p>
     </div>
   </div>
-  <div class="w-100 d-flex justify-content-around my-5">
-    <%= link_to "Todos os Eventos", events_path %>
-    <%= link_to "Conheça o coletivo!", collective_path(@event.collective) %>
+  <div class="w-100 d-flex justify-content-center my-5">
+    <p><%= link_to "Todos os Eventos", events_path, class: "mx-3" %></p>
+    <p>| <%= link_to "Conheça o coletivo!", collective_path(@event.collective), class: "mx-3" %></p>
     <% if policy(@event).edit? %>
-      <%= link_to "Edit this event", edit_event_path(@event) %>
-      <%= render "modal_list", event: @event, event_list: @event_list %>
+      <p>| <%= link_to "| Edit this event", edit_event_path(@event), class: "mx-3" %></p>
+      <p>| <%= render "modal_list", event: @event, event_list: @event_list, class: "mx-3" %></p>
     <% end %>
   </div>
+  <hr>
   <div class="event-description d-flex flex-row my-3">
     <div class="col-6 mx-2">
       <h2>Descrição</h2>
-      <p><%= @event.description %></p>
+      <p><%= simple_format(@event.description) %></p>
+      <% ticket_link = @event.ticket_link.nil? ? "https://shotgun.live/pt-br" : @event.ticket_link %>
+      <p>
+        <a href="<%= ticket_link %>" target="_blank">Clique aqui para comprar seu ingresso</a>
+      </p>
     </div>
     <div class="col-6 mx-2">
       <div class="map-box my-2">
