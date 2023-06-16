@@ -4,7 +4,7 @@
       <% if @event.banner.key.nil? %>
         <%= image_tag "event_thumb.jpg", {class: "img-fluid img-card"} %>
       <% else %>
-        <%= cl_image_tag event.banner.key, {class: "img-fluid img-card"} %>
+        <%= cl_image_tag @event.banner.key, {class: "img-fluid img-card"} %>
       <% end %>
     </div>
     <div class="col-6 align-self-center ms-3">
