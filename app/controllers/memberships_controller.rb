@@ -10,8 +10,11 @@ class MembershipsController < ApplicationController
     authorize @membership
 
     # IF/ELSE LOGIC SHOULD  BE IMPLEMENTED
-    @membership.save
-    redirect_to collective
+    if @membership.save
+      redirect_to collective, notice: "Convite enviado!"
+    else
+      redirect_to collective, notice: "Não foi possível enviar o convite."
+    end
   end
 
 

@@ -2,9 +2,9 @@
   <a href="<%= event_path(event) %>">
     <div class="event-photo">
       <% if event.banner.key.nil? %>
-        <%= image_tag "event_thumb.jpg", {class: "card-img-top img-fluid"} %>
+        <%= image_tag "event_thumb.jpg", { class: "card-img-top img-fluid" } %>
       <% else %>
-        <%= cl_image_tag event.banner.key, {class: "card-img-top img-fluid"} %>
+        <%= cl_image_tag event.banner.key, { class: "card-img-top img-fluid" } %>
       <% end %>
       <div class="event-collective align-self-center">
         <h5><%= link_to event.name, event %></h5>

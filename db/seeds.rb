@@ -1,6 +1,10 @@
 require 'open-uri'
 
+# CLEAN DB
+######################################################################
+puts 'Cleaning the database...'
 CollectiveGenre.destroy_all
+EventGenre.destroy_all
 Genre.destroy_all
 EventListSubscription.destroy_all
 EventList.destroy_all
@@ -157,7 +161,7 @@ end
 
 puts 'Uploading images to cloudinary...'
 
-banner1 = URI.open("https://art.ngfiles.com/images/1088000/1088037_twosipsofbleach_new-banner-icon.png?f1574212770")
+banner1 = URI.open("https://images.pexels.com/photos/1540319/pexels-photo-1540319.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 lewagang.banner.attach(io: banner1, filename: "banner.png", content_type: "image/png")
 logo1 = URI.open("https://i.imgur.com/LL69Go8.png")
 lewagang.logo.attach(io: logo1, filename: "logo1.png", content_type: "image/png")
@@ -215,9 +219,10 @@ EVENT_IMAGES = [
 
 def add_banner_to_event(event)
   image_url = EVENT_IMAGES.sample
+  puts "image: #{image_url}"
+
   return if image_url.empty?
 
-  puts "image URL: #{image_url}"
   banner = URI.open(image_url)
   event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
   event.save
@@ -228,7 +233,7 @@ collectives_in_rio.each do |collective|
   # Create incoming events
   5.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.new(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -238,14 +243,14 @@ collectives_in_rio.each do |collective|
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
     )
-    event = Event.last
+    event.save!
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
   # Create previous events
   3.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -254,8 +259,8 @@ collectives_in_rio.each do |collective|
       address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
-    ).save(validate: false)
-    event = Event.last
+    )
+    event.save(validate: false)
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
@@ -268,7 +273,7 @@ collectives_in_sao_paulo = Collective.order(created_at: :asc).offset(5).first(5)
 collectives_in_sao_paulo.each do |collective|
   5.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -278,7 +283,7 @@ collectives_in_sao_paulo.each do |collective|
       city: sao_paulo[:city],
       state: sao_paulo[:state]
     )
-    event = Event.last
+    event.save!
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
@@ -286,7 +291,7 @@ collectives_in_sao_paulo.each do |collective|
   # Create previous events
   3.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -295,8 +300,8 @@ collectives_in_sao_paulo.each do |collective|
       address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
       city: sao_paulo[:city],
       state: sao_paulo[:state]
-    ).save(validate: false)
-    event = Event.last
+    )
+    event.save(validate: false)
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
@@ -309,7 +314,7 @@ collectives_in_bh = Collective.order(created_at: :asc).offset(10).first(3)
 collectives_in_bh.each do |collective|
   3.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -319,7 +324,7 @@ collectives_in_bh.each do |collective|
       city: belo_horizonte[:city],
       state: belo_horizonte[:state]
     )
-    event = Event.last
+    event.save!
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
@@ -331,7 +336,7 @@ collectives_in_jf = Collective.order(created_at: :asc).offset(15).first(2)
 collectives_in_jf.each do |collective|
   3.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -341,7 +346,7 @@ collectives_in_jf.each do |collective|
       city: juiz_de_fora[:city],
       state: juiz_de_fora[:state]
     )
-    event = Event.last
+    event.save!
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
