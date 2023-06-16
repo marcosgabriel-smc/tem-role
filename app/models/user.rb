@@ -35,4 +35,9 @@ class User < ApplicationRecord
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
   end
+
+  def any_collectives_with_events(collectives)
+    collectives.map { |collective| collective.next_events.any? }.any?
+  end
+
 end

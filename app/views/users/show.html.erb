@@ -1,6 +1,6 @@
 <div class="container">
   <div class="centerpage">
-    <h1><%= @user.username %></h1>
+    <h1 class="text-center ">Bem-vindo, <%= @user.username %></h1>
     <!-- CONVITES -->
     <% if @user == current_user %>
       <!-- CONVITES PENDENTES -->
@@ -11,31 +11,60 @@
           <%= render "pending_invite_card", invite: %>
         <% end %>
       <% end %>
-    <% elsif user_signed_in? && current_user.collectives.any? %>
-      <!-- CONVIDAR -->
-      <h2>Convidar <%= @user.username %> para algum coletivo?</h2>
-      <%= render 'invite_button_list', user: @user %>
     <% end %>
+    <hr>
     <!-- ASSOCIAÇÕES A COLETIVOS -->
-    <hr>
-    <h2>Coletivos</h2>
-    <%= render 'shared/collectives_carousel', collectives: @user.collective_memberships, user: @user %>
-    <hr>
-    <!-- PRÓXIMOS EVENTOS -->
+    <div class="w-100 d-flex justify-content-between">
+      <h2>Seus Coletivos</h2>
+      <% link_to "Criar um novo coletivo", new_collective_path %>
+    </div>
     <% if @user.collectives.any? %>
-      <h2>Eventos criados</h2>
-      <div class="p-3">
-        <% @user.collectives.each_with_index do |collective, i| %>
-          <% if collective.next_events.any? %>
-            <h3>Coletivo - <%= collective.name %></h3>
-            <div class="justify-content-evenly mb-5">
-              <% events_in_3 = collective.next_events.each_slice(3).to_a %>
-              <%= render "shared/events_carousel", events_groups: events_in_3 %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render 'shared/collectives_carousel', collectives: @user.collective_memberships, user: @user %>
+    <% else %>
+      <h4 class="text-center fst-italic">Clica ali em cima e bora criar um coletivo!</h4>
     <% end %>
-    <!-- TODO: pendente lógica de event_lists e event_list_subscriptions -->
+    <hr>
+    <!-- PRÓXIMOS EVENTOS DO USUÁRIO QUE ELE É DONO-->
+    <div class="w-100">
+      <h2>Seus Eventos</h2>
+      <% collectives = @user.collectives %>
+      <% if any_collectives_with_events(collectives) %>
+        <div class="p-3">
+          <% @user.collectives.each_with_index do |collective, i| %>
+            <% if collective.next_events.any? %>
+              <h3>Coletivo - <%= collective.name %></h3>
+              <div class="justify-content-evenly mb-5">
+                <% events_in_3 = collective.next_events.each_slice(3).to_a %>
+                <%= render "shared/profile_events_carousel", events_groups: events_in_3, x: i %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <h4 class="text-center fst-italic">Escolha um evento para criar um evento!</h4>
+      <% end %>
+    </div>
+    <hr>
+    <!-- EVENTOS EM QUE O USUÁRIO ESTÁ INSCRITO -->
+    <div class="w-100">
+      <h2>Ta na lista!</h2>
+      <% if @user.subscriptions.any? %>
+        <div class="p-3">
+          <% @user.subscriptions. %>
+          <% @user.collectives.each_with_index do |collective, i| %>
+            <% if collective.next_events.any? %>
+              <h3>Coletivo - <%= collective.name %></h3>
+              <div class="justify-content-evenly mb-5">
+                <% events_in_3 = collective.next_events.each_slice(3).to_a %>
+                <%= render "shared/profile_events_carousel", events_groups: events_in_3, x: i %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <h4 class="text-center fst-italic">Bora pra festa!</h4>
+        <%= link_to "Ache um evento", events_path %>
+      <% end %>
+    </div>
   </div>
 </div>
