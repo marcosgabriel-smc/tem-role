@@ -55,7 +55,7 @@ class EventsController < ApplicationController
     my_state = params[:state].upcase
     return unless Event::STATES.include?(my_state)
 
-    @events = Event.where("state = ? AND start_time > ?", my_state, DateTime.now)
+    @events = Event.where("state = ? AND end_time > ?", my_state, DateTime.now)
     respond_to(&:json)
   end
 

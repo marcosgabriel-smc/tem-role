@@ -35,11 +35,11 @@ class Event < ApplicationRecord
 
   # next events
   def self.next
-    where('start_time > ?', DateTime.current)
+    where('end_time > ?', DateTime.current)
   end
 
   # previous
   def self.previous
-    where('start_time < ?', DateTime.current)
+    where('end_time < ?', DateTime.current)
   end
 end

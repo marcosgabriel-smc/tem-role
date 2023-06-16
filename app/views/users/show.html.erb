@@ -48,22 +48,16 @@
     <!-- EVENTOS EM QUE O USUÁRIO ESTÁ INSCRITO -->
     <div class="w-100">
       <h2>Ta na lista!</h2>
-      <% if @user.subscriptions.any? %>
+      <% if @user.event_list_subscriptions.any? %>
         <div class="p-3">
-          <% @user.subscriptions. %>
-          <% @user.collectives.each_with_index do |collective, i| %>
-            <% if collective.next_events.any? %>
-              <h3>Coletivo - <%= collective.name %></h3>
-              <div class="justify-content-evenly mb-5">
-                <% events_in_3 = collective.next_events.each_slice(3).to_a %>
-                <%= render "shared/profile_events_carousel", events_groups: events_in_3, x: i %>
-              </div>
-            <% end %>
-          <% end %>
+          <div class="justify-content-evenly mb-5">
+            <% events_in_3 = @user.subscribed_events.each_slice(3).to_a %>
+            <%= render "shared/events_carousel", events_groups: events_in_3 %>
+          </div>
         </div>
       <% else %>
         <h4 class="text-center fst-italic">Bora pra festa!</h4>
-        <%= link_to "Ache um evento", events_path %>
+        <%= link_to "Encontre um evento", events_path %>
       <% end %>
     </div>
   </div>
