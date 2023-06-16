@@ -11,6 +11,6 @@
   </div>
   <%= link_to collective.name, collective, class: "" %>
   <% if defined?(user) && collective.owner == user %>
-    <small>(owner)</small>
+    <small><em>(Fundador)</em></small>
   <% end %>
 </h2>

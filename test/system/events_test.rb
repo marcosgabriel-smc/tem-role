@@ -22,7 +22,7 @@ class EventsTest < ApplicationSystemTestCase
 
   # test "should update Event" do
   #   visit event_url(@event)
-  #   click_on "Edit this event", match: :first
+  #   click_on "Editar evento", match: :first
 
   #   click_on "Update Event"
 

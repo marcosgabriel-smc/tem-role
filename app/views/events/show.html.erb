@@ -18,7 +18,7 @@
     <p><%= link_to "Todos os Eventos", events_path, class: "mx-3" %></p>
     <p>| <%= link_to "Conheça o coletivo!", collective_path(@event.collective), class: "mx-3" %></p>
     <% if policy(@event).edit? %>
-      <p>| <%= link_to "| Edit this event", edit_event_path(@event), class: "mx-3" %></p>
+      <p>| <%= link_to "| Editar evento", edit_event_path(@event), class: "mx-3" %></p>
       <p>| <%= render "modal_list", event: @event, event_list: @event_list, class: "mx-3" %></p>
     <% end %>
   </div>
@@ -40,7 +40,9 @@
       <div class="all-lists my-4">
         <div class="d-flex justify-content-between">
           <h2>Listas do Evento</h2>
-          <%= render "modal_edit_eventlist", event: @event %>
+          <% if policy(@event).edit? %>
+            <%= render "modal_edit_eventlist", event: @event %>
+          <% end %>
         </div>
         <%= render "event_lists", event: @event %>
       </div>
