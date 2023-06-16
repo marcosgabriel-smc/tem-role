@@ -2,7 +2,8 @@
 <% image_url = @collective.banner.key.nil? ? image_path("collective_banner.jpg") : cl_image_path(@collective.banner.key, crop: :fill) %>
 <div
   class= "masthead"
-  style="background-image: url('<%= image_url %>');">
+  style="background-image: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 0%), url('<%= image_url %>');">
+  ),
   <div class="centerpage h-100 d-flex flex-column">
     <!-- DESCRIPTION -->
     <div class="w-100 mb-5">
@@ -37,7 +38,9 @@
   <div class="col m-4">
     <div class="d-flex flex-row justifý-content-between">
       <h2 class="me-3">Membros</h2>
-      <%= render "membership_modal", membership: @membership, collective: @collective %>
+      <% if current_user == @collective.owner %>
+        <%= render "membership_modal", membership: @membership, collective: @collective %>
+      <% end %>
     </div>
     <div class="all-members row align-items-center">
       <% members_in_3 = @collective.members.each_slice(3).to_a %>
