@@ -3,12 +3,11 @@
   <!-- HERE -->
   <div>
     <a href="<%= user_path(member)%>">
-      <% default_avatar = asset_path('member_icon.png') %>
       <%= image_tag(
         "https://kitt.lewagon.com/placeholder/users/#{member.username}",
         alt: "avatar",
         class: "member-icon",
-        onerror: "this.onerror=null;this.src='#{default_avatar}'"
+        onerror: "this.onerror=null;this.src='#{asset_path('member_icon.png')}'"
       ) %>
     </a>
   </div>

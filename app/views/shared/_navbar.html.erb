@@ -18,7 +18,8 @@
               alt: "avatar",
               id: "navbarDropdown",
               class: "avatar dropdown-toggle",
-              data: { bs_toggle: "dropdown" }
+              data: { bs_toggle: "dropdown" },
+              onerror: "this.onerror=null;this.src='#{asset_path('member_icon.png')}'"
             )
               %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
