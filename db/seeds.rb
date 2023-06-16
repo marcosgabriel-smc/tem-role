@@ -209,7 +209,8 @@ EVENT_IMAGES = [
   "https://images.pexels.com/photos/10206936/pexels-photo-10206936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/1928131/pexels-photo-1928131.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/1154189/pexels-photo-1154189.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://media.redbullmusicacademy.com/assets/1.ac7fd238.jpg?auto=format&w=700"
 ]
 
 def add_banner_to_event(event)
@@ -220,7 +221,7 @@ def add_banner_to_event(event)
   banner = URI.open(image_url)
   event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
   event.save
-  puts "done!"
+  puts "#{Event.count} - done!"
 end
 
 collectives_in_rio.each do |collective|
