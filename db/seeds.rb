@@ -159,10 +159,12 @@ collective_names.each do |name|
   )
 end
 
-puts 'Uploading images to cloudinary...'
+# collective logos (aka avatar)
+######################################################################
+puts 'Uploading collective images to cloudinary...'
 
 banner1 = URI.open("https://images.pexels.com/photos/1540319/pexels-photo-1540319.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
-lewagang.banner.attach(io: banner1, filename: "banner.png", content_type: "image/png")
+lewagang.banner.attach(io: banner1, filename: "banner.jpg", content_type: "image/png")
 logo1 = URI.open("https://i.imgur.com/LL69Go8.png")
 lewagang.logo.attach(io: logo1, filename: "logo1.png", content_type: "image/png")
 lewagang.save
@@ -172,6 +174,41 @@ uzalemaun.banner.attach(io: banner2, filename: "banner2.png", content_type: "ima
 logo2 = URI.open("https://art.ngfiles.com/comments/70000/iu_70834_7446245.jpg")
 uzalemaun.logo.attach(io: logo2, filename: "logo2.png", content_type: "image/png")
 uzalemaun.save
+
+collective_avatars = [
+  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/a6/d4/be/our-logo.jpg?w=1200&h=1200&s=1",
+  "https://ticketsibiza.co.uk/wp-content/uploads/2019/04/Hi_Logo_Monochrome.png",
+  "https://i1.sndcdn.com/artworks-000647750056-y32cgx-t500x500.jpg",
+  "https://i1.sndcdn.com/artworks-b2A8u77oCyLYUwi3-yhbvxg-t500x500.jpg",
+  "https://i1.sndcdn.com/artworks-wnP7WnDkHdCyziDF-yGV1cA-t500x500.jpg",
+  "https://i1.sndcdn.com/artworks-4xmWObWwi9MqwiXR-zjxtkw-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-T76WITEA8wGJg6p4-tNSmQQ-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-y2Vs5f1rksRJxDDT-PU3j9Q-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-cRyOtwmX25PtZcKX-gvSXfg-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-3WlTiFFl5mI9yIZ6-mT9xPA-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-000661557005-yaofdc-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-000468800379-pptiei-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-kQjz29CzQUIgueyT-jkG4iQ-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-jwW4vOngHy1vTO1b-zjX3RA-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-UIqEWDLhLKLWekfL-ILGNKw-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-IU3pFXTDq7Dgm8V8-6ddSaQ-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-fGfy1tgSL8Pp5EDy-Gkyi6Q-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-KetjjxPUOsnpuHc0-qBZh1g-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-vFqpPNxNpxVdguNG-Gzgynw-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-000142400502-ozey8z-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-PsqqCyR1Zm60kmTL-HPOZoA-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-DkzvbcNgNRINdX4v-dEmq4A-t500x500.jpg",
+  "https://i1.sndcdn.com/avatars-000571376391-w6gdii-t500x500.jpg"
+]
+
+id = Collective.first.id
+collective_avatars.each do |url|
+  logo = URI.open(url)
+  collective = Collective.find(id)
+  collective.logo.attach(io: logo, filename: "logo.jpg", content_type: "image/png")
+  collective.save
+  id += 1
+end
 
 # MEMBERSHIP
 ######################################################################
@@ -189,8 +226,7 @@ end
 ######################################################################
 puts "Creating some events..."
 
-event_description = "Bem-vindo, usuário.
-
+event_description = "
 Estamos prontos para uma nova missão, onde você será o jogador e os DJs assumem o controle da pista para levá-lo até as últimas fases da noite.
 
 No dia 12 de maio a Crua estará de volta ao club Madre, onde a sistema de som Pure Groove é o kit perfeito pra nos guiar nesta fase que entraremos.
