@@ -2,7 +2,7 @@
   <div>
     <% collective_avatar_class = "rounded-circle mb-2 avatar-large" %>
     <% if collective.logo.key.nil? %>
-      <%= image_tag "stun.png", class: collective_avatar_class %>
+      <%= image_tag "collective_avatar.jpg", class: collective_avatar_class %>
     <% else %>
       <%= cl_image_tag collective.logo.key, class: collective_avatar_class %>
     <% end %>
