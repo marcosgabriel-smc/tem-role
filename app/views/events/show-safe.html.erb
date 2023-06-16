@@ -23,11 +23,11 @@
       <%= render "modal_list", event: @event, event_list: @event_list %>
     </div>
   </div>
-  <!-- Btn "Back to Events"-->
+  <!-- Btn "Voltar para eventos"-->
   <% if policy(@event).edit? %>
     <%= link_to "Edit this event", edit_event_path(@event) %> |
   <% end %>
-  <%= link_to "Back to events", events_path %>
+  <%= link_to "Voltar para eventos", events_path %>
   <!--
   <div class="all-lists">
     <h2>Listas do Evento</h2>

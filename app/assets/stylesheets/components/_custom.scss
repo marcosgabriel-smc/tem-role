@@ -50,6 +50,14 @@ input[type=text] {
 	opacity: 0.5;
 }
 
+form {
+	max-width: 70%;
+	/* display: flex;
+	flex-direction: column;
+	left: 15%;
+	position: relative; */
+}
+
 
 .colectivedesc {
 	position: absolute;
@@ -149,7 +157,6 @@ h2 {
 
 .centerpage {
 	position: relative;
-	max-width: 800px;
 	top: 94px;
 	margin: auto;
 }
@@ -272,4 +279,57 @@ body {
 
 .home-page img {
 	width: 37%;
+}
+
+.about-div p {
+	font-size: 1.3rem;
+	max-width: 70%;
+}
+
+.about-link {
+  position: absolute;
+  right: 13rem;
+  text-transform: uppercase;
+}
+
+p {
+	color: rgb(245, 245, 245);
+}
+
+input[type=submit] {
+	background: none;
+	color: white;
+}
+
+a:not([href]):not([class]) {
+	color: white;
+	text-decoration: none;
+}
+
+a:not([href]):not([class]):hover {
+	color: #da00cb;
+	text-decoration: none;
+}
+
+.printer-link {
+	color: black;
+}
+
+.modal-header h1 {
+	color: black;
+}
+
+.modal-header form {
+	color: black;
+}
+
+.modal-body {
+	color: rgb(0, 0, 0);
+}
+
+.form-page {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
 }

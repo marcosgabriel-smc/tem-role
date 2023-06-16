@@ -23,6 +23,7 @@ class EventListsController < ApplicationController
   def print
     @event_list = EventList.find(params[:list_id])
     authorize @event_list
+    render layout: 'no_navbar'
   end
 
   def create

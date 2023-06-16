@@ -24,16 +24,17 @@
     <!-- PRÓXIMOS EVENTOS -->
     <% if @user.collectives.any? %>
       <h2>Eventos criados</h2>
-      <% @user.collectives.each_with_index do |collective, i| %>
-        <% if collective.next_events.any? %>
-          <h3><%= collective.name %></h3>
-          <div class="d-flex justify-content-center row row-cols-3">
-            <% collective.next_events.each do |event| %>
-              <%= render "events/event_card", event: %>
-            <% end %>
-          </div>
+      <div class="p-3">
+        <% @user.collectives.each_with_index do |collective, i| %>
+          <% if collective.next_events.any? %>
+            <h3>Coletivo - <%= collective.name %></h3>
+            <div class="justify-content-evenly mb-5">
+              <% events_in_3 = collective.next_events.each_slice(3).to_a %>
+              <%= render "shared/events_carousel", events_groups: events_in_3 %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     <% end %>
     <!-- TODO: pendente lógica de event_lists e event_list_subscriptions -->
   </div>

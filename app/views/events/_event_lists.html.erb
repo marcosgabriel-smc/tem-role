@@ -1,32 +1,32 @@
 <ul class="list-group">
   <% event.event_lists.each do |list| %>
-    <li class="list-group-item d-flex justify-content-between align-items-start">
+    <li class="list-group-item d-flex justify-content-between align-items-center p-1">
       <div class="ms-2 me-auto">
         <div class="fw-bold">
           <%= list.name %>
           <% if current_user == event.collective.owner %>
-            <a href="<%= event_list_print_path(event, list)%>" class="printer-link" target="_blank">
+            <a href="<%= event_list_print_path(event, list)%>" class="printer-link ms-1" target="_blank">
               <i class="fas fa-print"></i>
             </a>
           <% end %>
         </div>
-        <%= list.requirement %>
+        <p class="fst-italic text-black m-0 p-0"><%= list.requirement %></p>
       </div>
       <% unless list.open? %>
         <span class="badge text-bg-dark">Encerrada</span>
       <% else %>
         <% if EventListSubscription.exists?(user: current_user, event_list: list) %>
           <%= button_to(
-            "Unsubscribe",
+            "Desinscrever-se",
             event_list_subscribe_path(event, list),
             method: :delete,
-            class: "badge bg-danger rounded-pill"
+            class: "btn btn-outline-danger w-100 h-auto"
           ) %>
         <% else %>
           <%= button_to(
-            "Subscribe",
+            "Increver-se",
             event_list_subscribe_path(event, list),
-            class: "badge bg-primary rounded-pill"
+            class: "btn btn-outline-success w-auto h-auto"
           ) %>
         <% end %>
       <% end %>

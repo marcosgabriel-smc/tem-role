@@ -6,6 +6,10 @@ class Event < ApplicationRecord
 
   has_many :event_lists
 
+  # cloudinary
+  #############################
+  has_one_attached :banner
+
   # validations
   #############################
   validates :name, presence: true
@@ -20,7 +24,7 @@ class Event < ApplicationRecord
   # callbacks
   ##################################################
   after_create do
-    EventList.create(event: self, name: "Tem Role", requirement: "interessados no evento")
+    EventList.create(event: self, name: "Tem Role", requirement: "Interessados no evento")
   end
 
   # customizations

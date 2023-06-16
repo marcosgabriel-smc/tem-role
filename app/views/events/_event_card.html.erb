@@ -1,7 +1,11 @@
 <div class="col card p-0 m-2 event-card" style="width: 18rem;">
   <a href="<%= event_path(event) %>">
     <div class="event-photo">
-      <%= image_tag "event_thumb.png", {class: "card-img-top img-fluid"} %>
+      <% if event.banner.key.nil? %>
+        <%= image_tag "event_thumb.png", {class: "card-img-top img-fluid"} %>
+      <% else %>
+        <%= cl_image_tag event.banner.key, {class: "card-img-top img-fluid"} %>
+      <% end %>
       <div class="event-collective align-self-center">
         <h5><%= link_to event.name, event %></h5>
       </div>
@@ -11,8 +15,10 @@
     <h5><%= event.start_time.strftime("%d/%m/%Y") %></h5>
   </div>
   <div class="card-body d-flex row px-1">
+    <!--
     <div class="col">
-      <h5 class="card-title text-uppercase m-0 p-0"><%= link_to event.collective.name %></h5>
+      <h5 class="text-uppercase m-0 p-0">Por <%= link_to event.collective.name %></h5>
     </div>
+    -->
   </div>
 </div>
