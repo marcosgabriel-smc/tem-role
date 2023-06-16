@@ -1,7 +1,8 @@
 <div class="container">
   <div class="hero-event d-flex flex-row mt-5 pt-5">
     <div class="img-fluid rounded float-start col-6">
-      <%= image_tag "flyer_1.jpeg", class: "img-fluid rounded-end", alt: "event-flyer" %>
+      <%#= image_tag "flyer_1.jpeg", class: "img-fluid rounded-end", alt: "event-flyer" %>
+      <%= cl_image_tag @event.banner.key, class: "img-fluid rounded-end", alt: "event-flyer" %>
     </div>
     <div class="col-6 align-self-center ms-3">
       <h2 class="card-title"><%= @event.name %></h2>

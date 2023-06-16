@@ -5,6 +5,7 @@
     <% default_start = (Time.zone.now + 2.hours).strftime('%Y-%m-%d %H:%M') %>
     <% default_end = (Time.zone.now + 8.hours).strftime('%Y-%m-%d %H:%M') %>
     <%= f.input :name %>
+    <%= f.input :banner, as: :file %>
     <%= f.input :description %>
     <%= f.input :zipcode, input_html: { id: "cep"} %>
     <%= f.input :street, input_html: { id: "rua"} %>
