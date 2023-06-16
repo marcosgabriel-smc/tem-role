@@ -2,6 +2,8 @@ require 'open-uri'
 
 CollectiveGenre.destroy_all
 Genre.destroy_all
+EventListSubscription.destroy_all
+EventList.destroy_all
 Collective.destroy_all
 User.destroy_all
 
