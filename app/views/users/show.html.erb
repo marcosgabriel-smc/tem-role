@@ -16,7 +16,7 @@
     <!-- ASSOCIAÇÕES A COLETIVOS -->
     <div class="w-100 d-flex justify-content-between">
       <h2>Seus Coletivos</h2>
-      <% link_to "Criar um novo coletivo", new_collective_path %>
+      <%= link_to "Criar um novo coletivo", new_collective_path %>
     </div>
     <% if @user.collectives.any? %>
       <%= render 'shared/collectives_carousel', collectives: @user.collective_memberships, user: @user %>
