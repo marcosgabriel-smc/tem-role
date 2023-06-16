@@ -41,27 +41,27 @@
       <%= render "shared/members_carousel", members_groups: members_in_3 %>
     </div>
   </div>
-</div>
-<!-- EVENTS -->
-<div class="m-4">
-  <h2>Próximos Eventos</h2>
-  <div class="justify-content-evenly">
-    <% events_in_3 = @collective.next_events.each_slice(3).to_a %>
-    <% if events_in_3.empty? %>
-      <h3>O coletivo não tem eventos anteriores</h3>
-    <% else %>
-      <%= render "shared/events_carousel", events_groups: events_in_3 %>
-    <% end %>
+  <!-- EVENTS -->
+  <div class="m-4">
+    <h2>Próximos Eventos</h2>
+    <div class="justify-content-evenly">
+      <% events_in_3 = @collective.next_events.each_slice(3).to_a %>
+      <% if events_in_3.empty? %>
+        <h4 class="text-center fst-italic">O coletivo não possui eventos futuros</h4>
+      <% else %>
+        <%= render "shared/events_carousel", events_groups: events_in_3 %>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class="m-4">
-  <h2>Eventos Anteriores</h2>
-  <div class="justify-content-evenly">
-    <% events_in_3 = @collective.previous_events.each_slice(3).to_a %>
-    <% if events_in_3.empty? %>
-      <h3>O coletivo não tem eventos anteriores</h3>
-    <% else %>
-      <%= render "shared/events_carousel", events_groups: events_in_3 %>
-    <% end %>
+  <div class="m-4">
+    <h2>Eventos Anteriores</h2>
+    <div class="justify-content-evenly">
+      <% events_in_3 = @collective.previous_events.each_slice(3).to_a %>
+      <% if events_in_3.empty? %>
+        <h4 class="text-center fst-italic">O coletivo não possui eventos anteriores</h4>
+      <% else %>
+        <%= render "shared/events_carousel", events_groups: events_in_3 %>
+      <% end %>
+    </div>
   </div>
 </div>
