@@ -194,37 +194,38 @@ def subscribe_all_users_to_last_event_list
   end
 end
 
-# EVENT_IMAGES = [
-#   "https://encurtador.com.br/izGMY",
-#   "https://encurtador.com.br/jmAS5",
-#   "https://encurtador.com.br/fjT67",
-#   "https://encurtador.com.br/jmuzS",
-#   "https://shre.ink/lSZB",
-#   "https://shre.ink/lSM2",
-#   "https://tinyurl.com/2pc4arj5",
-#   "https://tinyurl.com/yc7fnr35",
-#   "https://tinyurl.com/mwmz2vs5",
-#   "https://tinyurl.com/5drwnwsj",
-#   "https://tinyurl.com/3hkfdjw2"
-# ]
+EVENT_IMAGES = [
+  "https://images.pexels.com/photos/1677573/pexels-photo-1677573.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/2513605/pexels-photo-2513605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/3249760/pexels-photo-3249760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/2263410/pexels-photo-2263410.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/3025096/pexels-photo-3025096.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/9005440/pexels-photo-9005440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/9005433/pexels-photo-9005433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/1763067/pexels-photo-1763067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/10206936/pexels-photo-10206936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/1928131/pexels-photo-1928131.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/1154189/pexels-photo-1154189.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+]
 
 def add_banner_to_event(event)
-  puts 'oi'
-  # image_url = EVENT_IMAGES.sample
-  # return if image_url.empty?
+  image_url = EVENT_IMAGES.sample
+  return if image_url.empty?
 
-  # puts "image URL: #{image_url}"
-  # banner = URI.open(image_url)
-  # event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
-  # event.save
-  # puts "done!"
+  puts "image URL: #{image_url}"
+  banner = URI.open(image_url)
+  event.banner.attach(io: banner, filename: "banner.png", content_type: "image/png")
+  event.save
+  puts "done!"
 end
 
 collectives_in_rio.each do |collective|
   # Create incoming events
   5.times do
     n = rand(1..10)
-    Event.create!(
+    Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -241,7 +242,7 @@ collectives_in_rio.each do |collective|
   # Create previous events
   3.times do
     n = rand(1..10)
-    Event.new(
+    Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -264,7 +265,7 @@ collectives_in_sao_paulo = Collective.order(created_at: :asc).offset(5).first(5)
 collectives_in_sao_paulo.each do |collective|
   5.times do
     n = rand(1..10)
-    Event.create!(
+    Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -282,7 +283,7 @@ collectives_in_sao_paulo.each do |collective|
   # Create previous events
   3.times do
     n = rand(1..10)
-    Event.new(
+    Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -305,7 +306,7 @@ collectives_in_bh = Collective.order(created_at: :asc).offset(10).first(3)
 collectives_in_bh.each do |collective|
   3.times do
     n = rand(1..10)
-    Event.create!(
+    Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -327,7 +328,7 @@ collectives_in_jf = Collective.order(created_at: :asc).offset(15).first(2)
 collectives_in_jf.each do |collective|
   3.times do
     n = rand(1..10)
-    Event.create!(
+    Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -349,7 +350,7 @@ end
 # collectives_with_previous_only = Collective.order(created_at: :asc).offset(15).last(5)
 
 # 3.times do
-#   Event.create!(
+#   Event.create(
 #     collective: collectives_with_previous_only[0],
 #     name: Faker::Music.band,
 #     description: Faker::Lorem.paragraphs,
@@ -362,7 +363,7 @@ end
 # end
 
 # 4.times do
-#   Event.create!(
+#   Event.create(
 #     collective: collectives_with_previous_only[1],
 #     name: Faker::Music.band,
 #     description: Faker::Lorem.sentence,
@@ -375,7 +376,7 @@ end
 # end
 
 # 7.times do
-#   Event.create!(
+#   Event.create(
 #     collective: collectives_with_previous_only[2],
 #     name: Faker::Music.band,
 #     description: Faker::Lorem.sentence,
@@ -388,7 +389,7 @@ end
 # end
 
 # 11.times do
-#   Event.create!(
+#   Event.create(
 #     collective: collectives_with_previous_only[3],
 #     name: Faker::Music.band,
 #     description: Faker::Lorem.sentence,
@@ -400,7 +401,7 @@ end
 #   )
 # end
 
-# Event.create!(
+# Event.create(
 #   collective: collectives_with_previous_only[4],
 #   name: Faker::Music.band,
 #   description: Faker::Lorem.sentence,
