@@ -233,7 +233,7 @@ collectives_in_rio.each do |collective|
   # Create incoming events
   5.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.new(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -243,14 +243,14 @@ collectives_in_rio.each do |collective|
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
     )
-    event = Event.last
+    event.save!
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
   # Create previous events
   3.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -259,8 +259,8 @@ collectives_in_rio.each do |collective|
       address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
       city: rio_de_janeiro[:city],
       state: rio_de_janeiro[:state]
-    ).save(validate: false)
-    event = Event.last
+    )
+    event.save(validate: false)
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
@@ -273,7 +273,7 @@ collectives_in_sao_paulo = Collective.order(created_at: :asc).offset(5).first(5)
 collectives_in_sao_paulo.each do |collective|
   5.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -283,7 +283,7 @@ collectives_in_sao_paulo.each do |collective|
       city: sao_paulo[:city],
       state: sao_paulo[:state]
     )
-    event = Event.last
+    event.save!
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
@@ -291,7 +291,7 @@ collectives_in_sao_paulo.each do |collective|
   # Create previous events
   3.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -300,8 +300,8 @@ collectives_in_sao_paulo.each do |collective|
       address: "R. Tia Ciata - Saúde, Rio de Janeiro - RJ",
       city: sao_paulo[:city],
       state: sao_paulo[:state]
-    ).save(validate: false)
-    event = Event.last
+    )
+    event.save(validate: false)
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
@@ -314,7 +314,7 @@ collectives_in_bh = Collective.order(created_at: :asc).offset(10).first(3)
 collectives_in_bh.each do |collective|
   3.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -324,7 +324,7 @@ collectives_in_bh.each do |collective|
       city: belo_horizonte[:city],
       state: belo_horizonte[:state]
     )
-    event = Event.last
+    event.save!
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
@@ -336,7 +336,7 @@ collectives_in_jf = Collective.order(created_at: :asc).offset(15).first(2)
 collectives_in_jf.each do |collective|
   3.times do
     n = rand(1..10)
-    Event.create(
+    event = Event.create(
       collective:,
       name: Faker::Book.title,
       description: Faker::Lorem.paragraphs,
@@ -346,7 +346,7 @@ collectives_in_jf.each do |collective|
       city: juiz_de_fora[:city],
       state: juiz_de_fora[:state]
     )
-    event = Event.last
+    event.save!
     add_banner_to_event(event)
     subscribe_all_users_to_last_event_list
   end
