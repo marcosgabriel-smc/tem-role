@@ -1,31 +1,33 @@
 <!-- HERO BANNER DO COLLETIVO -->
 <% image_url = @collective.banner.key.nil? ? image_path("collective_banner.jpg") : cl_image_path(@collective.banner.key, crop: :fill) %>
 <div
-  class= "masthead justify-content-center align-items-center d-flex"
+  class= "masthead"
   style="background-image: url('<%= image_url %>');">
-  <div class="row d-flex color-overlay">
-    <div class="text-center d-flex row">
-      <div class="align-self-end">
-        <h1 class="colec-title"><%= @collective.name %></h1>
+  <div class="centerpage h-100 d-flex flex-column">
+    <!-- DESCRIPTION -->
+    <div class="w-100 mb-5">
+      <div class="w-50 ms-3">
+        <p class="colectivedesc text-break text-start fw-semibold"><%= simple_format(@collective.description) %></p>
       </div>
-      <p class="colectivedesc text-break text-start fw-semibold"><%= simple_format(@collective.description) %></p>
+    </div>
+    <!-- TITLE -->
+    <div class="w-100 text-center d-flex row my-5">
+      <h1 class="colec-title"><%= @collective.name %></h1>
     </div>
     <!-- GENRES -->
-    <div class= "align-self-end d-flex justify-content-end w-100">
-      <div class="d-flex text-end text-break pb-4">
-        <% @collective.genres.each do |genre| %>
-          <h5 class="m-3"><%= genre.name.capitalize %></h5>
-        <% end %>
-      </div>
+    <div class="d-flex justify-content-center align-itens-end w-100 mb-0 mt-5">
+      <% @collective.genres.each do |genre| %>
+        <h5 class="m-3"><%= genre.name.capitalize %></h5>
+      <% end %>
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container mt-5">
   <!-- ROUTES BUTTONS ##TO-DO CENTER AND STYLE IT-->
   <div class="m-4 d-flex flex-row justify-content-center">
     <%= link_to "Voltar para coletivos", collectives_path, class: "mx-4" %>
     <% if policy(@collective).edit? %>
-      <p>| <%= link_to "Edit this collective", edit_collective_path(@collective), class: "mx-4" %> </p>
+      <p>| <%= link_to "Editar coletivo", edit_collective_path(@collective), class: "mx-4" %> </p>
     <% end %>
     <% if current_user == @collective.owner && policy(Event).new? %>
       <p>| <%= link_to 'Criar evento', new_event_path, class: "mx-4" %> </p>

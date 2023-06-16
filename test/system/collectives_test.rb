@@ -38,7 +38,7 @@ class CollectivesTest < ApplicationSystemTestCase
     login_as users(:meleu)
 
     visit collective_url(@collective)
-    click_on "Edit this collective", match: :first
+    click_on "Editar coletivo", match: :first
 
     fill_in "collective_name", with: "Dopez[Edited]"
     fill_in "collective_description", with: "This is a dope [edited] Collective"
